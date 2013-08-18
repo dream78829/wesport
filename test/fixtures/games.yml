@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  h_team_id: 1
+  g_team_id: 1
+  league_id: 1
+
+two:
+  h_team_id: 1
+  g_team_id: 1
+  league_id: 1

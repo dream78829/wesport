@@ -1,0 +1,111 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Player:</b>
+  <%= Player.find(@record.player_id).name %>
+</p>
+
+<p>
+  <b>Game:</b>
+  <%= @record.game_id %>
+</p>
+
+<p>
+  <b>Free throw made:</b>
+  <%= @record.free_throw_made %>
+</p>
+
+<p>
+  <b>Free throw miss:</b>
+  <%= @record.free_throw_miss %>
+</p>
+
+<p>
+  <b>Free throw total:</b>
+  <%= @record.free_throw_total %>
+</p>
+
+<p>
+  <b>Two points made:</b>
+  <%= @record.two_points_made %>
+</p>
+
+<p>
+  <b>Two points made:</b>
+  <%= @record.two_points_made %>
+</p>
+
+<p>
+  <b>Two points total:</b>
+  <%= @record.two_points_total %>
+</p>
+
+<p>
+  <b>Three points made:</b>
+  <%= @record.three_points_made %>
+</p>
+
+<p>
+  <b>Three points miss:</b>
+  <%= @record.three_points_miss %>
+</p>
+
+<p>
+  <b>Three points total:</b>
+  <%= @record.three_points_total %>
+</p>
+
+<p>
+  <b>Assist:</b>
+  <%= @record.assist %>
+</p>
+
+<p>
+  <b>Block:</b>
+  <%= @record.block %>
+</p>
+
+<p>
+  <b>Turn over:</b>
+  <%= @record.turn_over %>
+</p>
+
+<p>
+  <b>Steal:</b>
+  <%= @record.steal %>
+</p>
+
+<p>
+  <b>Defensive rebound:</b>
+  <%= @record.defensive_rebound %>
+</p>
+
+<p>
+  <b>Offensive rebound:</b>
+  <%= @record.offensive_rebound %>
+</p>
+
+<p>
+  <b>Rebound total:</b>
+  <%= @record.rebound_total %>
+</p>
+
+<p>
+  <b>Personal foul:</b>
+  <%= @record.personal_foul %>
+</p>
+
+<p>
+  <b>Points total:</b>
+  <%= @record.points_total %>
+</p>
+
+<p>
+  <b>Efficiency formula:</b>
+  <%= @record.efficiency_formula %>
+</p>
+
+
+<%= link_to 'Edit', edit_record_path(@record) %> |
+<%= link_to 'Done', :controller => 'records', :action => 'index', :id => @record.game_id %>
+<%= link_to 'Next_Player', :controller => 'records', :action => 'new', :id => @record.game_id %>

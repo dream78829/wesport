@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>H team:</b>
+  <%= @game.h_team_id %>
+</p>
+
+<p>
+  <b>G team:</b>
+  <%= @game.g_team_id %>
+</p>
+<p>
+  <b>Name:</b>
+  <%= @game.name %>
+</p>
+
+<p>
+  <b>League:</b>
+  <%= League.find(@game.league_id).name %>
+</p>
+
+
+<%= link_to 'Edit', edit_game_path(@game) %> |
+<%= link_to 'Back', games_path %>

@@ -1,0 +1,10 @@
+<% if current_team_user %>
+       <%= 	button_to('登出', destroy_session_path(:team_user), :method => 'delete') %> |
+     <%= link_to('修改密碼', edit_registration_path(:team_user)) %> |
+     <%= link_to 'player', players_path %> |
+     <%= link_to 'record', records_path %> |
+     <%= link_to 'Game', games_path %> |
+     <%= link_to 'team_box_score' ,team_box_scores_path %>
+
+   <% else %>
+   	    <% end %>
