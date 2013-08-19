@@ -1,10 +1,79 @@
-<% if current_team_user %>
-       <%= 	button_to('登出', destroy_session_path(:team_user), :method => 'delete') %> |
-     <%= link_to('修改密碼', edit_registration_path(:team_user)) %> |
-     <%= link_to 'player', players_path %> |
-     <%= link_to 'record', records_path %> |
-     <%= link_to 'Game', games_path %> |
-     <%= link_to 'team_box_score' ,team_box_scores_path %>
+<div class="index">
 
-   <% else %>
-   	    <% end %>
+<!-- Slider -->
+
+	<div class="sky-carousel">
+		<div class="sky-carousel-wrapper">
+			<ul class="sky-carousel-container">
+				<li>
+					<img src="/assets/people/1.jpg" alt="" />
+					<div class="sc-content">
+						<h2>Maria Vann</h2>
+					</div>
+				</li>
+				<li>
+					<img src="/assets/people/2.jpg" alt="" />
+					<div class="sc-content">
+						<h2>Leslie Lawson</h2>
+					</div>
+				</li>
+				<li>
+					<img src="/assets/people/3.jpg" alt="" />
+					<div class="sc-content">
+						<h2>陳冠銘</h2>
+					</div>
+				</li>
+				<li>
+					<img src="/assets/people/7.jpg" alt="" />
+					<div class="sc-content">
+						<h2>黃柏淞</h2>
+					</div>
+				</li>
+				<li>
+					<img src="/assets/people/8.jpg" alt="" />
+					<div class="sc-content">
+						<h2>陳楷</h2>
+					</div>
+				</li>
+				<li>
+					<img src="/assets/people/6.jpg" alt="" />
+					<div class="sc-content">
+						<h2>Dori Moss</h2>
+					</div>
+				</li>
+				<% @players.each do |player| %>
+				<li>
+					<img src="/assets/people/6.jpg" alt="" />
+					<div class="sc-content">
+						<h2><%= player.name %></h2>
+					</div>
+				</li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+
+
+<!-- End Slider -->
+
+
+  <div class="container">
+  <table  class="table table-striped">
+    <tr>
+      <th>對手</th>
+      <th>聯盟</th>
+      <th>名稱</th>
+      <th>時間</th>
+   </tr>
+
+<% @games.each do |game| %>
+  <tr>
+    <td><%= game.name %></td>
+    <td><%= League.find(game.league_id).name %></td>
+    <td><%= game.name %></td>
+    <td><%= game.created_at %></td>
+  </tr>
+<% end %>
+</table>
+  </div>
+</div>

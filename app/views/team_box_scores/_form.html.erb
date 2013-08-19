@@ -1,4 +1,4 @@
-<%= form_for(@team_box_scores) do |f| %>
+<%= form_for(@team_box_score) do |f| %>
   <% if @team_box_score.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@team_box_score.errors.count, "error") %> prohibited this team_box_score from being saved:</h2>
@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
- 
+
   <div class="actions">
     <%= f.submit %>
   </div>
