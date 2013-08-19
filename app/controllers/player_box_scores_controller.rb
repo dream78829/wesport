@@ -6,7 +6,7 @@ class PlayerBoxScoresController < ApplicationController
     @three_points_made = 0
     @count = 0
     #@player_box_scores = PlayerBoxScore.all
-    @players = Record.all
+    #@players = Record.all
     @player = Record.where(:player_id => params[:id])
     #@sum = @player[1][:two_points_made] + @player[2][:two_points_made] + @player[0][:two_points_made] 
     
@@ -15,7 +15,7 @@ class PlayerBoxScoresController < ApplicationController
         @three_points_made += lang[:three_points_made]
         @count += 1
     end
-    @sum = [@two_points_made/@count.to_f,@three_points_made]
+    @sum = [@two_points_made/@count.to_f,@three_points_made/@count.to_f]
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @sum }

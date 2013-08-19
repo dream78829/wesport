@@ -3,6 +3,7 @@
 <table>
   <tr>
     <th>Player</th>
+    <th>Player_ID</th>
     <th>Game</th>
     <th>Free throw made</th>
     <th>Free throw miss</th>
@@ -30,13 +31,15 @@
 
 <% @records.each do |record| %>
   <tr>
+    
     <td><%= Player.find(record.player_id).name %></td>
+    <td><%= record.player_id %></td>
     <td><%= Game.find(record.game_id).name %></td>
     <td><%= record.free_throw_made %></td>
     <td><%= record.free_throw_miss %></td>
     <td><%= record.free_throw_total %></td>
     <td><%= record.two_points_made %></td>
-    <td><%= record.two_points_made %></td>
+    <td><%= record.two_points_miss %></td>
     <td><%= record.two_points_total %></td>
     <td><%= record.three_points_made %></td>
     <td><%= record.three_points_miss %></td>
@@ -53,7 +56,7 @@
     <td><%= record.efficiency_formula %></td>
     <td><%= link_to 'Show', record %></td>
     <td><%= link_to 'Edit', edit_record_path(record) %></td>
-    <td><%= button_to 'Destroy', record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= button_to 'Destroy', :controller => 'records', :action => 'destroy', :id => record %></td>
   </tr>
 <% end %>
 </table>

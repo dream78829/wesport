@@ -5,7 +5,7 @@
     <th>Name</th>
     <th>Team</th>
     <th>Number</th>
-    <th></th>
+    <th>ID</th>
     <th></th>
     <th></th>
   </tr>
@@ -15,6 +15,7 @@
     <td><%= player.name %></td>
     <td><%= player.team_id %></td>
     <td><%= player.number %></td>
+    <td><%= player.id %></td>
     <td><%= link_to 'Show', :controller => 'player_box_scores', :action => 'index', :id => player %></td>
     <td><%= link_to 'Edit', edit_player_path(player) %></td>
     <td><%= button_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>

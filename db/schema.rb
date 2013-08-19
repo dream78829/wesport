@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130815085202) do
+ActiveRecord::Schema.define(:version => 20130819070930) do
 
   create_table "games", :force => true do |t|
     t.integer  "h_team_id"
@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(:version => 20130815085202) do
     t.integer  "free_throw_made"
     t.integer  "free_throw_miss"
     t.integer  "free_throw_total"
-    t.integer  "two_points_made"
     t.integer  "two_points_total"
     t.integer  "three_points_made"
     t.integer  "three_points_miss"
@@ -64,6 +63,8 @@ ActiveRecord::Schema.define(:version => 20130815085202) do
     t.integer  "efficiency_formula"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.integer  "two_points_made"
+    t.integer  "two_points_miss"
   end
 
   create_table "team_box_scores", :force => true do |t|
