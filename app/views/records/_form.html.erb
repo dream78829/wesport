@@ -1,7 +1,8 @@
 <%= form_for(@record) do |f| %>
   <% if @record.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@record.errors.count, "error") %> prohibited this record from being saved:</h2>
+    <div class="alert">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong><%= pluralize(@record.errors.count, "error") %> prohibited this record from being saved:</strong>
 
       <ul>
       <% @record.errors.full_messages.each do |msg| %>
@@ -21,33 +22,39 @@
   </div>
   <div class="field">
     <%= f.label :free_throw_made %><br />
-    <%= f.number_field :free_throw_made %>
+    <%= f.number_field :free_throw_made,:data=>{:progression=>"",:helper=>"罰球-得分"} %>
   </div>
   <div class="field">
     <%= f.label :free_throw_miss %><br />
-    <%= f.number_field :free_throw_miss %>
+    <%= f.number_field :free_throw_miss,:data=>{:progression=>"",:helper=>"罰球-失誤"}%>
   </div>
   <div class="field">
     <%= f.label :free_throw_total %><br />
-    <%= f.number_field :free_throw_total %>
+    <%= f.number_field :free_throw_total,:data=>{:progression=>"",:helper=>"罰球-總出手"} %>
   </div>
-  
+  <div class="field">
+    <%= f.label :two_points_made %><br />
+    <%= f.number_field :two_points_made ,:data=>{:progression=>"",:helper=>"兩分球-得分"}%>
+  </div>
+  <div class="field">
+    <%= f.label :two_points_made %><br />
+    <%= f.number_field :two_points_made ,:data=>{:progression=>"",:helper=>"兩分球-得分"}%>
   </div>
   <div class="field">
     <%= f.label :two_points_total %><br />
-    <%= f.number_field :two_points_total %>
+    <%= f.number_field :two_points_total ,:data=>{:progression=>"",:helper=>"兩分球-總出手"}%>
   </div>
   <div class="field">
     <%= f.label :three_points_made %><br />
-    <%= f.number_field :three_points_made %>
+    <%= f.number_field :three_points_made ,:data=>{:progression=>"",:helper=>"三分球-得分"} %>
   </div>
   <div class="field">
     <%= f.label :three_points_miss %><br />
-    <%= f.number_field :three_points_miss %>
+    <%= f.number_field :three_points_miss ,:data=>{:progression=>"",:helper=>"三分球-失誤"} %>
   </div>
   <div class="field">
     <%= f.label :three_points_total %><br />
-    <%= f.number_field :three_points_total %>
+    <%= f.number_field :three_points_total ,:data=>{:progression=>"",:helper=>"三分球-總出手"} %>
   </div>
   <div class="field">
     <%= f.label :assist %><br />
