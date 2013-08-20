@@ -72,12 +72,13 @@ class RecordsController < ApplicationController
   # DELETE /records/1
   # DELETE /records/1.json
   def destroy
+    @temp = Record.find(params[:id]).game_id
     @record = Record.find(params[:id])
     @record.destroy
 
     respond_to do |format|
-      format.html { redirect_to records_url }
-      format.json { head :no_content }
+      format.html { redirect_to :controller => "records",:action=>"index", :id =>@temp }
+      format.json { render json: @temp }
     end
   end
 end
