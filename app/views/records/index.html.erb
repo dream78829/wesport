@@ -56,12 +56,13 @@
     <td><%= record.efficiency_formula %></td>
     <td><%= link_to 'Show', record %></td>
     <td><%= link_to 'Edit', edit_record_path(record) %></td>
-    <td><%= button_to 'Destroy', :controller => 'records', :action => 'destroy', :id => record %></td>
+    <td><%= button_to 'Destroy', record, method: :delete, data: { confirm: 'Are you sure?' } ,:id => record %></td>
+    
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Record', new_record_path %>
+<%= link_to 'Game', games_path %> |
 <%= link_to 'index', team_users_path %>

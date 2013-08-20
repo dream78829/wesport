@@ -23,4 +23,4 @@
 
 <%=
 @leagues = League.find(:all, :order => "name")
-collection_select("stuff", "league_id", @leagues, :id, :name , include_blank: true) %>
+collection_select("stuff", "league_id", @leagues, :id, :name , include_blank: true, ) %>
