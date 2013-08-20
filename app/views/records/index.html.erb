@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="container">
 <table class="table table-striped">
    <tr>
@@ -9,6 +10,34 @@
     <th colspan="5"></th>
     <th colspan="2"></th>
     <th></th>
+=======
+<h1>Listing records</h1>
+
+<table>
+  <tr>
+    <th>Player</th>
+    <th>Player_ID</th>
+    <th>Game</th>
+    <th>Free throw made</th>
+    <th>Free throw miss</th>
+    <th>Free throw total</th>
+    <th>Two points made</th>
+    <th>Two points made</th>
+    <th>Two points total</th>
+    <th>Three points made</th>
+    <th>Three points miss</th>
+    <th>Three points total</th>
+    <th>Assist</th>
+    <th>Block</th>
+    <th>Turn over</th>
+    <th>Steal</th>
+    <th>Defensive rebound</th>
+    <th>Offensive rebound</th>
+    <th>Rebound total</th>
+    <th>Personal foul</th>
+    <th>Points total</th>
+    <th>Efficiency formula</th>
+>>>>>>> Andy
     <th></th>
     <th></th>
     <th></th>
@@ -43,13 +72,15 @@
 
 <% @records.each do |record| %>
   <tr>
+    
     <td><%= Player.find(record.player_id).name %></td>
+    <td><%= record.player_id %></td>
     <td><%= Game.find(record.game_id).name %></td>
     <td><%= record.free_throw_made %></td>
     <td><%= record.free_throw_miss %></td>
     <td><%= record.free_throw_total %></td>
     <td><%= record.two_points_made %></td>
-    <td><%= record.two_points_made %></td>
+    <td><%= record.two_points_miss %></td>
     <td><%= record.two_points_total %></td>
     <td><%= record.three_points_made %></td>
     <td><%= record.three_points_miss %></td>
@@ -66,13 +97,19 @@
     <td><%= record.efficiency_formula %></td>
     <td><%= link_to 'Show', record %></td>
     <td><%= link_to 'Edit', edit_record_path(record) %></td>
-    <td><%= button_to 'Destroy', record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= button_to 'Destroy', record, method: :delete, data: { confirm: 'Are you sure?' } ,:id => record %></td>
+    
   </tr>
 <% end %>
 </table>
 
 <br />
 
+<<<<<<< HEAD
 <%= link_to 'New Record', new_record_path %>
 <%= link_to 'index', team_users_path %>
 </div>
+=======
+<%= link_to 'Game', games_path %> |
+<%= link_to 'index', team_users_path %>
+>>>>>>> Andy

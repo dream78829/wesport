@@ -19,6 +19,7 @@ class TeamBoxScoresController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @sum }
+      format.js { render 'populate_projects', :formats => [:js] }
     end
   end
 
