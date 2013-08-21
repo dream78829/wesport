@@ -16,10 +16,7 @@ $("#new_record").progression({
   tooltipAnimate: true
 });
 
-$("#new_record").submit(function(e) {
-    e.preventDefault();
-    $("#new_record").find('input[type="submit"]').val('✓ submitted');
-});
+
 
 
 
