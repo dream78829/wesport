@@ -8,24 +8,7 @@ class Record < ActiveRecord::Base
   after_initialize :set_defaults
   private
   def set_defaults
-    self.block = 0
-    self.assist = 0
-    self.defensive_rebound = 0
-    self.offensive_rebound = 0
-    self.free_throw_total = 0
-    self.free_throw_miss = 0
-    self.free_throw_made = 0
-    self.two_points_total = 0
-    self.two_points_miss = 0
-    self.two_points_made = 0
-    self.three_points_total = 0
-    self.three_points_miss = 0
-    self.three_points_made = 0
-    self.rebound_total = 0
-    self.personal_foul = 0
-    self.steal = 0
-    self.turn_over = 0
-
+    
 
   end 
 end

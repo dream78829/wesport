@@ -3,7 +3,7 @@ class RecordsController < ApplicationController
   # GET /records.json
   def index
     @records = Record.where(:game_id => params[:id]).all
-
+    @game = Game.find(params[:id])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @records }
@@ -41,7 +41,7 @@ class RecordsController < ApplicationController
   # POST /records.json
   def create
     @record = Record.new(params[:record])
-
+    
     respond_to do |format|
       if @record.save
         format.html { redirect_to @record, notice: 'Record was successfully created.' }

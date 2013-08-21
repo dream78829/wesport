@@ -1,31 +1,30 @@
 <div class="container">
-<h1>Listing players</h1>
+<h2>球員名單<small>Players</small></h2>
+<hr>
 
-<table>
+<table class="table table-striped" style="width:400px">
   <tr>
-    <th>Name</th>
-    <th>Team</th>
-    <th>Number</th>
-    <th>ID</th>
-    <th></th>
+    <th>姓名</th>
+    <th>背號</th>
     <th></th>
   </tr>
 
 <% @players.each do |player| %>
   <tr>
     <td><%= player.name %></td>
-    <td><%= player.team_id %></td>
     <td><%= player.number %></td>
-    <td><%= player.id %></td>
-    <td><%= link_to 'Show', :controller => 'player_box_scores', :action => 'index', :id => player %></td>
-    <td><%= link_to 'Edit', edit_player_path(player) %></td>
-    <td><%= button_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td>
+      <div  class="btn-group">
+        <%= link_to raw("<i class=\"icon-search\"></i>"), {:controller => 'player_box_scores', :action => 'index', :id => player},:class=>"btn" %>
+        <%= link_to raw("<i class=\"icon-edit\"></i>"), edit_player_path(player),:class=>"btn" %>
+        <%= link_to raw("<i class=\"icon-trash\"></i>"), player, method: :delete, data: { confirm: 'Are you sure?' },class: "btn" %>
+      </div>
+    </td>
   </tr>
 <% end %>
 </table>
 
 <br />
-<%= link_to 'New Player', new_player_path %>
-<%= link_to 'index', team_users_path %>
-<%= link_to 'New Game', new_game_path %>
+<%= link_to 'New Player', new_player_path ,class: "btn"%>
+<%= link_to 'New Game', new_game_path ,class: "btn"%>
 </div>

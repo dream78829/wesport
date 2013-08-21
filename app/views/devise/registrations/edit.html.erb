@@ -10,12 +10,13 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
   <i>(leave blank if you don't want to change it)</i>
-  <%= f.password_field :password, :autocomplete => "off" ,:placeholder => "Password",class: "input-block-level" %><br/>
-  <%= f.password_field :password_confirmation, :autocomplete => "off" ,:placeholder => "Password confirmation",class: "input-block-level" %><br/>
-  <%= f.password_field :current_password, :autocomplete => "off" ,:placeholder => "Current password",class: "input-block-level" %>
+  <%= f.password_field :password, :autocomplete => "off" ,:placeholder => "新密碼",class: "input-block-level" %><br/>
+  <%= f.password_field :password_confirmation, :autocomplete => "off" ,:placeholder => "確認新密碼",class: "input-block-level" %><br/>
+  <%= f.password_field :current_password, :autocomplete => "off" ,:placeholder => "舊密碼",class: "input-block-level" %>
 
-  <div><%= f.submit "更新",class: "btn" %>
-  <%= link_to "取消", :back,class: "btn btn-inverse" %>
+  <div class="pull-right">
+  <%= link_to "取消", :back,class: "btn" %>
+  <%= f.submit "更新",class: "btn btn-success" %>
 </div>
 <% end %>
 
