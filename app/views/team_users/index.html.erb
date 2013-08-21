@@ -12,16 +12,25 @@
       <th>名稱</th>
       <th>時間</th>
    </tr>
-
-<% @games.each do |game| %>
+<% if @games.any? == true %>
+  <% @games.each do |game| %>
+    <tr>
+      <td><%= game.name %></td>
+      <td><%= League.find(game.league_id).name %></td>
+      <td><%= link_to game.name, :controller => 'records', :action => 'index', :id => game %></td>
+      <td><%= game.created_at %></td>
+    </tr>
+  <% end %>
+<% else %>
   <tr>
-    <td><%= game.name %></td>
-    <td><%= League.find(game.league_id).name %></td>
-    <td><%= link_to game.name, :controller => 'records', :action => 'index', :id => game %></td>
-    <td><%= game.created_at %></td>
+    <td colspan="4">您還沒有任何賽事記錄</td>
   </tr>
-<% end %>
+<% end%>
 </table>
-<div id="Pagination" class="pagination"></div>
+<% if @players.any? ==true && @games.any? ==false%>
+  <div id="tips" class="tips tip-index-game" onClick="closeTip();">
+    <p>新增一場比賽➡</p>
+  </div>
+  <% end %>
   </div>
 </div>

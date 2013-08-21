@@ -1,0 +1,32 @@
+<%= form_for(@player) do |f| %>
+  <% if @player.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@player.errors.count, "error") %> prohibited this player from being saved:</h2>
+
+      <ul>
+      <% @player.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="new-player-info">
+    <div class="field">
+      <%= f.label "姓名" %><br />
+      <%= f.text_field :name %>
+    </div>
+    <div class="field" style="display:none">
+      <%= f.label :team_id %><br />
+      <%= f.number_field :team_id %>
+    </div>
+    <div class="field">
+      <%= f.label "背號" %><br />
+      <%= f.number_field :number %>
+    </div>
+  </div>
+  <div class="pull-right">
+  
+    <%= link_to "取消", players_path ,:class=>"btn"%>
+    <%= f.submit "確定",:class=>"btn btn-success"%>
+  </div>   
+<% end %>
