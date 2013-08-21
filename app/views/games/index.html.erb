@@ -1,7 +1,9 @@
+<div class="container">
 <h1>Listing games</h1>
 
 <table>
-  <tr>
+  <tr >
+
     <th>H team</th>
     <th>G team</th>
     <th>League_name</th>
@@ -19,13 +21,14 @@
     <td><%= game.league_id %></td>
     <td><%= link_to 'Show', :controller => 'records', :action => 'index', :id => game %></td>
     <td><%= link_to 'Edit', edit_game_path(game) %></td>
-    <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= button_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } ,:id => game %></td>
     <td><%= link_to 'New_Record', :controller => 'records', :action => 'new', :id => game %></td>
   </tr>
 <% end %>
-</table>
+</table> 
 
 <br />
 
 <%= link_to 'New Game', new_game_path %>
 <%= link_to 'index', team_users_path %>
+</div>

@@ -1,10 +1,27 @@
-<% if current_team_user %>
-       <%= 	button_to('登出', destroy_session_path(:team_user), :method => 'delete') %> |
-     <%= link_to('修改密碼', edit_registration_path(:team_user)) %> |
-     <%= link_to 'player', players_path %> |
-     <%= link_to 'record', records_path %> |
-     <%= link_to 'Game', games_path %> |
-     <%= link_to 'team_box_score' ,team_box_scores_path %>
+<div class="index">
 
-   <% else %>
-   	    <% end %>
+<%= render partial: "carousel" %>
+
+
+  <div class="container">
+  <h2>最新賽事記錄</h2><%= button_to "新增賽事",new_game_path,:class=> "pull-right btn btn-primary" %>
+  <table  class="table table-striped table-hover">
+    <tr>
+      <th>對手</th>
+      <th>聯盟</th>
+      <th>名稱</th>
+      <th>時間</th>
+   </tr>
+
+<% @games.each do |game| %>
+  <tr>
+    <td><%= game.name %></td>
+    <td><%= League.find(game.league_id).name %></td>
+    <td><%= link_to game.name, :controller => 'records', :action => 'index', :id => game %></td>
+    <td><%= game.created_at %></td>
+  </tr>
+<% end %>
+</table>
+<div id="Pagination" class="pagination"></div>
+  </div>
+</div>
