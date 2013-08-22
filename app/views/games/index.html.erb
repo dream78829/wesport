@@ -18,7 +18,11 @@
     <td><%= game.name %></td>
     <td><%= League.find(game.league_id).name %></td>
     <td><%= game.name%></td>
-    <td><%= game.date_time.strftime("%Y-%m-%d") %></td>
+    <td>
+       <% if game.date_time%>
+          <%= game.date_time.strftime("%Y-%m-%d") %>
+        <% end%>
+    </td>
     <td><%= game.location %></td>
     <td>
       <div class="btn-group">
