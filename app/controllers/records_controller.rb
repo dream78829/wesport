@@ -2,7 +2,7 @@ class RecordsController < ApplicationController
   # GET /records
   # GET /records.json
   def index
-    @records = Record.where(:game_id => params[:id]).all
+    @records = Record.order("starter DESC").where(:game_id => params[:id]).all
 
     respond_to do |format|
       format.html # index.html.erb

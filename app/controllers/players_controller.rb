@@ -74,6 +74,11 @@ class PlayersController < ApplicationController
   def destroy
     @player = Player.find(params[:id])
     @player.destroy
+    record = Record.where(:player_id => params[:id]).all
+    record.each do |lang|
+      lang.destroy
+    end
+    #@record.destroy#destroy不能一次刪除這個陣列
 
     respond_to do |format|
       format.html { redirect_to players_url }
