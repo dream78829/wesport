@@ -21,7 +21,7 @@ Wesport::Application.routes.draw do
 
   
 
-  devise_for :team_users, controllers: { confirmations: 'confirmations' }
+  devise_for :team_users, controllers:  { confirmations: 'confirmations'}
 
   #devise_for :devise
 
