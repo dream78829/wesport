@@ -11,15 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130815085202) do
+ActiveRecord::Schema.define(:version => 20130823054924) do
 
   create_table "games", :force => true do |t|
     t.integer  "h_team_id"
     t.integer  "g_team_id"
     t.integer  "league_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.string   "name"
+    t.integer  "h_team_points"
+    t.integer  "g_team_points"
+    t.datetime "date_time"
+    t.string   "note"
+    t.string   "location"
   end
 
   create_table "leagues", :force => true do |t|
@@ -47,7 +52,6 @@ ActiveRecord::Schema.define(:version => 20130815085202) do
     t.integer  "free_throw_made"
     t.integer  "free_throw_miss"
     t.integer  "free_throw_total"
-    t.integer  "two_points_made"
     t.integer  "two_points_total"
     t.integer  "three_points_made"
     t.integer  "three_points_miss"
@@ -64,6 +68,9 @@ ActiveRecord::Schema.define(:version => 20130815085202) do
     t.integer  "efficiency_formula"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.integer  "two_points_made"
+    t.integer  "two_points_miss"
+    t.boolean  "starter"
   end
 
   create_table "team_box_scores", :force => true do |t|
@@ -98,5 +105,21 @@ ActiveRecord::Schema.define(:version => 20130815085202) do
   add_index "team_users", ["confirmation_token"], :name => "index_team_users_on_confirmation_token", :unique => true
   add_index "team_users", ["email"], :name => "index_team_users_on_email", :unique => true
   add_index "team_users", ["reset_password_token"], :name => "index_team_users_on_reset_password_token", :unique => true
+
+  create_table "teams", :force => true do |t|
+    t.string   "name"
+    t.integer  "code"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "user_team_matches", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.integer  "player_id"
+    t.integer  "status"
+  end
 
 end
