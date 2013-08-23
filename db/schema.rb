@@ -12,9 +12,13 @@
 # It's strongly recommended to check this file into your version control system.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20130821145119) do
 =======
 ActiveRecord::Schema.define(:version => 20130823054924) do
+>>>>>>> Andy
+=======
+ActiveRecord::Schema.define(:version => 20130823081842) do
 >>>>>>> Andy
 
   create_table "games", :force => true do |t|
@@ -109,6 +113,7 @@ ActiveRecord::Schema.define(:version => 20130823054924) do
     t.string   "team_contact_email"
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
+    t.string   "avatar"
   end
 
   add_index "team_users", ["account"], :name => "index_team_users_on_account", :unique => true
