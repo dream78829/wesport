@@ -13,6 +13,17 @@
   <%= f.password_field :password, :autocomplete => "off" ,:placeholder => "Password",class: "input-block-level" %><br/>
   <%= f.password_field :password_confirmation, :autocomplete => "off" ,:placeholder => "Password confirmation",class: "input-block-level" %><br/>
   <%= f.password_field :current_password, :autocomplete => "off" ,:placeholder => "Current password",class: "input-block-level" %>
+  
+  <div>
+  
+    <%= image_tag(current_team_user.avatar.url) %>
+    <%= f.label :remove_avatar do%><br />
+      <%= f.check_box :remove_avatar %><br />
+      <%= f.file_field :avatar  %><br />
+      <%= f.hidden_field :avatar_cache %>
+    <% end %>
+
+  </div>
 
   <div><%= f.submit "更新",class: "btn" %>
   <%= link_to "取消", :back,class: "btn btn-inverse" %>
