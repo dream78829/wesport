@@ -1,4 +1,7 @@
 Wesport::Application.routes.draw do
+  resources :teams
+
+
   resources :team_box_scores
 
 
@@ -16,8 +19,9 @@ Wesport::Application.routes.draw do
 
   resources :players
 
+  
 
-  devise_for :team_users
+  devise_for :team_users, controllers: { confirmations: 'confirmations' }
 
   #devise_for :devise
 

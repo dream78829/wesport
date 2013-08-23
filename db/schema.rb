@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20130821145119) do
+=======
+ActiveRecord::Schema.define(:version => 20130823054924) do
+>>>>>>> Andy
 
   create_table "games", :force => true do |t|
     t.integer  "h_team_id"
@@ -22,9 +26,15 @@ ActiveRecord::Schema.define(:version => 20130821145119) do
     t.string   "name"
     t.integer  "h_team_points"
     t.integer  "g_team_points"
+<<<<<<< HEAD
     t.string   "note"
     t.string   "location"
     t.datetime "date_time"
+=======
+    t.datetime "date_time"
+    t.string   "note"
+    t.string   "location"
+>>>>>>> Andy
   end
 
   create_table "leagues", :force => true do |t|
@@ -105,5 +115,21 @@ ActiveRecord::Schema.define(:version => 20130821145119) do
   add_index "team_users", ["confirmation_token"], :name => "index_team_users_on_confirmation_token", :unique => true
   add_index "team_users", ["email"], :name => "index_team_users_on_email", :unique => true
   add_index "team_users", ["reset_password_token"], :name => "index_team_users_on_reset_password_token", :unique => true
+
+  create_table "teams", :force => true do |t|
+    t.string   "name"
+    t.integer  "code"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "user_team_matches", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.integer  "player_id"
+    t.integer  "status"
+  end
 
 end
