@@ -2,12 +2,46 @@ class TeamBoxScoresController < ApplicationController
   # GET /team_box_scores
   # GET /team_box_scores.json
     def index
+    @leagues = League.all
+    @two_points_made = 0
+    @three_points_made = 0
+    @count = 0
+    
+
+    @players = Record.all
+
+
+    if params[:id] != nil
+      @player = Record.where(:game_id => Game.where(:h_team_id => current_team_user.id,:league => params[:id])).all
+      else
+      @player = Record.where(:game_id => Game.where(:h_team_id => current_team_user.id)).all
+    end
+    #@sum = @player[1][:two_points_made] + @player[2][:two_points_made] + @player[0][:two_points_made] 
+    
+    @player.each do |lang|
+        @two_points_made += lang[:two_points_made]
+        @three_points_made += lang[:three_points_made]
+        @count += 1
+    end
+    @sum = [@two_points_made/@count.to_f,@three_points_made/@count.to_f]
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @sum }
+      format.json { render json: @leagues }
+      format.js { render 'populate_projects', :formats => [:js] }
+    end
+  end
+
+  # GET /team_box_scores/1
+  # GET /team_box_scores/1.json
+  def show
+    #@team_box_scores = Team_box_score.all
     @two_points_made = 0
     @three_points_made = 0
     @count = 0
     
     @players = Record.all
-    @player = Record.where(:game_id => Game.where(:h_team_id => current_team_user.id)).all
+    @player = Record.where(:game_id => Game.where(:h_team_id => current_team_user.id,:league => params[:id])).all
     #@sum = @player[1][:two_points_made] + @player[2][:two_points_made] + @player[0][:two_points_made] 
     
     @player.each do |lang|
@@ -20,17 +54,6 @@ class TeamBoxScoresController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @sum }
       format.js { render 'populate_projects', :formats => [:js] }
-    end
-  end
-
-  # GET /team_box_scores/1
-  # GET /team_box_scores/1.json
-  def show
-    @team_box_score = TeamBoxScore.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @team_box_score }
     end
   end
 
