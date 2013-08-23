@@ -13,10 +13,14 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20130823054924) do
 =======
 ActiveRecord::Schema.define(:version => 20130821145119) do
 >>>>>>> 013ead48a708798887f8935474e7836ac2b26591
+=======
+ActiveRecord::Schema.define(:version => 20130823081842) do
+>>>>>>> Andy
 =======
 ActiveRecord::Schema.define(:version => 20130823081842) do
 >>>>>>> Andy

@@ -12,5 +12,8 @@ class TeamUser < ActiveRecord::Base
    validates_presence_of  :avatar
   validates_integrity_of  :avatar
   validates_processing_of :avatar
+<<<<<<< HEAD
   
+=======
+>>>>>>> Andy
 end

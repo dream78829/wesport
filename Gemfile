@@ -26,8 +26,12 @@ end
 
 gem 'jquery-rails'
 <<<<<<< HEAD
+<<<<<<< HEAD
 gem 'therubyracer'
 
+=======
+gem 'carrierwave'
+>>>>>>> Andy
 =======
 gem 'carrierwave'
 >>>>>>> Andy
