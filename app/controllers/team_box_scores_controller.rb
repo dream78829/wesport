@@ -1,6 +1,7 @@
 class TeamBoxScoresController < ApplicationController
   # GET /team_box_scores
   # GET /team_box_scores.json
+  before_filter :authenticate_team_user!
     def index
     @leagues = League.all
     @two_points_made = 0
