@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20130823054924) do
+=======
+ActiveRecord::Schema.define(:version => 20130821145119) do
+>>>>>>> 013ead48a708798887f8935474e7836ac2b26591
 
   create_table "games", :force => true do |t|
     t.integer  "h_team_id"
@@ -22,9 +26,15 @@ ActiveRecord::Schema.define(:version => 20130823054924) do
     t.string   "name"
     t.integer  "h_team_points"
     t.integer  "g_team_points"
+<<<<<<< HEAD
     t.datetime "date_time"
     t.string   "note"
     t.string   "location"
+=======
+    t.string   "note"
+    t.string   "location"
+    t.datetime "date_time"
+>>>>>>> 013ead48a708798887f8935474e7836ac2b26591
   end
 
   create_table "leagues", :force => true do |t|

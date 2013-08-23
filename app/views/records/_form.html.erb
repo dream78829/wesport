@@ -1,7 +1,8 @@
 <%= form_for(@record) do |f| %>
   <% if @record.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@record.errors.count, "error") %> prohibited this record from being saved:</h2>
+    <div class="alert">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong><%= pluralize(@record.errors.count, "error") %> prohibited this record from being saved:</strong>
 
       <ul>
       <% @record.errors.full_messages.each do |msg| %>
@@ -17,9 +18,10 @@
   </div>
   <div class="field" style="display:none">
     <%= f.label :game_id %><br />
-    <%= f.number_field :game_id %>
+    <%= f.number_field :game_id,:value=>params[:id] %>
   </div>
   <div class="field">
+<<<<<<< HEAD
     <%= f.label :free_throw_made %><br />
     <%= f.number_field :free_throw_made ,:value => 0 %>
   </div>
@@ -86,6 +88,78 @@
   <div class="field">
     <%= f.label :personal_foul %><br />
     <%= f.number_field :personal_foul ,:value => 0%>
+=======
+    <%= f.label "罰球-得分!" %><br />
+    <%= f.number_field :free_throw_made,:data=>{:progression=>"",:helper=>"罰球-得分"},:value=>0 %>
+  </div>
+  <div class="field">
+    <%= f.label "罰球-失誤" %><br />
+    <%= f.number_field :free_throw_miss,:data=>{:progression=>"",:helper=>"罰球-失誤"},:value=>0%>
+  </div>
+  <div class="field">
+    <%= f.label "罰球-總出手" %><br />
+    <%= f.number_field :free_throw_total,:data=>{:progression=>"",:helper=>"罰球-總出手"},:value=>0 %>
+  </div>
+  <div class="field">
+    <%= f.label "兩分球-得分" %><br />
+    <%= f.number_field :two_points_made ,:data=>{:progression=>"",:helper=>"兩分球-得分"},:value=>0%>
+  </div>
+  <div class="field">
+    <%= f.label "兩分球-失分" %><br />
+    <%= f.number_field :two_points_miss ,:data=>{:progression=>"",:helper=>"兩分球-失分"},:value=>0%>
+  </div>
+  <div class="field">
+    <%= f.label "兩分球-總出手" %><br />
+    <%= f.number_field :two_points_total ,:data=>{:progression=>"",:helper=>"兩分球-總出手"},:value=>0%>
+  </div>
+  <div class="field">
+    <%= f.label "三分球-得分" %><br />
+    <%= f.number_field :three_points_made ,:data=>{:progression=>"",:helper=>"三分球-得分"},:value=>0 %>
+  </div>
+  <div class="field">
+    <%= f.label "三分球-失誤" %><br />
+    <%= f.number_field :three_points_miss ,:data=>{:progression=>"",:helper=>"三分球-失誤"},:value=>0 %>
+  </div>
+  <div class="field">
+    <%= f.label "三分球-總出手" %><br />
+    <%= f.number_field :three_points_total ,:data=>{:progression=>"",:helper=>"三分球-總出手"},:value=>0 %>
+  </div>
+  <div class="field">
+    <%= f.label "助攻" %><br />
+    <%= f.number_field :assist,:data=>{:progression=>"",:helper=>"助攻"},:value=>0 %>
+  </div>
+  <div class="field">
+    <%= f.label "火鍋" %><br />
+    <%= f.number_field :block,:data=>{:progression=>"",:helper=>"火鍋"},:value=>0 %>
+  </div>
+  <div class="field">
+    <%= f.label "失誤" %><br />
+    <%= f.number_field :turn_over,:data=>{:progression=>"",:helper=>"失誤"},:value=>0 %>
+  </div>
+  <div class="field">
+    <%= f.label "抄截" %><br />
+    <%= f.number_field :steal,:data=>{:progression=>"",:helper=>"抄截"},:value=>0 %>
+  </div>
+  <div class="field">
+    <%= f.label "防守籃板" %><br />
+    <%= f.number_field :defensive_rebound,:data=>{:progression=>"",:helper=>"防守籃板"},:value=>0 %>
+  </div>
+  <div class="field">
+    <%= f.label "進攻籃板" %><br />
+    <%= f.number_field :offensive_rebound,:data=>{:progression=>"",:helper=>"進攻籃板"},:value=>0 %>
+  </div>
+  <div class="field">
+    <%= f.label "總籃板數" %><br />
+    <%= f.number_field :rebound_total,:data=>{:progression=>"",:helper=>"籃板總數"},:value=>0 %>
+  </div>
+  <div class="field">
+    <%= f.label "失誤" %><br />
+    <%= f.number_field :personal_foul,:data=>{:progression=>"",:helper=>"失誤"},:value=>0 %>
+  </div>
+  <div class="field">
+    <%= f.label "得分" %><br />
+    <%= f.number_field :points_total,:data=>{:progression=>"",:helper=>"得分"},:value=>0 %>
+>>>>>>> 013ead48a708798887f8935474e7836ac2b26591
   </div>
   
 
@@ -94,6 +168,6 @@
     <%= f.check_box :starter ,:value => false%> <br />
 </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "確定",:class=> "btn"%>
   </div>
 <% end %>
