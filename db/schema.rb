@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130826072026) do
+ActiveRecord::Schema.define(:version => 20130826102923) do
 
   create_table "games", :force => true do |t|
     t.integer  "h_team_id"
@@ -34,14 +34,13 @@ ActiveRecord::Schema.define(:version => 20130826072026) do
   end
 
   create_table "matches", :force => true do |t|
-    t.integer  "team_id"
-    t.integer  "player_id"
-    t.integer  "status"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "state"
+    t.integer  "player_id"
+    t.integer  "team_id"
     t.integer  "user_id"
-    t.integer  "team"
+    t.integer  "state"
+    t.integer  "status"
   end
 
   create_table "player_box_scores", :force => true do |t|
