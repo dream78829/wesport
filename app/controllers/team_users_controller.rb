@@ -2,8 +2,13 @@ class TeamUsersController < ApplicationController
 	before_filter :authenticate_team_user!, except: [:show]
 	def index
 		@init = params[:id]
+		@test = Match.where(:user_id => current_team_user.id).first
 		if !@init
-			@init =  Match.where(:user_id => current_team_user.id).first.id
+			if @test == nil
+				redirect_to new_team_path
+			else
+				@init =  Match.where(:user_id => current_team_user.id).first.id
+			end
 		end
 		
 
