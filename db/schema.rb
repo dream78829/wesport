@@ -12,9 +12,27 @@
 # It's strongly recommended to check this file into your version control system.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20130821145119) do
 =======
 ActiveRecord::Schema.define(:version => 20130823054924) do
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+ActiveRecord::Schema.define(:version => 20130823054924) do
+=======
+ActiveRecord::Schema.define(:version => 20130821145119) do
+>>>>>>> 013ead48a708798887f8935474e7836ac2b26591
+=======
+ActiveRecord::Schema.define(:version => 20130823081842) do
+>>>>>>> Andy
+=======
+ActiveRecord::Schema.define(:version => 20130823081842) do
+>>>>>>> Andy
+=======
+ActiveRecord::Schema.define(:version => 20130823144147) do
+>>>>>>> 6b5bfd64287f5055df97c73415b15f80a16a5658
 >>>>>>> Andy
 
   create_table "games", :force => true do |t|
@@ -27,6 +45,10 @@ ActiveRecord::Schema.define(:version => 20130823054924) do
     t.integer  "h_team_points"
     t.integer  "g_team_points"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    t.datetime "date_time"
+>>>>>>> 6b5bfd64287f5055df97c73415b15f80a16a5658
     t.string   "note"
     t.string   "location"
     t.datetime "date_time"
@@ -34,11 +56,25 @@ ActiveRecord::Schema.define(:version => 20130823054924) do
     t.datetime "date_time"
     t.string   "note"
     t.string   "location"
+<<<<<<< HEAD
 >>>>>>> Andy
+=======
+    t.datetime "date_time"
+>>>>>>> 013ead48a708798887f8935474e7836ac2b26591
+>>>>>>> 6b5bfd64287f5055df97c73415b15f80a16a5658
   end
 
   create_table "leagues", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "matches", :force => true do |t|
+    t.integer  "player_id"
+    t.integer  "user_id"
+    t.integer  "status"
+    t.integer  "type"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -89,13 +125,12 @@ ActiveRecord::Schema.define(:version => 20130823054924) do
   end
 
   create_table "team_users", :force => true do |t|
-    t.string   "email",                     :default => "", :null => false
-    t.string   "account",                   :default => "", :null => false
-    t.string   "encrypted_password",        :default => "", :null => false
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",             :default => 0
+    t.integer  "sign_in_count",          :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -104,14 +139,17 @@ ActiveRecord::Schema.define(:version => 20130823054924) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.string   "team_name"
-    t.string   "team_contact_phone_number"
-    t.string   "team_contact_email"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.string   "name"
+    t.string   "phone_number"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "avatar"
+    t.integer  "high"
+    t.integer  "weight"
+    t.string   "school"
+    t.string   "department"
   end
 
-  add_index "team_users", ["account"], :name => "index_team_users_on_account", :unique => true
   add_index "team_users", ["confirmation_token"], :name => "index_team_users_on_confirmation_token", :unique => true
   add_index "team_users", ["email"], :name => "index_team_users_on_email", :unique => true
   add_index "team_users", ["reset_password_token"], :name => "index_team_users_on_reset_password_token", :unique => true

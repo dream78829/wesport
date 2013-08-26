@@ -6,10 +6,11 @@
       <%= devise_error_messages! %>
 
       <%= f.email_field :email, :autofocus => true,:placeholder => "Email",class: "input-block-level" %><br/>
-      <%= f.text_field :account,:placeholder => "Account ID",class: "input-block-level" %><br/>
       <%= f.password_field :password,:placeholder => "Password",class: "input-block-level" %><br/>
       <%= f.password_field :password_confirmation,:placeholder => "Password confirmation",class: "input-block-level" %><br/>
-
+      <%= f.label :avatar do %>
+      <%= f.file_field :avatar %>
+      <%= f.hidden_field :avatar_cache %><% end %>
       <%= f.submit "Sign up",:class=>"btn btn-primary" %>
       <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
         <%= link_to "沒收到確認信嗎?", new_confirmation_path(resource_name) %>

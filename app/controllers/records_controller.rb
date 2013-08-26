@@ -1,7 +1,10 @@
 class RecordsController < ApplicationController
   # GET /records
   # GET /records.json
+  before_filter :authenticate_team_user!
+
   def index
+<<<<<<< HEAD
 <<<<<<< HEAD
     @records = Record.where(:game_id => params[:id]).all
     @game = Game.find(params[:id])
@@ -9,6 +12,15 @@ class RecordsController < ApplicationController
     @records = Record.order("starter DESC").where(:game_id => params[:id]).all
 
 >>>>>>> Andy
+=======
+
+    @records = Record.order("starter DESC").where(:game_id => params[:id]).all
+
+
+    @records = Record.where(:game_id => params[:id]).all
+    @game = Game.find(params[:id])
+
+>>>>>>> 6b5bfd64287f5055df97c73415b15f80a16a5658
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @records }
@@ -47,11 +59,19 @@ class RecordsController < ApplicationController
   def create
     @record = Record.new(params[:record])
 <<<<<<< HEAD
+<<<<<<< HEAD
     
 =======
     @record.points_total = @record.free_throw_made + @record.two_points_made*2 + @record.three_points_made*3
     @record.efficiency_formula = @record.points_total + @record.assist + @record.rebound_total + @record.steal + @record.block - @record.two_points_miss - @record.three_points_miss - @record.free_throw_miss - @record.turn_over
 >>>>>>> Andy
+=======
+
+    @record.points_total = @record.free_throw_made + @record.two_points_made*2 + @record.three_points_made*3
+    @record.efficiency_formula = @record.points_total + @record.assist + @record.rebound_total + @record.steal + @record.block - @record.two_points_miss - @record.three_points_miss - @record.free_throw_miss - @record.turn_over
+
+    
+>>>>>>> 6b5bfd64287f5055df97c73415b15f80a16a5658
     respond_to do |format|
       if @record.save
         format.html { redirect_to @record, notice: 'Record was successfully created.' }
