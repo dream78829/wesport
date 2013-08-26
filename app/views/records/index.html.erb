@@ -1,78 +1,84 @@
 <div class="container">
-<table class="table table-striped">
-   <tr>
-    <th colspan="2">賽事資料</th>
-    <th colspan="3">罰球</th>
-    <th colspan="3">投籃</th>
-    <th colspan="3">三分球</th>
-    <th colspan="3">籃板</th>
-    <th colspan="5"></th>
-    <th colspan="2"></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>  
-  <tr>
-    <td>球員</td>
-    <td>名稱</td>
-    <td>命中</td>
-    <td>失誤</td>
-    <td>出手</td>
-    <td>命中</td>
-    <td>失誤</td>
-    <td>出手</td>
-    <td>命中</td>
-    <td>失誤</td>
-    <td>出手</td>
-    <td>防守</td>
-    <td>進攻</td>
-    <td>總數</td>
-    <td>助攻</td>
-    <td>火鍋</td>
-    <td>失誤</td>
-    <td>抄截</td>
-   
-    <td>個人犯規</td>
-    <td>總得分</td>
-    <td>Efficiency formula</td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
+    <h2><%="#{Team.find(@game.h_team_id).name}  vs  #{@game.name}"%></h2>
+    <hr>
+    <div class="pull-right" style="padding-bottom:10px">
+        <% if current_team_user %>
+             <%= link_to raw("<i class=\"icon-plus-sign icon-white\"></i> 新增數據"), {:controller => 'records', :action => 'new', :id => @game},:class=> "btn btn-primary"%>
+        <%end%>
+    </div>
+    <div class="record-info">
+        <table class="table table-striped  table-bordered">
+            <tr>
+                <td>比數：<%= @game.h_team_points %>：<%= @game.g_team_points %></td>
+                <td>日期：<%= @game.date_time.strftime("%Y-%m-%d") %></td>
+                <td>地點：<%= @game.location %></td>
+            </tr>
+        </table>
+    </div>
+    <table class="table table-striped  table-bordered">
+       <tr>
+        <th colspan="2">球員</th>
+        <th colspan="3">罰球</th>
+        <th colspan="3">投籃</th>
+        <th colspan="3">三分球</th>
+        <th colspan="2">籃板</th>
+        <th colspan="9"></th>
+      <tr>
+        <td>背號</td>
+        <td>姓名</td>
+        <td>命中</td>
+        <td>失誤</td>
+        <td>出手</td>
+        <td>命中</td>
+        <td>失誤</td>
+        <td>出手</td>
+        <td>命中</td>
+        <td>失誤</td>
+        <td>出手</td>
+        <td>防守</td>
+        <td>進攻</td>
+        <td>助攻</td>
+        <td>火鍋</td>
+        <td>失誤</td>
+        <td>抄截</td>
+        <td>犯規</td>
+        <td>得分</td>
+        <td>效率</td>
+      </tr>
+    <% if @records.any? ==true %>
+    <% @records.each do |record| %>
+      <tr>
+        <td><%= Player.find(record.player_id).number %></td>
+        <td><%= Player.find(record.player_id).name %></td>
+        <td><%= record.free_throw_made %></td>
+        <td><%= record.free_throw_miss %></td>
+        <td><%= record.free_throw_total %></td>
+        <td><%= record.two_points_made %></td>
+        <td><%= record.two_points_miss %></td>
+        <td><%= record.two_points_total %></td>
+        <td><%= record.three_points_made %></td>
+        <td><%= record.three_points_miss %></td>
+        <td><%= record.three_points_total %></td>
+        <td><%= record.defensive_rebound %></td>
+        <td><%= record.offensive_rebound %></td>
+        <td><%= record.assist %></td>
+        <td><%= record.block %></td>
+        <td><%= record.turn_over %></td>
+        <td><%= record.steal %></td>
+        <td><%= record.personal_foul %></td>
+        <td><%= record.points_total %></td>
+        <td><%= record.efficiency_formula %></td>
 
-<% @records.each do |record| %>
-  <tr>
-    <td><%= Player.find(record.player_id).name %></td>
-    <td><%= Game.find(record.game_id).name %></td>
-    <td><%= record.free_throw_made %></td>
-    <td><%= record.free_throw_miss %></td>
-    <td><%= record.free_throw_total %></td>
-    <td><%= record.two_points_made %></td>
-    <td><%= record.two_points_made %></td>
-    <td><%= record.two_points_total %></td>
-    <td><%= record.three_points_made %></td>
-    <td><%= record.three_points_miss %></td>
-    <td><%= record.three_points_total %></td>
-    <td><%= record.defensive_rebound %></td>
-    <td><%= record.offensive_rebound %></td>
-    <td><%= record.rebound_total %></td>
-    <td><%= record.assist %></td>
-    <td><%= record.block %></td>
-    <td><%= record.turn_over %></td>
-    <td><%= record.steal %></td>
-    <td><%= record.personal_foul %></td>
-    <td><%= record.points_total %></td>
-    <td><%= record.efficiency_formula %></td>
-    <td><%= link_to 'Show', record %></td>
-    <td><%= link_to 'Edit', edit_record_path(record) %></td>
-    <td><%= button_to 'Destroy', record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Record', new_record_path %>
-<%= link_to 'index', team_users_path %>
+        <% #link_to 'Edit', edit_record_path(record) %>
+        <% #button_to 'Destroy', record, method: :delete, data: { confirm: 'Are you sure?' } ,:id => record %>
+      </tr>
+    <% end %>
+    <% else %>
+        <tr>
+            <td colspan="23">
+                尚無資料
+            </td>
+        </tr>
+        <% end %>
+    </table>
 </div>

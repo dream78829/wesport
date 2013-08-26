@@ -1,6 +1,7 @@
 class GamesController < ApplicationController
   # GET /games
   # GET /games.json
+  before_filter :authenticate_team_user!
   def index
     @games = Game.where(:h_team_id => current_team_user.id).all
 
@@ -44,7 +45,7 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.save
-        format.html { redirect_to @game, notice: 'Game was successfully created.' }
+        format.html { redirect_to :controller=>"records",:action => "index",:id =>@game.id }
         format.json { render json: @game, status: :created, location: @game }
       else
         format.html { render action: "new" }

@@ -1,14 +1,10 @@
 <h2>Sign udp</h2>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name),:html => {:multipart => true}) do |f| %>
   <%= devise_error_messages! %>
 
   <div><%= f.label :email %><br />
   <%= f.email_field :email, :autofocus => true %></div>
-
-
-   <div><%= f.label :account %><br />
-  <%= f.text_field :account %></div>
   
   <div><%= f.label :password %><br />
   <%= f.password_field :password %></div>
@@ -16,6 +12,9 @@
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
 
+   <div><%= f.label :avatar do %><br />
+  <%= f.file_field :avatar %></div>
+  <%= f.hidden_field :avatar_cache %></div><% end %>
   <div><%= f.submit "Sign up" %></div>
 <% end %>
 

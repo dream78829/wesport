@@ -1,33 +1,47 @@
 <div class="container">
-<h1>Listing games</h1>
+<h2>所有賽事<small>Games</small></h2>
+<div class="add-btn">
+  <%= link_to raw("<i class=\"icon-plus-sign icon-white\"></i> 新增球員"), new_player_path ,class: "btn btn-primary"%>
+  <%= link_to raw("<i class=\"icon-plus-sign icon-white\"></i> 新增賽事"), new_game_path ,class: "btn btn-primary"%>
+</div>
+<hr>
 
-<table>
-  <tr>
-    <th>H team</th>
-    <th>G team</th>
-    <th>League_name</th>
-    <th>Game_Name</th>
-    <th>League_id</th>
-    <th></th>
+<table class="table table-striped">
+  <tr >
+    <th>對手</th>
+    <th>聯盟</th>
+    <th>名稱</th>
+    <th>日期</th>
+    <th>地點</th>
+    <th colspan="4"></th>
   </tr>
 
 <% @games.each do |game| %>
   <tr>
-    <td><%= game.h_team_id %></td>
-    <td><%= game.g_team_id %></td>
-    <td><%= League.find(game.league_id).name %></td>
+
     <td><%= game.name %></td>
-    <td><%= game.league_id %></td>
-    <td><%= link_to 'Show', :controller => 'records', :action => 'index', :id => game %></td>
-    <td><%= link_to 'Edit', edit_game_path(game) %></td>
-    <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <td><%= link_to 'New_Record', :controller => 'records', :action => 'new', :id => game %></td>
+    <td><%= League.find(game.league_id).name %></td>
+    <td><%= game.name%></td>
+    <td>
+       <% if game.date_time%>
+          <%= game.date_time.strftime("%Y-%m-%d") %>
+        <% end%>
+    </td>
+    <td><%= game.location %></td>
+    <td>
+      <div class="btn-group">
+        <a class="btn btn-primary" href="#"><i class="icon-th-list icon-white"></i> 功能</a>
+        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><%= link_to raw("<i class=\"icon-plus-sign\"></i> 新增數據"), :controller => 'records', :action => 'new', :id => game %></li>
+          <li class="divider"></li>
+          <li><%= link_to raw("<i class=\"icon-search\"></i> 檢視"), :controller => 'records', :action => 'index', :id => game.id %></li>
+          <li><%= link_to raw("<i class=\"icon-pencil\"></i> 編輯"), edit_game_path(game) %></li>
+          <li><%= link_to raw("<i class=\"icon-trash\"></i> 刪除"), game, method: :delete, data: { confirm: 'Are you sure?' } ,:id => game %></li>
+        </ul>
+      </div>
+    </td>
   </tr>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Game', new_game_path %>
-<%= link_to 'index', team_users_path %>
+</table> 
 </div>

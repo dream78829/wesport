@@ -31,8 +31,8 @@
 </p>
 
 <p>
-  <b>Two points made:</b>
-  <%= @record.two_points_made %>
+  <b>Two points miss:</b>
+  <%= @record.two_points_miss %>
 </p>
 
 <p>
@@ -104,7 +104,8 @@
   <b>Efficiency formula:</b>
   <%= @record.efficiency_formula %>
 </p>
+<%= @record.game_id%>
 
-<%= link_to 'Edit', edit_record_path(@record) %> |
-<%= link_to 'Done', :controller => 'records', :action => 'index', :id => @record.game_id %>
-<%= link_to 'Next_Player', :controller => 'records', :action => 'new', :id => @record.game_id %>
+<%= link_to 'Edit', edit_record_path(@record),:class=>"btn" %>
+<%= link_to 'Done', {:controller => 'records', :action => 'index',:id => @record.game_id},:class=>"btn" %>
+<%= link_to 'Next_Player', {:controller => 'records', :action => 'new', :id => @record.game_id},:class =>"btn" %>

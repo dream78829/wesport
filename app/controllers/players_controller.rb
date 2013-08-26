@@ -1,8 +1,9 @@
 class PlayersController < ApplicationController
   # GET /players
   # GET /players.json
+  before_filter :authenticate_team_user!
   def index
-    @players = Player.where(:team_id => current_team_user.id).all
+    @players = Player.where(:team_id => params[:id]).all
     
     respond_to do |format|
       format.html # index.html.erb
@@ -25,7 +26,7 @@ class PlayersController < ApplicationController
   # GET /players/new.json
   def new
     @player = Player.new
-    @player.team_id = current_team_user.id
+    @player.team_id = params[:id]
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @player }
@@ -44,7 +45,7 @@ class PlayersController < ApplicationController
 
     respond_to do |format|
       if @player.save
-        format.html { redirect_to @player, notice: 'Player was successfully created.' }
+        format.html { redirect_to :controller=>"players",:action => "index" }
         format.json { render json: @player, status: :created, location: @player }
       else
         format.html { render action: "new" }
@@ -74,6 +75,11 @@ class PlayersController < ApplicationController
   def destroy
     @player = Player.find(params[:id])
     @player.destroy
+    record = Record.where(:player_id => params[:id]).all
+    record.each do |lang|
+      lang.destroy
+    end
+    #@record.destroy#destroy不能一次刪除這個陣列
 
     respond_to do |format|
       format.html { redirect_to players_url }
