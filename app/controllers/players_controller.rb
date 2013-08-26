@@ -1,6 +1,7 @@
 class PlayersController < ApplicationController
   # GET /players
   # GET /players.json
+  before_filter :authenticate_team_user!
   def index
     @players = Player.where(:team_id => current_team_user.id).all
     

@@ -7,7 +7,7 @@ class TeamUser < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :account, :team_contact_phone_number, :team_contact_email, :team_name,:avatar, :avatar_cache, :remove_avatar
+  attr_accessible :email, :password, :password_confirmation, :remember_me,:phone_number, :name,:avatar, :avatar_cache, :remove_avatar,:high,:weight,:school,:department
   # attr_accessible :title, :body
    validates_presence_of  :avatar
   validates_integrity_of  :avatar

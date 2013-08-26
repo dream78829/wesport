@@ -1,6 +1,8 @@
 class RecordsController < ApplicationController
   # GET /records
   # GET /records.json
+  before_filter :authenticate_team_user!
+
   def index
 
     @game = Game.find(params[:id])
