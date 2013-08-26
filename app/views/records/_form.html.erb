@@ -21,6 +21,7 @@
     <%= f.number_field :game_id,:value=>params[:id] %>
   </div>
   <div class="field">
+<<<<<<< HEAD
     <%= f.label "罰球-得分!" %><br />
     <%= f.number_field :free_throw_made,:data=>{:progression=>"",:helper=>"罰球-得分"},:value=>0 %>
   </div>
@@ -91,11 +92,81 @@
   <div class="field">
     <%= f.label "得分" %><br />
     <%= f.number_field :points_total,:data=>{:progression=>"",:helper=>"得分"},:value=>0 %>
+=======
+    <%= f.label :free_throw_made %><br />
+    <%= f.number_field :free_throw_made ,:value => 0 %>
   </div>
   <div class="field">
-    <%= f.label :efficiency_formula %><br />
-    <%= f.number_field :efficiency_formula %>
+    <%= f.label :free_throw_miss %><br />
+    <%= f.number_field :free_throw_miss ,:value => 0%>
   </div>
+  <div class="field">
+    <%= f.label :free_throw_total %><br />
+    <%= f.number_field :free_throw_total ,:value => 0%>
+  </div>
+  <div class="field">
+    <%= f.label :two_points_miss %><br />
+    <%= f.number_field :two_points_miss ,:value => 0%>
+  </div>
+  <div class="field">
+    <%= f.label :two_points_made %><br />
+    <%= f.number_field :two_points_made ,:value => 0 %>
+  </div>
+  <div class="field">
+    <%= f.label :two_points_total %><br />
+    <%= f.number_field :two_points_total,:value => 0 %>
+  </div>
+  <div class="field">
+    <%= f.label :three_points_made %><br />
+    <%= f.number_field :three_points_made,:value => 0 %>
+  </div>
+  <div class="field">
+    <%= f.label :three_points_miss %><br />
+    <%= f.number_field :three_points_miss ,:value => 0%>
+  </div>
+  <div class="field">
+    <%= f.label :three_points_total %><br />
+    <%= f.number_field :three_points_total,:value => 0 %>
+  </div>
+  <div class="field">
+    <%= f.label :assist %><br />
+    <%= f.number_field :assist,:value => 0 %>
+  </div>
+  <div class="field">
+    <%= f.label :block %><br />
+    <%= f.number_field :block ,:value => 0%>
+  </div>
+  <div class="field">
+    <%= f.label :turn_over %><br />
+    <%= f.number_field :turn_over ,:value => 0%>
+  </div>
+  <div class="field">
+    <%= f.label :steal %><br />
+    <%= f.number_field :steal ,:value => 0%>
+  </div>
+  <div class="field">
+    <%= f.label :defensive_rebound %><br />
+    <%= f.number_field :defensive_rebound ,:value => 0%>
+  </div>
+  <div class="field">
+    <%= f.label :offensive_rebound %><br />
+    <%= f.number_field :offensive_rebound,:value => 0 %>
+  </div>
+  <div class="field">
+    <%= f.label :rebound_total %><br />
+    <%= f.number_field :rebound_total,:value => 0 %>
+  </div>
+  <div class="field">
+    <%= f.label :personal_foul %><br />
+    <%= f.number_field :personal_foul ,:value => 0%>
+>>>>>>> Andy
+  </div>
+  
+
+  <div class="field">
+    <%= f.label "是否先發" %> <br />
+    <%= f.check_box :starter ,:value => false%> <br />
+</div>
   <div class="actions">
     <%= f.submit "確定",:class=> "btn"%>
   </div>
