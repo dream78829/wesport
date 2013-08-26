@@ -16,7 +16,7 @@
     </div>
   <% end %>
   <%= f.label :player_name %>
-      <%= f.collection_select :player_id, Player.where(:team_id => current_team_user.id).order(:name),:id,:name, include_blank: true %>
+      <%= f.collection_select :player_id, Player.where(:team_id => Game.find(params[:id]).h_team_id).order(:name),:id,:name, include_blank: true %>
   <div class="row-fluid">
     <div class="span6">
       
@@ -35,7 +35,7 @@
   </div>
   <div class="field">
     <%= f.label "罰球-得分!" %><br />
-    <%= f.number_field :free_throw_made,:data=>{:helper=>"罰球-得分"},:value=>0 %>
+    <%= f.text_field :free_throw_made,:data=>{:helper=>"罰球-得分"},:value=>0 %>
   </div>
   <div class="field">
     <%= f.label "罰球-失誤" %><br />
