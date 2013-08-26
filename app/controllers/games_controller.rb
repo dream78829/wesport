@@ -3,7 +3,7 @@ class GamesController < ApplicationController
   # GET /games.json
   before_filter :authenticate_team_user!
   def index
-    @games = Game.where(:h_team_id => current_team_user.id).all
+    @games = Game.where(:h_team_id => params[:id]).all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -26,7 +26,7 @@ class GamesController < ApplicationController
   # GET /games/new.json
   def new
     @game = Game.new
-    @game.h_team_id = current_team_user.id
+    @game.h_team_id = params[:id]
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @game }
