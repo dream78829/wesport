@@ -2,8 +2,10 @@
 
 <table>
   <tr>
+    <th>ID</th>
     <th>Team</th>
     <th>Player</th>
+    <th>User</th>
     <th>Status</th>
     <th>State</th>
     <th></th>
@@ -13,8 +15,10 @@
 
 <% @matches.each do |match| %>
   <tr>
+    <td><%= match.id %></td>
     <td><%= match.team_id %></td>
     <td><%= match.player_id %></td>
+    <td><%= match.user_id %></td>
     <td><%= match.status %></td>
     <td><%= match.state %></td>
     <td><%= link_to 'Show', match %></td>
