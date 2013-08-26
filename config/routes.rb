@@ -21,6 +21,7 @@ Wesport::Application.routes.draw do
 
   get "welcome" => "welcome#index"
 
+
   devise_for :team_users, controllers:  { confirmations: 'confirmations'}
 
   #devise_for :devise
