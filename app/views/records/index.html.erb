@@ -1,31 +1,44 @@
-<h1>Listing records</h1>
-
-<table>
+<div class="container">
+<table class="table table-striped">
+   <tr>
+    <th colspan="2">賽事資料</th>
+    <th colspan="3">罰球</th>
+    <th colspan="3">投籃</th>
+    <th colspan="3">三分球</th>
+    <th colspan="3">籃板</th>
+    <th colspan="5"></th>
+    <th colspan="2"></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>  
   <tr>
-    <th>Player</th>
-    <th>Game</th>
-    <th>Free throw made</th>
-    <th>Free throw miss</th>
-    <th>Free throw total</th>
-    <th>Two points made</th>
-    <th>Two points made</th>
-    <th>Two points total</th>
-    <th>Three points made</th>
-    <th>Three points miss</th>
-    <th>Three points total</th>
-    <th>Assist</th>
-    <th>Block</th>
-    <th>Turn over</th>
-    <th>Steal</th>
-    <th>Defensive rebound</th>
-    <th>Offensive rebound</th>
-    <th>Rebound total</th>
-    <th>Personal foul</th>
-    <th>Points total</th>
-    <th>Efficiency formula</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <td>球員</td>
+    <td>名稱</td>
+    <td>命中</td>
+    <td>失誤</td>
+    <td>出手</td>
+    <td>命中</td>
+    <td>失誤</td>
+    <td>出手</td>
+    <td>命中</td>
+    <td>失誤</td>
+    <td>出手</td>
+    <td>防守</td>
+    <td>進攻</td>
+    <td>總數</td>
+    <td>助攻</td>
+    <td>火鍋</td>
+    <td>失誤</td>
+    <td>抄截</td>
+   
+    <td>個人犯規</td>
+    <td>總得分</td>
+    <td>Efficiency formula</td>
+    <td></td>
+    <td></td>
+    <td></td>
   </tr>
 
 <% @records.each do |record| %>
@@ -41,13 +54,13 @@
     <td><%= record.three_points_made %></td>
     <td><%= record.three_points_miss %></td>
     <td><%= record.three_points_total %></td>
+    <td><%= record.defensive_rebound %></td>
+    <td><%= record.offensive_rebound %></td>
+    <td><%= record.rebound_total %></td>
     <td><%= record.assist %></td>
     <td><%= record.block %></td>
     <td><%= record.turn_over %></td>
     <td><%= record.steal %></td>
-    <td><%= record.defensive_rebound %></td>
-    <td><%= record.offensive_rebound %></td>
-    <td><%= record.rebound_total %></td>
     <td><%= record.personal_foul %></td>
     <td><%= record.points_total %></td>
     <td><%= record.efficiency_formula %></td>
@@ -62,3 +75,4 @@
 
 <%= link_to 'New Record', new_record_path %>
 <%= link_to 'index', team_users_path %>
+</div>

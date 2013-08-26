@@ -1,14 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Wesport</title>
-  
-  <%= javascript_include_tag :defaults %>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<link href="/assets/tooltip_skin_variation.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="/assets/jquery.sky.carousel-1.0.2.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('.sky-carousel').carousel({
+			itemWidth: 260,
+			itemHeight: 260,
+			distance: 12,
+			selectedItemDistance: 75,
+			selectedItemZoomFactor: 1,
+			unselectedItemZoomFactor: 0.5,
+			unselectedItemAlpha: 0.6,
+			motionStartDistance: 210,
+			topMargin: 115,
+			gradientStartPoint: 0.35,
+			gradientOverlayColor: "#ebebeb",
+			gradientOverlaySize: 190,
+			selectByClick: true
+		});
+	});	
+</script>
 </head>
 <body>
-
-<%= yield %>
-
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <%= link_to "SportPower", root_path , :class => "brand logooo"%>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <% if current_team_user %>
+            <li><%= link_to 'Player', players_path %></li>
+            <li><%= link_to 'Game', games_path %></li>
+            <li><%= link_to 'Team_box_score' ,team_box_scores_path %></li>
+            <li><%= link_to('登出', destroy_session_path(:team_user), :method => :delete) %></li>
+            <li><%= link_to('修改密碼', edit_registration_path(:team_user)) %></li>
+          <% else %>
+            <li>
+              <%= form_for(resource, :as => resource_name, :url => session_path(resource_name),:html =>{class: "navbar-form"}) do |f| %>
+                <%= f.text_field :account, :autofocus => true, :placeholder => "Email" %>
+                <%= f.password_field :password ,:placeholder => "Password"%>
+                <%= f.submit "Sign in" ,class: "btn"%>
+                <% end %>
+            </li>
+            <li> <%= link_to "馬上註冊", new_registration_path(resource_name) %></li>
+            <li> <%= link_to "忘記密碼？", new_password_path(resource_name) %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="main">
+  <%= yield %>
+</div>
+<hr>
+<div id="footer">
+  <div class="container">
+	偽司博    版權所有 © 2013 We Sport All Rights Reserved.
+  </div>
+</div>
 </body>
 </html>

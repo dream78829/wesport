@@ -1,3 +1,4 @@
+<div class="container">
 <h1>Listing team_box_scores</h1>
 
 <table>
@@ -20,7 +21,4 @@
 </table>
 
 <br />
-
-<%=
-@leagues = League.find(:all, :order => "name")
-collection_select("stuff", "league_id", @leagues, :id, :name , include_blank: true) %>
+</div>
