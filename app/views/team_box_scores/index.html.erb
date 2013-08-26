@@ -24,7 +24,4 @@
 
 </div>
 
-<%= @leagues = League.find(:all, :order => "name") %>
-<%= collection_select :league_id, League.order(:name),:id,:name, include_blank: true %>
-<%= link_to 'league', :controller => 'team_box_scores', :action => 'index',:id => params[:id] %>
 
