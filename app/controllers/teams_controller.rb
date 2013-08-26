@@ -47,6 +47,7 @@ class TeamsController < ApplicationController
       @player = Player.new
       @player.name = "captain"
       @player.number = 0
+      @player.team_id = @team.id
       @player.save
 
       @match = Match.new
@@ -59,7 +60,7 @@ class TeamsController < ApplicationController
     end
     respond_to do |format|
       if @team.save
-        format.html { redirect_to @team, notice: 'Team was successfully created.' }
+        format.html { redirect_to :controller => 'team_users',:action => 'index', :id => @team.id  }
         format.json { render json: @team, status: :created, location: @team }
       else
         format.html { render action: "new" }
