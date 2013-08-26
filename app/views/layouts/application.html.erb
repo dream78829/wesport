@@ -38,6 +38,7 @@
           <% if current_team_user %>
             <li><%= link_to 'Player', players_path %></li>
             <li><%= link_to 'Game', games_path %></li>
+            <li><%= link_to 'Team', teams_path %></li>
             <li><%= link_to 'Team_box_score' ,team_box_scores_path %></li>
             <li><%= link_to('登出', destroy_session_path(:team_user), :method => :delete) %></li>
             <li><%= link_to('修改密碼', edit_registration_path(:team_user)) %></li>
