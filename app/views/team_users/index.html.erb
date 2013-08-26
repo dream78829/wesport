@@ -24,6 +24,7 @@
       </div>
       <div class="span9">
         <h2>最新賽事記錄</h2>
+        <%= @init %>
         <div class="pull-right" style="padding-bottom:10px;">
           <%= link_to raw("<i class=\"icon-plus-sign icon-white\"></i> 新增賽事"),{:controller=>"games",:action=>"new",:id=>@init},:class=> "btn btn-primary"%>
         </div>
