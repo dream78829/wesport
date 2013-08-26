@@ -11,10 +11,18 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :player_name %>
-    <%= f.collection_select :player_id, Player.where(:team_id => current_team_user.id).order(:name),:id,:name, include_blank: true %>
+  <div class="row-fluid">
+    <div class="span6">
+      <%= f.label :player_name %>
+      <%= f.collection_select :player_id, Player.where(:team_id => current_team_user.id).order(:name),:id,:name, include_blank: true %>
+    </div>
+     <div class="span6">
+      <%= f.label "先發球員" %>
+      <%= f.radio_button :starter, "false", :checked =>true%>
+      <%= f.label :starter_false, "否" %>
+      <%= f.radio_button :starter, "true"%>
+      <%= f.label :starter_true, "是" %>
+    </div>
   </div>
   <div class="field" style="display:none">
     <%= f.label :game_id %><br />

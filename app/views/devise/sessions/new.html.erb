@@ -1,21 +1,15 @@
-<div class="sign-up">
-  <div class="container">
-    
-      <%= form_for(resource,:html =>{:autocomplete => "off",:class =>"form-register"} ,:as => resource_name, :url => registration_path(resource_name)) do |f| %>
-      <h2>註冊<small>Sign up</small></h2>
-      <%= devise_error_messages! %>
 
-      <%= f.email_field :email, :autofocus => true,:placeholder => "Email",class: "input-block-level" %><br/>
-      <%= f.text_field :account,:placeholder => "Account ID",class: "input-block-level" %><br/>
-      <%= f.password_field :password,:placeholder => "Password",class: "input-block-level" %><br/>
-      <%= f.password_field :password_confirmation,:placeholder => "Password confirmation",class: "input-block-level" %><br/>
-      <%= f.label :avatar do %>
-      <%= f.file_field :avatar %>
-      <%= f.hidden_field :avatar_cache %><% end %>
-      <%= f.submit "Sign up",:class=>"btn btn-primary" %>
-      <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-        <%= link_to "沒收到確認信嗎?", new_confirmation_path(resource_name) %>
-      <% end -%>
-    <% end %>
+  <div class="index-banner">
   </div>
-</div>
+  <div class="index-start row-fluid">
+    <div class="index-start-box span5 offset1">
+      <h2>建立球隊</h2>
+      <p>Wnat to create a team box-score? Hit me right now!</p>
+      <%= link_to "建立球隊",{:controller=>"games",:action=>"new"},:class=>"btn"%>
+    </div>
+    <div class="index-start-box span5">
+      <h2>加入球隊</h2>
+      <p>I have a team alredy and I want to find it!</p>
+      <%= link_to "尋找球隊",{:controller=>"games",:action=>"new"},:class=>"pull-right btn"%>
+    </div>
+  </div>

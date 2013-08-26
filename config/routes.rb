@@ -19,7 +19,7 @@ Wesport::Application.routes.draw do
 
   resources :players
 
-  
+  get "welcome" => "welcome#index"
 
   devise_for :team_users, controllers:  { confirmations: 'confirmations'}
 

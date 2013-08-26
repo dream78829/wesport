@@ -1,5 +1,9 @@
 <div class="container">
 <h2>球員名單<small>Players</small></h2>
+<div class="add-btn">
+  <%= link_to raw("<i class=\"icon-plus-sign icon-white\"></i> 新增球員"), new_player_path ,class: "btn btn-primary"%>
+  <%= link_to raw("<i class=\"icon-plus-sign icon-white\"></i> 新增賽事"), new_game_path ,class: "btn btn-primary"%>
+</div>
 <hr>
 
 <table class="table table-striped" style="width:400px">
@@ -23,8 +27,4 @@
   </tr>
 <% end %>
 </table>
-
-<br />
-<%= link_to 'New Player', new_player_path ,class: "btn"%>
-<%= link_to 'New Game', new_game_path ,class: "btn"%>
 </div>

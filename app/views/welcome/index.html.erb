@@ -1,0 +1,14 @@
+  <div class="index-banner">
+  </div>
+  <div class="index-start row-fluid">
+    <div class="index-start-box span5 offset1">
+      <h2>建立球隊</h2>
+      <p>Wnat to create a team box-score? Hit me right now!</p>
+      <%= link_to "建立球隊",{:controller=>"games",:action=>"new"},:class=>"btn"%>
+    </div>
+    <div class="index-start-box span5">
+      <h2>加入球隊</h2>
+      <p>I have a team alredy and I want to find it!</p>
+      <%= link_to "尋找球隊",{:controller=>"games",:action=>"new"},:class=>"pull-right btn"%>
+    </div>
+  </div>
