@@ -1,26 +1,9 @@
-  <div class="index-banner">
-    <%= image_tag("/assets/index-banner6.png")%>
-  </div>
-  <div class="index-start row-fluid">
-    <div class="index-start-box span5 offset1">
-      <h2>建立球隊</h2>
-<<<<<<< HEAD
-      <p>Wnat to create a team box-score? Hit me right now!</p>
-=======
-      <p>Want to create a team box-score? Hit me right now!</p>
->>>>>>> fc0233815f8d874d0d15d4d8e8a7fffd23d2aec8
-      <%= link_to "建立球隊",{:controller=>"teams",:action=>"new"},:class=>"btn"%>
-    </div>
-    <div class="index-start-box span5">
-      <h2>加入球隊</h2>
-      <p>I have a team alredy and I want to find it!</p>
-      <%= link_to "尋找球隊",{:controller=>"games",:action=>"new"},:class=>"btn"%>
-    </div>
-  </div>
-  <div class="index-news">
-    <div class="container">
-      <h2>最新賽事</h2>
-      <table  class="table table-striped table-hover">
+<div class="container">
+	<h2><%= @team.name%></h2>
+	<hr>
+	<div class="frame-box">
+		<h2>最新賽事</h2>
+		<table  class="table table-striped table-hover">
         <tr>
           <th>賽事</th>
           <th>類別</th>
@@ -56,5 +39,5 @@
         </tr>
         <% end%>
       </table>
-    </div>
-  </div>
+	</div>
+</div>

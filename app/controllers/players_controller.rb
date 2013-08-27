@@ -3,6 +3,10 @@ class PlayersController < ApplicationController
   # GET /players.json
   before_filter :authenticate_team_user!
   def index
+<<<<<<< HEAD
+=======
+    @init =params[:id]
+>>>>>>> fc0233815f8d874d0d15d4d8e8a7fffd23d2aec8
     @players = Player.where(:team_id => params[:id]).all
     
     respond_to do |format|
@@ -45,7 +49,7 @@ class PlayersController < ApplicationController
 
     respond_to do |format|
       if @player.save
-        format.html { redirect_to :controller=>"players",:action => "index" }
+        format.html { redirect_to :controller=>"players",:action => "index",:id=>@player.team_id }
         format.json { render json: @player, status: :created, location: @player }
       else
         format.html { render action: "new" }

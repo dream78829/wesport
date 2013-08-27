@@ -42,7 +42,6 @@ class GamesController < ApplicationController
   # POST /games.json
   def create
     @game = Game.new(params[:game])
-
     respond_to do |format|
       if @game.save
         format.html { redirect_to :controller=>"records",:action => "index",:id =>@game.id }

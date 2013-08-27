@@ -1,13 +1,8 @@
 <div class="container">
 <h2>新增紀錄</h2>
 <hr>
-<% #render 'form' %>
-<%= form_for(@record) do |f| %>
-  <% if @record.errors.any? %>
-    <div class="alert">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <strong><%= pluralize(@record.errors.count, "error") %> prohibited this record from being saved:</strong>
 
+<<<<<<< HEAD
       <ul>
       <% @record.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -113,5 +108,9 @@
     <%= f.submit "確定",:class=> "btn"%>
   </div>
 <% end %>
+=======
+<%= render 'form' %>
+
+>>>>>>> fc0233815f8d874d0d15d4d8e8a7fffd23d2aec8
 
 </div>
