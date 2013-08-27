@@ -12,68 +12,7 @@
       </ul>
     </div>
   <% end %>
-<<<<<<< HEAD
 
-  <div class="field">
-    <%= f.label :free_throw_made %><br />
-    <%= f.number_field :free_throw_made  %>
-  </div>
-  <div class="field">
-    <%= f.label :free_throw_miss %><br />
-    <%= f.number_field :free_throw_miss %>
-  </div>
-  <div class="field">
-    <%= f.label :free_throw_total %><br />
-    <%= f.number_field :free_throw_total %>
-  </div>
-  <div class="field">
-    <%= f.label :two_points_miss %><br />
-    <%= f.number_field :two_points_miss %>
-  </div>
-  <div class="field">
-    <%= f.label :two_points_made %><br />
-    <%= f.number_field :two_points_made  %>
-  </div>
-  <div class="field">
-    <%= f.label :two_points_total %><br />
-    <%= f.number_field :two_points_total %>
-  </div>
-  <div class="field">
-    <%= f.label :three_points_made %><br />
-    <%= f.number_field :three_points_made %>
-  </div>
-  <div class="field">
-    <%= f.label :three_points_miss %><br />
-    <%= f.number_field :three_points_miss %>
-  </div>
-  <div class="field">
-    <%= f.label :three_points_total %><br />
-    <%= f.number_field :three_points_total %>
-  </div>
-  <div class="field">
-    <%= f.label :assist %><br />
-    <%= f.number_field :assist %>
-  </div>
-  <div class="field">
-    <%= f.label :block %><br />
-    <%= f.number_field :block %>
-  </div>
-  <div class="field">
-    <%= f.label :turn_over %><br />
-    <%= f.number_field :turn_over %>
-  </div>
-  <div class="field">
-    <%= f.label :steal %><br />
-    <%= f.number_field :steal %>
-  </div>
-  <div class="field">
-    <%= f.label :defensive_rebound %><br />
-    <%= f.number_field :defensive_rebound %>
-  </div>
-  <div class="field">
-    <%= f.label :offensive_rebound %><br />
-    <%= f.number_field :offensive_rebound %>
-=======
   
   <div class="row-fluid frame-box">
     <div class="span12">
@@ -91,13 +30,13 @@
         </div>
       </div>
     </div>
->>>>>>> Eric
+
   </div>
   <hr>
   <div class="row-fluid frame-box">
     <div class="span12">
       <div class="field" style="display:none">
-        <%= f.text_field :game_id,:value=>params[:id] %>
+        <%= f.text_field :game_id %>
         <%= f.text_field :free_throw_total%>
         <%= f.text_field :two_points_total%>
         <%= f.text_field :three_points_total%>

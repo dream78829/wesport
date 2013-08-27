@@ -29,68 +29,6 @@
         </div>
       </div>
     </div>
-<<<<<<< HEAD
-     <div class="span6">
-      <%= f.label "先發球員" %>
-      <%= f.radio_button :starter, "false", :checked =>true%>
-      <%= f.label :starter_false, "否" %>
-      <%= f.radio_button :starter, "true"%>
-      <%= f.label :starter_true, "是" %>
-    </div>
-  </div>
-  <div class="field" style="display:none">
-    <%= f.label :game_id %><br />
-    <%= f.number_field :game_id,:value=>params[:id] %>
-  </div>
-  <div class="field">
-    <%= f.label "罰球-得分!" %><br />
-    <%= f.number_field :free_throw_made,:data=>{:progression=>"",:helper=>"罰球-得分"},:value=>0 %>
-  </div>
-  <div class="field">
-    <%= f.label "罰球-失誤" %><br />
-    <%= f.number_field :free_throw_miss,:data=>{:progression=>"",:helper=>"罰球-失誤"},:value=>0%>
-  </div>
-  <div class="field">
-    <%= f.label "罰球-總出手" %><br />
-    <%= f.number_field :free_throw_total,:data=>{:progression=>"",:helper=>"罰球-總出手"},:value=>0 %>
-  </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Eric
-  <div class="field">
-    <%= f.label "兩分球-得分" %><br />
-    <%= f.number_field :two_points_made ,:data=>{:progression=>"",:helper=>"兩分球-得分"},:value=>0%>
-  </div>
-  <div class="field">
-<<<<<<< HEAD
-    <%= f.label :two_points_made %><br />
-    <%= f.number_field :two_points_made ,:value => 0 %>
-=======
-  
->>>>>>> Eric
-=======
-    <%= f.label "兩分球-失分" %><br />
-    <%= f.number_field :two_points_miss ,:data=>{:progression=>"",:helper=>"兩分球-失分"},:value=>0%>
->>>>>>> Eric
-  </div>
-  <div class="field">
-    <%= f.label "兩分球-總出手" %><br />
-    <%= f.number_field :two_points_total ,:data=>{:progression=>"",:helper=>"兩分球-總出手"},:value=>0%>
-  </div>
-  <div class="field">
-    <%= f.label "三分球-得分" %><br />
-    <%= f.number_field :three_points_made ,:data=>{:progression=>"",:helper=>"三分球-得分"},:value=>0 %>
-  </div>
-  <div class="field">
-    <%= f.label "三分球-失誤" %><br />
-    <%= f.number_field :three_points_miss ,:data=>{:progression=>"",:helper=>"三分球-失誤"},:value=>0 %>
-  </div>
-  <div class="field">
-    <%= f.label "三分球-總出手" %><br />
-    <%= f.number_field :three_points_total ,:data=>{:progression=>"",:helper=>"三分球-總出手"},:value=>0 %>
-=======
->>>>>>> Eric
   </div>
   <hr>
   <div class="row-fluid frame-box">
