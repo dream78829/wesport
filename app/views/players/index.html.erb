@@ -1,15 +1,21 @@
 <div class="container">
-<h2>球員名單<small>Players</small></h2>
-<div class="add-btn">
-  <%= link_to raw("<i class=\"icon-plus-sign icon-white\"></i> 新增球員"), new_player_path ,class: "btn btn-primary"%>
-  <%= link_to raw("<i class=\"icon-plus-sign icon-white\"></i> 新增賽事"), new_game_path ,class: "btn btn-primary"%>
-</div>
+  <div class="row-fluid">
+    <div class="span12">
+      <h2>球員名單<small>Players</small></h2>
+      <div class="row-fluid">
+        <div class="span3 offset9">
+          <%= link_to raw("<i class=\"icon-plus-sign icon-white\"></i> 新增球員"),{:action=>"new",:controller => "players",:id=>@init} ,class: "btn btn-primary"%>
+          <%= link_to raw("<i class=\"icon-plus-sign icon-white\"></i> 新增賽事"),{:action=>"new",:controller => "games",:id=>@init},class: "btn btn-primary"%>
+        </div>
+      </div>
+    </div>
+  </div>
 <hr>
-
 <table class="table table-striped" style="width:400px">
   <tr>
     <th>姓名</th>
     <th>背號</th>
+    <th>出場次數</th>
     <th></th>
   </tr>
 
@@ -17,6 +23,7 @@
   <tr>
     <td><%= player.name %></td>
     <td><%= player.number %></td>
+    <td><%= Record.count(:id,:conditions => ["player_id =?",player.id])%></td>
     <td>
       <div  class="btn-group">
         <%= link_to raw("<i class=\"icon-search\"></i>"), {:controller => 'player_box_scores', :action => 'index', :id => player},:class=>"btn" %>

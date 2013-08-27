@@ -16,7 +16,7 @@
     </div>
   <% end %>
   <%= f.label :player_name %>
-      <%= f.collection_select :player_id, Player.where(:team_id => current_team_user.id).order(:name),:id,:name, include_blank: true %>
+  <%= f.collection_select :player_id, Player.where(:team_id => @team).order(:name),:id,:name, include_blank: true %>
   <div class="row-fluid">
     <div class="span6">
       

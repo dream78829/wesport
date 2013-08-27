@@ -25,7 +25,7 @@
         <th colspan="9"></th>
       <tr>
         <td>背號</td>
-        <td>姓名</td>
+        <td style="overflow:hidden;width:60px;">姓名</td>
         <td>命中</td>
         <td>失誤</td>
         <td>出手</td>
@@ -49,7 +49,7 @@
     <% @records.each do |record| %>
       <tr>
         <td><%= Player.find(record.player_id).number %></td>
-        <td><%= Player.find(record.player_id).name %></td>
+        <td style="overflow:hidden;width:60px;"><%= Player.find(record.player_id).name %></td>
         <td><%= record.free_throw_made %></td>
         <td><%= record.free_throw_miss %></td>
         <td><%= record.free_throw_total %></td>
@@ -81,4 +81,7 @@
         </tr>
         <% end %>
     </table>
+    <div class="pull-right">
+        <%= link_to "返回",:back,:class=>"btn"%>
+    </div>
 </div>

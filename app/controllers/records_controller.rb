@@ -6,7 +6,7 @@ class RecordsController < ApplicationController
   def index
 
     @game = Game.find(params[:id])
-
+    
     @records = Record.order("starter DESC").where(:game_id => params[:id]).all
 
     respond_to do |format|
@@ -31,6 +31,7 @@ class RecordsController < ApplicationController
   def new
     @record = Record.new
     @record.game_id = params[:id]
+    @team = Game.find(params[:id]).h_team_id
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @record }

@@ -1,11 +1,12 @@
 <div class="container">
-<h2>修改密碼 <small>Edit your password</small></h2>
+<h2>修改資料 <small>Edit your profile</small></h2>
 <hr>
 <%= devise_error_messages! %>
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "form-edit-password",:method => :put }) do |f| %>
   <h3>修改密碼</h3>
 
-  <%= f.email_field :email, :autofocus => true,:placeholder => "Email",class: "input-block-level" %><br/>
+  <%= f.text_field :name, :autofocus => true,:placeholder => "姓名",class: "input-block-level" %><br/>
+  <%= f.text_field :phone_number, :autofocus => true,:placeholder => "聯絡電話",class: "input-block-level" %><br/>
    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
