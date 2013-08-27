@@ -3,10 +3,9 @@ class PlayersController < ApplicationController
   # GET /players.json
   before_filter :authenticate_team_user!
   def index
-<<<<<<< HEAD
-=======
+
     @init =params[:id]
->>>>>>> fc0233815f8d874d0d15d4d8e8a7fffd23d2aec8
+
     @players = Player.where(:team_id => params[:id]).all
     
     respond_to do |format|
@@ -44,12 +43,18 @@ class PlayersController < ApplicationController
 
   # POST /players
   # POST /players.json
-  def create
+ def create
     @player = Player.new(params[:player])
-
+    if  @player.save
+        @player_box_score = PlayerBoxScore.new
+        @player_box_score.player_id = @player.id
+        @player_box_score.save
+  end
     respond_to do |format|
       if @player.save
+
         format.html { redirect_to :controller=>"players",:action => "index",:id=>@player.team_id }
+
         format.json { render json: @player, status: :created, location: @player }
       else
         format.html { render action: "new" }
@@ -78,13 +83,15 @@ class PlayersController < ApplicationController
   # DELETE /players/1.json
   def destroy
     @player = Player.find(params[:id])
-    @player.destroy
-    record = Record.where(:player_id => params[:id]).all
+    @match = Match.where(:player_id => @player.id,:user_id => current_team_user.id)
+    @match.destroy
+    
+    record = Record.where(:player_id => @player.id).all
     record.each do |lang|
       lang.destroy
     end
     #@record.destroy#destroy不能一次刪除這個陣列
-
+    @player.destroy
     respond_to do |format|
       format.html { redirect_to players_url }
       format.json { head :no_content }

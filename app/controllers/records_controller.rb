@@ -41,6 +41,7 @@ class RecordsController < ApplicationController
   # GET /records/1/edit
   def edit
     @record = Record.find(params[:id])
+    @temp = Record.find(params[:id])
   end
 
   # POST /records
@@ -50,7 +51,31 @@ class RecordsController < ApplicationController
     @record.rebound_total = @record.defensive_rebound + @record.offensive_rebound
     @record.points_total = @record.free_throw_made + @record.two_points_made*2 + @record.three_points_made*3
     @record.efficiency_formula = @record.points_total + @record.assist + @record.rebound_total + @record.steal + @record.block - @record.two_points_miss - @record.three_points_miss - @record.free_throw_miss - @record.turn_over
-    
+
+
+    if @record.save
+        @player_box_score = PlayerBoxScore.where(:player_id => @record.player_id).first
+        @player_box_score.assist += @record.assist
+        @player_box_score.block += @record.block
+        @player_box_score.steal += @record.steal
+        @player_box_score.turn_over += @record.turn_over
+        @player_box_score.personal_foul += @record.personal_foul
+        @player_box_score.offensive_rebound += @record.offensive_rebound
+        @player_box_score.defensive_rebound += @record.defensive_rebound
+        @player_box_score.rebound_total += @record.rebound_total
+        @player_box_score.two_points_made += @record.two_points_made
+        @player_box_score.two_points_miss += @record.two_points_miss
+        @player_box_score.three_points_made += @record.three_points_made
+        @player_box_score.three_points_miss += @record.three_points_miss
+        @player_box_score.free_throw_made += @record.free_throw_made
+        @player_box_score.free_throw_miss += @record.free_throw_miss
+        @player_box_score.points_total += @record.points_total
+        @player_box_score.save
+ 
+      end
+
+
+
     respond_to do |format|
       if @record.save
         format.html { redirect_to :controller =>"records",:action=>"index",:id=>@record.game_id }
@@ -66,6 +91,10 @@ class RecordsController < ApplicationController
   # PUT /records/1.json
   def update
     @record = Record.find(params[:id])
+    @record.rebound_total = @record.defensive_rebound + @record.offensive_rebound
+    @record.points_total = @record.free_throw_made + @record.two_points_made*2 + @record.three_points_made*3
+    @record.efficiency_formula = @record.points_total + @record.assist + @record.rebound_total + @record.steal + @record.block - @record.two_points_miss - @record.three_points_miss - @record.free_throw_miss - @record.turn_over
+    
 
     respond_to do |format|
       if @record.update_attributes(params[:record])

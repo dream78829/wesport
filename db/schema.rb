@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130826072026) do
+ActiveRecord::Schema.define(:version => 20130827125625) do
 
   create_table "games", :force => true do |t|
     t.integer  "h_team_id"
@@ -34,19 +34,38 @@ ActiveRecord::Schema.define(:version => 20130826072026) do
   end
 
   create_table "matches", :force => true do |t|
-    t.integer  "team_id"
-    t.integer  "player_id"
-    t.integer  "status"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "state"
+    t.integer  "player_id"
+    t.integer  "team_id"
     t.integer  "user_id"
-    t.integer  "team"
+    t.integer  "state"
+    t.integer  "status"
   end
 
   create_table "player_box_scores", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.integer  "player_id"
+    t.integer  "free_throw_made"
+    t.integer  "free_throw_miss"
+    t.integer  "free_throw_total"
+    t.integer  "two_points_made"
+    t.integer  "two_points_miss"
+    t.integer  "two_points_total"
+    t.integer  "three_points_made"
+    t.integer  "three_points_miss"
+    t.integer  "three_points_total"
+    t.integer  "assist"
+    t.integer  "block"
+    t.integer  "turn_over"
+    t.integer  "steal"
+    t.integer  "defensive_rebound"
+    t.integer  "offensive_rebound"
+    t.integer  "rebound_total"
+    t.integer  "personal_foul"
+    t.integer  "points_total"
+    t.integer  "efficiency_formula"
   end
 
   create_table "players", :force => true do |t|
@@ -124,15 +143,6 @@ ActiveRecord::Schema.define(:version => 20130826072026) do
     t.integer  "code"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "user_team_matches", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "user_id"
-    t.integer  "team_id"
-    t.integer  "player_id"
-    t.integer  "status"
   end
 
 end

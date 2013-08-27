@@ -10,10 +10,12 @@
 				<li>
 				       <%= image_tag("/uploads/team_user/avatar/HeadIcon.jpg") %>
 					<div class="sc-content">
-						<h2><%= player.name %></h2>
+						<h2><%= link_to player.name, :controller => 'matches',:action => 'new' ,:id => @init%></h2>
 					</div>
+			
 				</li>
 				<% end %>
+
 			</ul>
 		</div>
 	</div>
