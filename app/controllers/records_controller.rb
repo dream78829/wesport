@@ -6,7 +6,7 @@ class RecordsController < ApplicationController
   def index
 
     @game = Game.find(params[:id])
-
+    
     @records = Record.order("starter DESC").where(:game_id => params[:id]).all
 
     respond_to do |format|
@@ -31,6 +31,7 @@ class RecordsController < ApplicationController
   def new
     @record = Record.new
     @record.game_id = params[:id]
+    @team = Game.find(params[:id]).h_team_id
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @record }
@@ -50,6 +51,7 @@ class RecordsController < ApplicationController
     @record.rebound_total = @record.defensive_rebound + @record.offensive_rebound
     @record.points_total = @record.free_throw_made + @record.two_points_made*2 + @record.three_points_made*3
     @record.efficiency_formula = @record.points_total + @record.assist + @record.rebound_total + @record.steal + @record.block - @record.two_points_miss - @record.three_points_miss - @record.free_throw_miss - @record.turn_over
+<<<<<<< HEAD
 
     if @record.save
         @player_box_score = PlayerBoxScore.where(:player_id => @record.player_id).first
@@ -73,12 +75,15 @@ class RecordsController < ApplicationController
       end
 
 
+=======
+    
+>>>>>>> Eric
     respond_to do |format|
       if @record.save
         format.html { redirect_to @record, notice: 'Record was successfully created.' }
         format.json { render json: @record, status: :created, location: @record }
       else
-        format.html { render action: "new" }
+        format.html { redirect_to :controller=>"records", :action=>"new",:id=>@record.game_id}
         format.json { render json: @record.errors, status: :unprocessable_entity }
       end
     end

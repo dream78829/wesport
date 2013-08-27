@@ -1,9 +1,15 @@
 <div class="container">
-<h2>所有賽事<small>Games</small></h2>
-<div class="add-btn">
-  <%= link_to raw("<i class=\"icon-plus-sign icon-white\"></i> 新增球員"), new_player_path ,class: "btn btn-primary"%>
-  <%= link_to raw("<i class=\"icon-plus-sign icon-white\"></i> 新增賽事"), new_game_path ,class: "btn btn-primary"%>
-</div>
+  <div class="row-fluid">
+    <div class="span12">
+      <h2>球員名單<small>Players</small></h2>
+      <div class="row-fluid">
+        <div class="span3 offset9">
+          <%= link_to raw("<i class=\"icon-plus-sign icon-white\"></i> 新增球員"),{:action=>"new",:controller => "players",:id=>@init} ,class: "btn btn-primary"%>
+          <%= link_to raw("<i class=\"icon-plus-sign icon-white\"></i> 新增賽事"),{:action=>"new",:controller => "games",:id=>@init},class: "btn btn-primary"%>
+        </div>
+      </div>
+    </div>
+  </div>
 <hr>
 
 <table class="table table-striped">

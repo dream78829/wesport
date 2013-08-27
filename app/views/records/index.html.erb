@@ -1,6 +1,8 @@
 <div class="container">
     <h2><%="#{Team.find(@game.h_team_id).name}  vs  #{@game.name}"%></h2>
     <hr>
+</div>
+<div class="container-fluid">
     <div class="pull-right" style="padding-bottom:10px">
         <% if current_team_user %>
              <%= link_to raw("<i class=\"icon-plus-sign icon-white\"></i> 新增數據"), {:controller => 'records', :action => 'new', :id => @game},:class=> "btn btn-primary"%>
@@ -21,54 +23,83 @@
         <th colspan="3">罰球</th>
         <th colspan="3">投籃</th>
         <th colspan="3">三分球</th>
-        <th colspan="2">籃板</th>
-        <th colspan="9"></th>
+        <th colspan="3">籃板</th>
+        <th colspan="10" style="border-left:solid;border-left-color:#999;border-left-width:1px;"></th>
       <tr>
         <td>背號</td>
-        <td>姓名</td>
+        <td style="overflow:hidden;width:60px;">姓名</td>
         <td>命中</td>
-        <td>失誤</td>
-        <td>出手</td>
+        <td>未進</td>
+        <td>%</td>
         <td>命中</td>
-        <td>失誤</td>
-        <td>出手</td>
+        <td>未進</td>
+        <td>%</td>
         <td>命中</td>
-        <td>失誤</td>
-        <td>出手</td>
+        <td>未進</td>
+        <td>%</td>
         <td>防守</td>
         <td>進攻</td>
-        <td>助攻</td>
+        <td>總數</td>
+        <td style="border-left:solid;border-left-color:#999;border-left-width:1px;">助攻</td>
         <td>火鍋</td>
         <td>失誤</td>
         <td>抄截</td>
         <td>犯規</td>
         <td>得分</td>
         <td>效率</td>
+        <td></td>
       </tr>
     <% if @records.any? ==true %>
     <% @records.each do |record| %>
       <tr>
         <td><%= Player.find(record.player_id).number %></td>
-        <td><%= Player.find(record.player_id).name %></td>
+        <td style="overflow:hidden;width:60px;"><%= Player.find(record.player_id).name %></td>
         <td><%= record.free_throw_made %></td>
         <td><%= record.free_throw_miss %></td>
-        <td><%= record.free_throw_total %></td>
+        <td>
+            <% if record.free_throw_made ==0 %>
+                0
+            <% else %>
+                <%= record.free_throw_made/(record.free_throw_made+record.free_throw_miss).to_f %>
+            <%end%>
+        </td>
         <td><%= record.two_points_made %></td>
         <td><%= record.two_points_miss %></td>
-        <td><%= record.two_points_total %></td>
+        <td>
+            <% if record.two_points_made ==0 %>
+                0
+            <% else %>
+                <%= record.two_points_made/(record.two_points_made+record.two_points_miss).to_f %>
+            <%end%>
+        </td>
         <td><%= record.three_points_made %></td>
         <td><%= record.three_points_miss %></td>
-        <td><%= record.three_points_total %></td>
+        <td>
+            <% if record.three_points_made ==0 %>
+                0
+            <% else %>
+                <%= record.three_points_made/(record.three_points_made+record.three_points_miss).to_f %>
+            <%end%>
+        </td>
         <td><%= record.defensive_rebound %></td>
         <td><%= record.offensive_rebound %></td>
-        <td><%= record.assist %></td>
+        <td><%= record.defensive_rebound+record.offensive_rebound %></td>
+        <td style="border-left:solid;border-left-color:#999;border-left-width:1px;"><%= record.assist %></td>
         <td><%= record.block %></td>
         <td><%= record.turn_over %></td>
         <td><%= record.steal %></td>
         <td><%= record.personal_foul %></td>
         <td><%= record.points_total %></td>
         <td><%= record.efficiency_formula %></td>
-
+        <td>
+            <div class="btn-group pull-right">
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to raw("<i class=\"icon-pencil\"></i> 編輯"), edit_record_path(record) %></li>
+                <li><%= link_to raw("<i class=\"icon-trash\"></i> 刪除"), record, method: :delete, data: { confirm: '刪除賽事，記錄會一併刪除！您確定要刪除嗎？' } ,:id => record.id %></li>
+              </ul>
+            </div>
+        </td>
         <% #link_to 'Edit', edit_record_path(record) %>
         <% #button_to 'Destroy', record, method: :delete, data: { confirm: 'Are you sure?' } ,:id => record %>
       </tr>
@@ -81,4 +112,7 @@
         </tr>
         <% end %>
     </table>
+    <div class="pull-right">
+        <%= link_to "返回",:back,:class=>"btn"%>
+    </div>
 </div>

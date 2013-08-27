@@ -2,8 +2,9 @@
   <% if @record.errors.any? %>
     <div class="alert">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <strong><%= pluralize(@record.errors.count, "error") %> prohibited this record from being saved:</strong>
-
+      <strong>
+        <%= pluralize(@record.errors.count, "error") %> prohibited this record from being saved:
+      </strong>
       <ul>
       <% @record.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -11,11 +12,24 @@
       </ul>
     </div>
   <% end %>
-  <div class="row-fluid">
-    <div class="span6">
-      <%= f.label :player_name %>
-      <%= f.collection_select :player_id, Player.where(:team_id => current_team_user.id).order(:name),:id,:name, include_blank: true %>
+  
+  <div class="row-fluid frame-box">
+    <div class="span12">
+      <div class="row-fluid">
+        <div class="span6">
+          <%= f.label "名稱：" %>
+          <%= f.collection_select :player_id, Player.where(:team_id => @team).order(:name),:id,:name, include_blank: true %>  
+        </div>
+        <div class="span6">
+          <%= f.label "先發球員：" %>
+          <%= f.radio_button :starter, "false", :checked =>true%>
+          <%= f.label :starter_false, "否",:style=>"display:inline" %>
+          <%= f.radio_button :starter, "true"%>
+          <%= f.label :starter_true, "是",:style=>"display:inline" %>
+        </div>
+      </div>
     </div>
+<<<<<<< HEAD
      <div class="span6">
       <%= f.label "先發球員" %>
       <%= f.radio_button :starter, "false", :checked =>true%>
@@ -75,48 +89,82 @@
   <div class="field">
     <%= f.label "三分球-總出手" %><br />
     <%= f.number_field :three_points_total ,:data=>{:progression=>"",:helper=>"三分球-總出手"},:value=>0 %>
+=======
+>>>>>>> Eric
   </div>
-  <div class="field">
-    <%= f.label "助攻" %><br />
-    <%= f.number_field :assist,:data=>{:progression=>"",:helper=>"助攻"},:value=>0 %>
+  <hr>
+  <div class="row-fluid frame-box">
+    <div class="span12">
+      <div class="field" style="display:none">
+        <%= f.text_field :game_id,:value=>params[:id] %>
+        <%= f.text_field :free_throw_total,:value=>0%>
+        <%= f.text_field :two_points_total,:value=>0%>
+        <%= f.text_field :three_points_total,:value=>0%>
+        <%= f.text_field :rebound_total,:value=>0%>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="field">
+          <%= f.label "罰球-命中" %><br />
+          <%= f.text_field :free_throw_made,:value=>0 %>
+        </div>
+        <div class="field">
+          <%= f.label "罰球-失誤" %><br />
+          <%= f.text_field :free_throw_miss,:data=>{:helper=>"罰球-失誤"},:value=>0%>
+        </div>
+        <div class="field">
+          <%= f.label "兩分球-命中" %><br />
+          <%= f.text_field :two_points_made ,:data=>{:helper=>"兩分球-命中"},:value=>0%>
+        </div>
+        <div class="field">
+          <%= f.label "兩分球-失分" %><br />
+          <%= f.text_field :two_points_miss ,:data=>{:helper=>"兩分球-失分"},:value=>0%>
+        </div>
+        <div class="field">
+          <%= f.label "三分球-命中" %><br />
+          <%= f.text_field :three_points_made ,:data=>{:helper=>"三分球-命中"},:value=>0 %>
+        </div>
+        <div class="field">
+          <%= f.label "三分球-失誤" %><br />
+          <%= f.text_field :three_points_miss ,:data=>{:helper=>"三分球-失誤"},:value=>0 %>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="field">
+          <%= f.label "助攻" %><br />
+          <%= f.text_field :assist,:data=>{:helper=>"助攻"},:value=>0 %>
+        </div>
+        <div class="field">
+          <%= f.label "火鍋" %><br />
+          <%= f.text_field :block,:data=>{:helper=>"火鍋"},:value=>0 %>
+        </div>
+        <div class="field">
+          <%= f.label "失誤" %><br />
+          <%= f.text_field :turn_over,:data=>{:helper=>"失誤"},:value=>0 %>
+        </div>
+        <div class="field">
+          <%= f.label "抄截" %><br />
+          <%= f.text_field :steal,:data=>{:helper=>"抄截"},:value=>0 %>
+        </div>
+        <div class="field">
+          <%= f.label "防守籃板" %><br />
+          <%= f.text_field :defensive_rebound,:data=>{:helper=>"防守籃板"},:value=>0 %>
+        </div>
+        <div class="field">
+          <%= f.label "進攻籃板" %><br />
+          <%= f.text_field :offensive_rebound,:data=>{:helper=>"進攻籃板"},:value=>0 %>
+        </div>
+        <div class="field">
+          <%= f.label "失誤" %><br />
+          <%= f.text_field :personal_foul,:data=>{:helper=>"失誤"},:value=>0 %>
+        </div>
+      </div>
+    </div>
+    <div class="actions pull-right">
+    <%= link_to "取消", games_path ,:class=>"btn"%>
+    <%= f.submit "確定",:class=>"btn btn-success"%>
   </div>
-  <div class="field">
-    <%= f.label "火鍋" %><br />
-    <%= f.number_field :block,:data=>{:progression=>"",:helper=>"火鍋"},:value=>0 %>
   </div>
-  <div class="field">
-    <%= f.label "失誤" %><br />
-    <%= f.number_field :turn_over,:data=>{:progression=>"",:helper=>"失誤"},:value=>0 %>
-  </div>
-  <div class="field">
-    <%= f.label "抄截" %><br />
-    <%= f.number_field :steal,:data=>{:progression=>"",:helper=>"抄截"},:value=>0 %>
-  </div>
-  <div class="field">
-    <%= f.label "防守籃板" %><br />
-    <%= f.number_field :defensive_rebound,:data=>{:progression=>"",:helper=>"防守籃板"},:value=>0 %>
-  </div>
-  <div class="field">
-    <%= f.label "進攻籃板" %><br />
-    <%= f.number_field :offensive_rebound,:data=>{:progression=>"",:helper=>"進攻籃板"},:value=>0 %>
-  </div>
-  <div class="field">
-    <%= f.label "總籃板數" %><br />
-    <%= f.number_field :rebound_total,:data=>{:progression=>"",:helper=>"籃板總數"},:value=>0 %>
-  </div>
-  <div class="field">
-    <%= f.label "失誤" %><br />
-    <%= f.number_field :personal_foul,:data=>{:progression=>"",:helper=>"失誤"},:value=>0 %>
-  </div>
-  <div class="field">
-    <%= f.label "得分" %><br />
-    <%= f.number_field :points_total,:data=>{:progression=>"",:helper=>"得分"},:value=>0 %>
-  </div>
-  <div class="field">
-    <%= f.label :efficiency_formula %><br />
-    <%= f.number_field :efficiency_formula %>
-  </div>
-  <div class="actions">
-    <%= f.submit "確定",:class=> "btn"%>
-  </div>
+  
 <% end %>

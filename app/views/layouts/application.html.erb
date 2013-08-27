@@ -12,19 +12,21 @@
 <script type="text/javascript">
 	$(function() {
 		$('.web-carousel').carousel({
-			itemWidth: 260,
-			itemHeight: 260,
-			distance: 12,
-			selectedItemDistance: 75,
+			itemWidth: 200,
+			itemHeight: 200,
+			distance: 15,
+      startIndex: "auto",
+			selectedItemDistance: 60,
 			selectedItemZoomFactor: 1,
 			unselectedItemZoomFactor: 0.5,
 			unselectedItemAlpha: 0.6,
-			motionStartDistance: 210,
-			topMargin: 115,
+			motionStartDistance: 200,
+			topMargin: 70,
 			gradientStartPoint: 0.35,
 			gradientOverlayColor: "#ebebeb",
 			gradientOverlaySize: 190,
-			selectByClick: true
+			selectByClick: true,
+
 		});
 	});	
  
@@ -61,30 +63,35 @@ $(function() {
 <!--addressPicker end-->
 
 <!--tooltips start-->
-  <script type="text/javascript">
-    $(function () {
-        $('[rel="tips"]').tooltip();
-    });
-  </script>
+<script type="text/javascript">
+  $(function () {
+      $('[rel="tips"]').tooltip();
+  });
+</script>
 <!--tooltips end-->
+<!--Popover-->
+<script type="text/javascript">
+  $(function () {
+      $('#eelement').popover(options);
+  });
+  
+</script>
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
-    <div class="container">
+    <div class="container-fluid">
       <%= link_to "SportPower", root_path , :class => "brand logooo"%>
       <div class="nav-collapse collapse">
         <ul class="nav">
           <% if current_team_user %>
-            <li><%= link_to '球員', players_path %></li>
             <% if @init %>
-              <li><%= link_to '球隊', {:controller=>"team_users",:action=>"index",:id=>@init} %></li>
+              <li><%= link_to '我的球隊', {:controller=>"team_users",:action=>"index",:id=>@init} %></li>
             <% else%>
-              <li><%= link_to '球隊', team_users_path %></li>
+              <li><%= link_to '我的球隊', team_users_path %></li>
             <% end %>
-            <li><%= link_to 'Team_box_score' ,team_box_scores_path %></li>
+            <li><%= link_to('修改資料', edit_registration_path(:team_user)) %></li>
             <li><%= link_to('登出', destroy_session_path(:team_user), :method => :delete) %></li>
-            <li><%= link_to('修改密碼', edit_registration_path(:team_user)) %></li>
           <% else %>
             <li>
               <%= form_for("team_user", :url => team_user_session_path,:html =>{class: "navbar-form"}) do |f| %>
@@ -98,7 +105,9 @@ $(function() {
           <% end %>
         </ul>
       </div>
+
     </div>
+     
   </div>
 </div>
 <div class="main">
