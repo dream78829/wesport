@@ -7,15 +7,17 @@
 				<li>
 					<img src="/assets/people/6.jpg" alt="" />
 					<div class="sc-content">
-						<h2><%= player.name %></h2>
+						<h2><%= link_to player.name, :controller => 'matches',:action => 'new' ,:id => @init%></h2>
 					</div>
+			
 				</li>
 				<% end %>
 				<li>
-					<%= link_to image_tag("/assets/people/player.png",:border=>0),{:action=>"new",:controller => "players"} %>
+					<%= link_to image_tag("/assets/people/player.png",:border=>0),{:action=>"new",:controller => "players",:id => @init } %>
 					<div class="sc-content">
-						<h2><%= link_to '新增球員',:controller => 'players',:action => 'new',:id => params[:id] %></h2>
+						<h2><%= link_to '新增球員',:controller => 'players',:action => 'new' ,:id => @init %></h2>
 					</div>
+
 				</li>
 			</ul>
 		</div>

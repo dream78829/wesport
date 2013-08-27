@@ -7,9 +7,10 @@ class TeamUsersController < ApplicationController
 			if @test == nil
 				redirect_to new_team_path
 			else
-				@init =  Match.where(:user_id => current_team_user.id).first.id
+				@init =  Match.where(:user_id => current_team_user.id).first.team_id
 			end
 		end
+		
 		
 
 		@games = Game.where(:h_team_id => @init).limit(10)

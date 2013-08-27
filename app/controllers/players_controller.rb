@@ -40,12 +40,12 @@ class PlayersController < ApplicationController
 
   # POST /players
   # POST /players.json
-  def create
+ def create
     @player = Player.new(params[:player])
 
     respond_to do |format|
       if @player.save
-        format.html { redirect_to :controller=>"players",:action => "index" }
+        format.html { redirect_to :controller=>"team_users",:action => "index",:id=>@player.team_id }
         format.json { render json: @player, status: :created, location: @player }
       else
         format.html { render action: "new" }

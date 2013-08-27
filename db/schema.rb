@@ -125,13 +125,4 @@ ActiveRecord::Schema.define(:version => 20130826102923) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "user_team_matches", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "user_id"
-    t.integer  "team_id"
-    t.integer  "player_id"
-    t.integer  "status"
-  end
-
 end
