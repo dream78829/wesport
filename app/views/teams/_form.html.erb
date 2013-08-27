@@ -1,25 +1,40 @@
-<%= form_for(@team) do |f| %>
-  <% if @team.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
 
-      <ul>
-      <% @team.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+  <%= form_for(@team) do |f| %>
+    <% if @team.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
+        <ul>
+        <% @team.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  <div class="frame-box">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="row-fluid">
+          <div class="span4">
+            <div class="field">
+              <%= f.label "隊伍名稱" %><br />
+              <%= f.text_field :name %>
+            </div>
+            <div class="field">
+              <%= f.label raw("認證碼") %><br />
+              <%= f.number_field :code %>
+            </div>  
+          </div>
+          <div class="span6 frame-box">
+            <h3>認證碼</h3>
+            <p>認證碼是伙伴的印記，可以讓同伴們找到所屬的球隊。隊員在申請加入球隊時，必須輸入正確的認證碼，才能提出申請！
+              快點來創造屬於自己球隊的伙伴印記!!</p>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :code %><br />
-    <%= f.number_field :code %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="pull-right">
+    <%= link_to '取消', root_path,:class=>"btn" %>
+    <%= f.submit "確定",:class=>"btn btn-success"%>
   </div>
 <% end %>

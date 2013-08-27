@@ -21,8 +21,8 @@ class TeamUsersController < ApplicationController
 
 
 		if @init
-			@games = Game.where(:h_team_id => @init).limit(10)
-			@players = Player.where(:team_id => @init).all
+			@games = Game.where(:h_team_id => @init).order("date_time DESC").limit(5)
+			@players = Player.where(:team_id => @init).limit(5)
 			@team = Team.all
 			@matches = Match.where(:user_id => current_team_user.id)
 		end

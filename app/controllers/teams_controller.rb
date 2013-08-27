@@ -1,4 +1,5 @@
 class TeamsController < ApplicationController
+  before_filter :authenticate_team_user!
   # GET /teams
   # GET /teams.json
   def index
@@ -47,7 +48,7 @@ class TeamsController < ApplicationController
       @player = Player.new
       @player.name = "Captain"
       @player.number = 0
-      @player.team_id =@team_id
+      @player.team_id =@team.id
       @player.save
 
       @match = Match.new
