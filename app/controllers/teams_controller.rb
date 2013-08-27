@@ -1,6 +1,7 @@
 class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.json
+  before_filter :authenticate_team_user!
   def index
     @teams = Team.all
 
@@ -24,6 +25,7 @@ class TeamsController < ApplicationController
   # GET /teams/new
   # GET /teams/new.json
   def new
+
     @team = Team.new
 
     respond_to do |format|

@@ -12,11 +12,11 @@ class TeamBoxScoresController < ApplicationController
     @players = Record.all
 
 
-    if params[:id] != nil
-      @player = Record.where(:game_id => Game.where(:h_team_id => current_team_user.id,:league => params[:id])).all
-      else
-      @player = Record.where(:game_id => Game.where(:h_team_id => current_team_user.id)).all
-    end
+    #if params[:id] != nil
+      @player = Record.where(:game_id => Game.where(:h_team_id => 2)).all
+     # else
+      #@player = Record.where(:game_id => Game.where(:h_team_id => current_team_user.id)).all
+    #end
     #@sum = @player[1][:two_points_made] + @player[2][:two_points_made] + @player[0][:two_points_made] 
     
     @player.each do |lang|

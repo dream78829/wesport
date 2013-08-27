@@ -42,7 +42,11 @@ class PlayersController < ApplicationController
   # POST /players.json
  def create
     @player = Player.new(params[:player])
-
+    if  @player.save
+        @player_box_score = PlayerBoxScore.new
+        @player_box_score.player_id = @player.id
+        @player_box_score.save
+  end
     respond_to do |format|
       if @player.save
         format.html { redirect_to :controller=>"team_users",:action => "index",:id=>@player.team_id }
