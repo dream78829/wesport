@@ -92,7 +92,7 @@ class RecordsController < ApplicationController
     @record.points_total = @record.free_throw_made + @record.two_points_made*2 + @record.three_points_made*3
     @record.efficiency_formula = @record.points_total + @record.assist + @record.rebound_total + @record.steal + @record.block - @record.two_points_miss - @record.three_points_miss - @record.free_throw_miss - @record.turn_over
     @player_box_score = PlayerBoxScore.where(:player_id => @record.player_id).first
-    @player_box_score.two_points_made - @temp.two_points_made
+    @player_box_score.two_points_made - @temp.two_points_made + @record.two_points_made
     @player_box_score.save
 
     respond_to do |format|
