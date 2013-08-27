@@ -12,7 +12,10 @@ class WelcomeController < ApplicationController
 				redirect_to root_path				
 			else
 				@team = Team.find(params[:tid])
-				@games = Game.where(:h_team_id =>@team.id)
+				@games = Game.where(:h_team_id =>@team.id).limit(5).order("date_time DESC")
+				@players = Player.where(:team_id =>@team.id).all
+				@match = Match.where(:team_id =>@team.id,:status=>3).first
+				@captian = Player.find(@match.player_id)
 			end
 		else
 			redirect_to root_path

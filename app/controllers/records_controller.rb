@@ -53,7 +53,7 @@ class RecordsController < ApplicationController
     
     respond_to do |format|
       if @record.save
-        format.html { redirect_to @record, notice: 'Record was successfully created.' }
+        format.html { redirect_to :controller =>"records",:action=>"index",:id=>@record.game_id }
         format.json { render json: @record, status: :created, location: @record }
       else
         format.html { redirect_to :controller=>"records", :action=>"new",:id=>@record.game_id}
@@ -69,7 +69,7 @@ class RecordsController < ApplicationController
 
     respond_to do |format|
       if @record.update_attributes(params[:record])
-        format.html { redirect_to @record, notice: 'Record was successfully updated.' }
+        format.html { redirect_to :controller =>"records",:action=>"index",:id=>@record.game_id }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

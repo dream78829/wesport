@@ -12,7 +12,11 @@
         <table class="table table-striped  table-bordered">
             <tr>
                 <td>比數：<%= @game.h_team_points %>：<%= @game.g_team_points %></td>
-                <td>日期：<%= @game.date_time.strftime("%Y-%m-%d") %></td>
+                <td>日期：
+                    <% if @game.date_time%>
+                      <%= @game.date_time.strftime("%Y-%m-%d") %>
+                    <% end%>
+                </td>
                 <td>地點：<%= @game.location %></td>
             </tr>
         </table>
@@ -60,7 +64,7 @@
             <% if record.free_throw_made ==0 %>
                 0
             <% else %>
-                <%= record.free_throw_made/(record.free_throw_made+record.free_throw_miss).to_f %>
+                <%= number_with_precision(record.free_throw_made/(record.free_throw_made+record.free_throw_miss).to_f,:precision => 2) %>
             <%end%>
         </td>
         <td><%= record.two_points_made %></td>
@@ -69,7 +73,7 @@
             <% if record.two_points_made ==0 %>
                 0
             <% else %>
-                <%= record.two_points_made/(record.two_points_made+record.two_points_miss).to_f %>
+                <%= number_with_precision(record.two_points_made/(record.two_points_made+record.two_points_miss).to_f,:precision => 2) %>
             <%end%>
         </td>
         <td><%= record.three_points_made %></td>
@@ -78,7 +82,7 @@
             <% if record.three_points_made ==0 %>
                 0
             <% else %>
-                <%= record.three_points_made/(record.three_points_made+record.three_points_miss).to_f %>
+                <%= number_with_precision(record.three_points_made/(record.three_points_made+record.three_points_miss).to_f,:precision => 2) %>
             <%end%>
         </td>
         <td><%= record.defensive_rebound %></td>
