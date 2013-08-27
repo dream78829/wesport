@@ -74,13 +74,15 @@ class PlayersController < ApplicationController
   # DELETE /players/1.json
   def destroy
     @player = Player.find(params[:id])
-    @player.destroy
-    record = Record.where(:player_id => params[:id]).all
+    @match = Match.where(:player_id => @player.id,:user_id => current_team_user.id)
+    @match.destroy
+    
+    record = Record.where(:player_id => @player.id).all
     record.each do |lang|
       lang.destroy
     end
     #@record.destroy#destroy不能一次刪除這個陣列
-
+    @player.destroy
     respond_to do |format|
       format.html { redirect_to players_url }
       format.json { head :no_content }
