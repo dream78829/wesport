@@ -21,11 +21,12 @@
 </table>
 
 <br />
-<<<<<<< HEAD
+
 </div>
-=======
+
 
 <%=
 @leagues = League.find(:all, :order => "name")
-collection_select("stuff", "league_id", @leagues, :id, :name , include_blank: true, ) %>
->>>>>>> Andy
+
+collection_select("stuff", "league_id", @leagues, :id, :name , include_blank: true ) %>
+
