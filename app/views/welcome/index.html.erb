@@ -3,16 +3,17 @@
   </div>
   <div class="index-start row-fluid">
     <div class="index-start-box span5 offset1">
-      <h2>建立球隊</h2>
-
-      <p>Want to create a team box-score? Hit me right now!</p>
-
-      <%= link_to "建立球隊",{:controller=>"teams",:action=>"new"},:class=>"btn"%>
+      <h2>加入球隊</h2>
+      <p>已經有夥伴建立球隊了嗎？檢視球隊清單，找到你所屬的球隊！</p>
+      <%= link_to "尋找球隊",{:controller=>"welcome",:action=>"teamList"},:class=>"btn"%>
     </div>
     <div class="index-start-box span5">
-      <h2>加入球隊</h2>
-      <p>I have a team alredy and I want to find it!</p>
-      <%= link_to "尋找球隊",{:controller=>"games",:action=>"new"},:class=>"btn"%>
+      <h2>建立球隊</h2>
+
+      <p>找不到球隊？沒關係，趕快自己建立一支球隊吧！</p>
+
+      <%= link_to "建立球隊",{:controller=>"teams",:action=>"new"},:class=>"btn"%>
+      
     </div>
   </div>
   <div class="index-news">

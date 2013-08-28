@@ -2,7 +2,7 @@
   <% if @game.errors.any? %>
     <div class="alert">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <h3><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h3>
+        <h3><%= pluralize(@game.errors.count, "") %> 個欄位未填寫</h3>
       <ul>
       <% @game.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -61,9 +61,8 @@
     </div>
   </div>
 </div>
-<div class="pull-right">
-  
-  <%= link_to "取消", games_path ,:class=>"btn"%>
+<div class="pull-right"> 
+  <%= link_to "取消", {:controller=>'team_users',:action => 'index',:id => @game.h_team_id}, :class=>"btn"%>
   <%= f.submit "確定",:class=>"btn btn-success"%>
 </div>   
 <% end %>

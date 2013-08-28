@@ -24,9 +24,9 @@
         <div class="span6">
           <%= f.label "先發球員：" %>
           <%= f.radio_button :starter, "false", :checked =>true%>
-          <%= f.label :starter_false, "否",:style=>"display:inline" %>
+          <%= f.label :starter_false, "否",:style=>"display:inline"%>
           <%= f.radio_button :starter, "true"%>
-          <%= f.label :starter_true, "是",:style=>"display:inline" %>
+          <%= f.label :starter_true, "是",:style=>"display:inline"%>
         </div>
       </div>
     </div>
@@ -36,11 +36,8 @@
   <div class="row-fluid frame-box">
     <div class="span12">
       <div class="field" style="display:none">
-<<<<<<< HEAD
-        <%= f.text_field :game_id%>
-=======
+
         <%= f.text_field :game_id %>
->>>>>>> Andy
         <%= f.text_field :free_throw_total%>
         <%= f.text_field :two_points_total%>
         <%= f.text_field :three_points_total%>

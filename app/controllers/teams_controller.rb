@@ -49,7 +49,7 @@ class TeamsController < ApplicationController
     if @team.save
 
       @player = Player.new
-      @player.name = "Captain"
+      @player.name = "Yourself"
       @player.number = 0
       @player.team_id =@team.id
       @player.save

@@ -16,9 +16,17 @@ class WelcomeController < ApplicationController
 				@players = Player.where(:team_id =>@team.id).all
 				@match = Match.where(:team_id =>@team.id,:status=>3).first
 				@captian = Player.find(@match.player_id)
+				@confirm = Match.new
+				@confirm.team_id = @team.id
+				@confirm.user_id = current_team_user.id
+				@confirm.state =0
+				@code=0
 			end
 		else
 			redirect_to root_path
 		end
+	end
+	def teamList
+		@teams = Team.all
 	end
 end

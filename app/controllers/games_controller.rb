@@ -60,7 +60,7 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.update_attributes(params[:game])
-        format.html { redirect_to @game, notice: 'Game was successfully updated.' }
+        format.html { redirect_to :controller=>"records",:action => "index",:id =>@game.id }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

@@ -71,11 +71,22 @@ $(function() {
 <!--tooltips end-->
 <!--Popover-->
 <script type="text/javascript">
-  $(function () {
-      $('#eelement').popover(options);
-  });
-  
+  //$(function () {
+  //    $('#eelement').popover(options);
+  //});
+  function disabledPlayerSelect(){
+    $statusNum = document.getElementById("match_status").value
+    if($statusNum ==2){
+      document.getElementById("match_player_id").disabled = true;
+      document.getElementById("match_player_id").value = "";
+    }
+    else
+      document.getElementById("match_player_id").disabled = false;
+  }
 </script>
+
+<!--Popover end-->
+
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -97,7 +108,7 @@ $(function() {
               <%= form_for("team_user", :url => team_user_session_path,:html =>{class: "navbar-form"}) do |f| %>
                 <%= f.email_field :email, :autofocus => true, :placeholder => "Email" %>
                 <%= f.password_field :password ,:placeholder => "Password"%>
-                <%= f.submit "Sign in" ,class: "btn"%>
+                <%= f.submit "登入" ,class: "btn"%>
               <% end %>
             </li>
             <li> <%= link_to "馬上註冊", new_registration_path('team_user') %></li>

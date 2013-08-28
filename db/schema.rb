@@ -34,13 +34,14 @@ ActiveRecord::Schema.define(:version => 20130827125625) do
   end
 
   create_table "matches", :force => true do |t|
+    t.integer  "team_id"
+    t.integer  "player_id"
+    t.integer  "status"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "player_id"
-    t.integer  "team_id"
-    t.integer  "user_id"
     t.integer  "state"
-    t.integer  "status"
+    t.integer  "user_id"
+    t.integer  "team"
   end
 
   create_table "player_box_scores", :force => true do |t|
@@ -143,6 +144,15 @@ ActiveRecord::Schema.define(:version => 20130827125625) do
     t.integer  "code"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "user_team_matches", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.integer  "player_id"
+    t.integer  "status"
   end
 
 end

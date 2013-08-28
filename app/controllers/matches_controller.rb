@@ -40,16 +40,31 @@ class MatchesController < ApplicationController
   # POST /matches
   # POST /matches.json
   def create
+    @getCode = params[:code]
     @match = Match.new(params[:match])
-
-    respond_to do |format|
-      if @match.save
-        format.html { redirect_to @match, notice: 'Match was successfully created.' }
-        format.json { render json: @match, status: :created, location: @match }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @match.errors, status: :unprocessable_entity }
+    if !@getCode.blank?
+      @team_id=@match.team_id
+      @match.user_id = current_team_user.id
+      @match.state = 0
+      @checkCode = Team.where(:id => @match.team_id ).first
+      if @match.status==2
+        @match.player_id =nil
       end
+      if @getCode.to_s == @checkCode.code.to_s &&(@match.status.to_f == 1 ||@match.status.to_f == 2)
+        respond_to do |format|
+          if @match.save
+            flash[:notice] = 1
+            format.html { redirect_to :controller=>"welcome",:action=>"teamInfo",:tid=>@match.team_id }
+            format.json { render json: @match, status: :created, location: @match }
+          end
+        end
+      else
+        flash[:notice] = 0
+        redirect_to :controller=>"welcome",:action=>"teamInfo",:tid=>@match.team_id
+      end
+    else
+      flash[:notice] = 0
+      redirect_to :controller=>"welcome",:action=>"teamInfo",:tid=>@match.team_id
     end
   end
 

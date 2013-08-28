@@ -18,7 +18,7 @@
       <div class="row-fluid">
         <div class="span6">
           <%= f.label "名稱：" %>
-          <%= f.collection_select :player_id, Player.where(:team_id => @team).order(:name),:id,:name, include_blank: true %>  
+          <%= f.collection_select :player_id, Player.where(:team_id => @team).order(:name),:id,:name, include_blank: "請選擇" %>  
         </div>
         <div class="span6">
           <%= f.label "先發球員：" %>
