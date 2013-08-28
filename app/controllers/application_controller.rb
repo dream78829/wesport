@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
 
   # Overwriting the sign_out redirect path method
   def signed_in_root_path(resource_or_scope)
-    team_users_path
+    root_path
   end
 end
