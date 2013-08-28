@@ -1,0 +1,27 @@
+<div class="container">
+	<h2>球隊列表</h2>
+	<hr>
+	<table class="table table-striped">
+		<tr>
+			<th>標號</th>
+			<th>名稱</th>
+			<th>隊長</th>
+			<th>成員數</th>
+			<th>賽事數</th>
+		</tr>
+		<% @teams.each do |team| %>
+		<% @captian =Match.where(:team_id =>team.id,:status=>3).first.user_id%>
+		<tr>
+			<td></td>
+			<td><%= link_to team.name,{:controller=>"welcome",:action=>"teamInfo",:tid=>team.id}%></td>
+			<td><%=TeamUser.where(:id=>@captian).first.name%></td>
+			<td><%=Player.count(:id,:conditions => ["team_id =?",team.id])%></td>
+			<td><%=Game.count(:id,:conditions => ["h_team_id =?",team.id])%></td>
+		</tr>
+		<%end%>
+	</table>
+	<div class="pull-right">
+		<%= link_to "建立球隊",{:controller=>"teams",:action=>"new"},:class=>"btn",:alt=>"建立球隊",:title=>"找不到球隊？"%>
+		<%= link_to "返回",:back,:class=>"btn"%>
+	</div>
+</div>

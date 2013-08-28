@@ -2,7 +2,7 @@
   <% if @game.errors.any? %>
     <div class="alert">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <h3><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h3>
+        <h3><%= pluralize(@game.errors.count, "") %> 個欄位未填寫</h3>
       <ul>
       <% @game.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -19,32 +19,50 @@
   </div>
 <div class="new-game-info row-fluid">
   <div class="span12">
-    <div class="field" >
-      <%= f.label "賽事名稱" %>
-      <%= f.text_field :name %>
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="field" >
+          <%= f.label "對手名稱" %>
+          <%= f.text_field :name %>
+        </div>
+        <div class="field">
+          <%= f.label "聯盟名稱" %>
+          <%= f.collection_select :league_id, League.order(:name),:id,:name, include_blank: true %>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="field" >
+          <%= f.label "賽事時間" %>
+          <%= f.text_field :date_time %>
+        </div>
+        <div class="field">
+          <%= f.label "賽事地點" %>
+          <%= f.text_field :location %>
+        </div>
+      </div>
     </div>
-    <div class="field">
-      <%= f.label "聯盟名稱" %>
-      <%= f.collection_select :league_id, League.order(:name),:id,:name, include_blank: true %>
+    <div class="row-fluid">
+      <div class="span12">
+        <%= f.label "備註" %>
+        <%= f.text_area :note,:rows => 2,class: "span12" %>
+      </div>
     </div>
     <hr>
     <div class="row-fluid">
       <div class="span5 score-bar">
-        <%= f.label "主隊" %>
-        <%= f.number_field :h_team_points,:class=>"score-input",:value=>0 %>
+        <%= f.label "我方" %>
+        <%= f.text_field :h_team_points,:class=>"score-input",:value=>0 %>
       </div>
       <div class="span2 score-bar"><p>:</p></div>
       <div class="span5 score-bar">
-        <%= f.label "客隊",:class=>"pull-right" %>
-        <%= f.number_field :g_team_points,:class=>"score-input pull-right",:value=>0 %>
+        <%= f.label "對方",:class=>"pull-right" %>
+        <%= f.text_field :g_team_points,:class=>"score-input pull-right",:value=>0 %>
       </div>
     </div>
-    <hr>
   </div>
 </div>
-<div class="pull-right">
-  
-  <%= link_to "取消", games_path ,:class=>"btn"%>
+<div class="pull-right"> 
+  <%= link_to "取消", {:controller=>'team_users',:action => 'index',:id => @game.h_team_id}, :class=>"btn"%>
   <%= f.submit "確定",:class=>"btn btn-success"%>
 </div>   
 <% end %>

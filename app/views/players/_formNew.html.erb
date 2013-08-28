@@ -1,7 +1,7 @@
 <%= form_for(@player) do |f| %>
   <% if @player.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@player.errors.count, "error") %> prohibited this player from being saved:</h2>
+      <h2><%= pluralize(@player.errors.count, "") %> 個欄位未填寫</h2>
 
       <ul>
       <% @player.errors.full_messages.each do |msg| %>
@@ -21,12 +21,12 @@
     </div>
     <div class="field">
       <%= f.label "背號" %><br />
-      <%= f.number_field :number %>
+      <%= f.text_field :number %>
     </div>
   </div>
   <div class="pull-right">
   
     <%= link_to "取消", players_path ,:class=>"btn"%>
-    <%= f.submit "確定",:class=>"btn btn-success"%>
+    <%= f.submit "確定",:class=>"btn btn-success""%>
   </div>   
 <% end %>

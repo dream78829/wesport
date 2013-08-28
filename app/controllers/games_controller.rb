@@ -1,8 +1,9 @@
 class GamesController < ApplicationController
   # GET /games
   # GET /games.json
+  before_filter :authenticate_team_user!
   def index
-    @games = Game.where(:h_team_id => current_team_user.id).all
+    @games = Game.where(:h_team_id => params[:id]).all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,7 +26,7 @@ class GamesController < ApplicationController
   # GET /games/new.json
   def new
     @game = Game.new
-    @game.h_team_id = current_team_user.id
+    @game.h_team_id = params[:id]
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @game }
@@ -41,7 +42,6 @@ class GamesController < ApplicationController
   # POST /games.json
   def create
     @game = Game.new(params[:game])
-
     respond_to do |format|
       if @game.save
         format.html { redirect_to :controller=>"records",:action => "index",:id =>@game.id }
@@ -60,7 +60,7 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.update_attributes(params[:game])
-        format.html { redirect_to @game, notice: 'Game was successfully updated.' }
+        format.html { redirect_to :controller=>"records",:action => "index",:id =>@game.id }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -73,6 +73,10 @@ class GamesController < ApplicationController
   # DELETE /games/1.json
   def destroy
     @game = Game.find(params[:id])
+    @record = Record.where(:game_id => @game.id).all
+    @record.each do |x|
+      x.destroy
+    end
     @game.destroy
 
     respond_to do |format|

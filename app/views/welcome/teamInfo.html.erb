@@ -1,0 +1,125 @@
+<div class="container">
+	<h2>隊伍資訊：<%= @team.name%></h2>
+	<% if !flash[:notice].blank?%>
+		<% if flash[:notice]==0%>
+		<div class="alert">
+		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+		  <strong>申請失敗!</strong> 您沒有成功送出「認證請求」，請確認你的認證碼是否正確！
+		</div>
+		<%else%>
+		<div class="alert alert-success">
+		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+		  <strong>申請成功!</strong> 請靜待佳音，等候隊長的審核！
+		</div>
+		<%end%>
+	<%end%>
+	<hr>
+	<h3>隊長：<%= @captian.name%></h3>
+	<div class="row-fluid">
+		<div class="span12">
+			<div class="frame-box">
+				<h2>最新賽事</h2>
+				<table  class="table table-striped table-hover">
+		        <tr>
+		          <th>賽事</th>
+		          <th>類別</th>
+		          <th>日期</th>
+		          <th>比數</th>
+		          <th>地點</th>
+		        </tr>
+		        <% if @games.any? == true %>
+		          <% @games.each do |game| %>
+		            <tr>
+		              <td><%= link_to "#{Team.find(game.h_team_id).name}  vs  #{game.name}", :controller => 'records', :action => 'index', :id => game %></td>
+		              <td><%= League.find(game.league_id).name %></td>
+		              <td>
+		                <% if game.date_time%>
+		                  <%= game.date_time.strftime("%Y-%m-%d") %>
+		                <% else %>
+		                  <p>無記錄</p>
+		                <% end%>
+		              </td>
+		              <td><%= game.h_team_points %>：<%= game.g_team_points %></td>
+		              <th>
+		                <% if game.location%>
+		                  <%= game.location %>
+		                <% else %>
+		                  <p>無記錄</p>
+		                <% end%>
+		              </th>
+		            </tr>
+		          <% end %>
+		        <% else %>
+		        <tr>
+		          <td colspan="5">沒有任何賽事記錄</td>
+		        </tr>
+		        <% end%>
+		      </table>
+			</div>
+			<hr>
+			<div class="row-fluid">
+
+					<div class="span6 frame-box">
+						<h2>隊員列表</h2>
+						<table class="table table-striped" style="width:400px">
+						  <tr>
+						    <th>姓名</th>
+						    <th>背號</th>
+						  </tr>
+
+						<% @players.each do |player| %>
+						  <tr>
+						    <td><%= player.name %></td>
+						    <td><%= player.number %></td>
+						  </tr>
+						<% end %>
+						</table>
+					</div>
+					<div class="span6">
+						<!-- Button to trigger modal -->
+						<a href="#myModal" role="button" class="btn btn-danger btn-large" data-toggle="modal">隊員認證</a>
+						 
+						<!-- Modal -->
+						<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						  <div class="modal-header">
+						    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						    <h3 id="myModalLabel">隊員認證</h3>
+						  </div>
+						  <div class="modal-body">
+						  	<%= form_for(@confirm) do |f| %>
+						    <div class="field">
+					          <%= f.label "認證碼" %><br />
+					          <%= text_field_tag "code"%>
+					        </div>
+					        <div class="field">
+					          <%= f.label "身份" %><br />
+					          <%= f.select :status, options_for_select({"請選擇"=>0,"球員"=>1,"球經"=>2},:disabled => ["Select One"]),{},:onChange=>"disabledPlayerSelect();" %> 
+					        </div>
+					        <div class="field">
+					          <%= f.label "球員" %><br />
+					          <%= f.collection_select :player_id, Player.where(:team_id => @team).order(:name),:id,:name, include_blank: "請選擇" %> 
+					        </div>
+					        <div style="display:none">
+						        <%= f.text_field :state%>
+						        <%= f.text_field :team_id,:value =>@team.id%>
+						        <%= f.text_field :user_id%>
+					   		</div>
+						  </div>
+						  <div class="frame-box hint-code">
+						  	<h4>球隊認證碼</h4>
+						  	為了確認球員的真實身份，認證碼必須正確才能申請加入球隊。請向創立球隊的隊長索取認證碼！
+						  	<h4>球隊身份</h4>
+						  	若你是的身份為「球隊經理」，則不需要選擇「球員」。若你是球員，請選擇你在該隊的「角色」
+						  </div>
+						  <div class="modal-footer">
+						    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+						    <%= f.submit "確定",:id=>params[:tid],:class=>"btn btn-success"%>
+						  </div>
+						  <%end%>
+						</div>
+					</div>
+
+			</div>
+		</div>
+	</div>
+</div>
