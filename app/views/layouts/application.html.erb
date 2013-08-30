@@ -101,18 +101,22 @@ $(function() {
             <% else%>
               <li><%= link_to '我的球隊', team_users_path %></li>
             <% end %>
-            <li><%= link_to('修改資料', edit_registration_path(:team_user)) %></li>
+          <%end%>
+        </ul>
+        <ul class="nav  pull-right">
+          <% if current_team_user%>
+            <li><%= link_to "Hi, #{current_team_user.name}", edit_registration_path(:team_user) %></li>
             <li><%= link_to('登出', destroy_session_path(:team_user), :method => :delete) %></li>
           <% else %>
             <li>
-              <%= form_for("team_user", :url => team_user_session_path,:html =>{class: "navbar-form"}) do |f| %>
-                <%= f.email_field :email, :autofocus => true, :placeholder => "Email" %>
-                <%= f.password_field :password ,:placeholder => "Password"%>
-                <%= f.submit "登入" ,class: "btn"%>
-              <% end %>
+              <% #form_for("team_user", :url => team_user_session_path,:html =>{class: "navbar-form"}) do |f| %>
+                <% #f.email_field :email, :autofocus => true, :placeholder => "Email" %>
+                <% #f.password_field :password ,:placeholder => "Password"%>
+                <% #f.submit "登入" ,class: "btn"%>
+              <% #end %>
+              <%= link_to "登入", new_session_path('team_user') %>
             </li>
-            <li> <%= link_to "馬上註冊", new_registration_path('team_user') %></li>
-            <li> <%= link_to "忘記密碼？", new_password_path('team_user') %></li>
+            <li> <%= link_to "註冊", new_registration_path('team_user') %></li>
           <% end %>
         </ul>
       </div>

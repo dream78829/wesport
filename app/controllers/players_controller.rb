@@ -85,7 +85,7 @@ class PlayersController < ApplicationController
 
     respond_to do |format|
       if @player.update_attributes(params[:player])
-        format.html { redirect_to @player, notice: 'Player was successfully updated.' }
+        format.html { redirect_to :controller=>"players",:action => "index",:id=>@player.team_id }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
