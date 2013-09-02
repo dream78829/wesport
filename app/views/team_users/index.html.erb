@@ -29,7 +29,7 @@
               <% @matches.each do |match| %>
                 <% if match.status == 2%>
                   <li>
-                    <%= link_to "#{Team.find(match.team_id).name}",:controller=>"team_users",:action=>"index",:id=>match.team_id %>
+                    <%= link_to "#{Team.find(match.team_id).name}(球經)",:controller=>"team_users",:action=>"index",:id=>match.team_id %>
                   </li>
                 <% end%>
               <% end %>
@@ -68,7 +68,7 @@
                       <%if @confirmNum.to_f == 0%>
                         全部認證完畢！
                       <%else%>
-                        新的認證申請 <span class="badge label-warning"><%=@confirmNum%></span>
+                        <%=link_to "新的認證申請",:controller=>"team_users",:action=>"IDconfirm",:tid=>@init%> <span class="badge label-warning"><%=@confirmNum%></span>
                       <%end%>
                     </div>
                   </div>

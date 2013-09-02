@@ -1,5 +1,5 @@
 class TeamUsersController < ApplicationController
-	before_filter :authenticate_team_user!, except: [:show]
+	before_filter :authenticate_team_user!,:except=>[:show]
 	def index
 		@init = params[:id]
 
@@ -36,8 +36,10 @@ class TeamUsersController < ApplicationController
 
 
 	end
-
 	def show
-
 	end
+	def IDconfirm
+		@matches = Match.where(:team_id=>params[:tid])
+	end
+
 end

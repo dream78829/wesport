@@ -10,6 +10,6 @@ class TeamUser < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me,:phone_number, :name,:avatar, :avatar_cache, :remove_avatar,:high,:weight,:school,:department
   # attr_accessible :title, :body
 
-  validates_integrity_of  :avatar
-  validates_processing_of :avatar
+  #validates_integrity_of  :avatar
+  #validates_processing_of :avatar
 end

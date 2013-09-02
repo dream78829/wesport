@@ -1,7 +1,8 @@
 Wesport::Application.routes.draw do
   resources :matches
 
-
+  match "team_user/IDconfirm" => "team_users#IDconfirm"
+  put '/matches/confirm/:id'      => "matches#confirm"
   resources :teams
 
 
@@ -27,7 +28,7 @@ Wesport::Application.routes.draw do
 
   #devise_for :devise
 
-  resources :team_users
+  #resources :team_users
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

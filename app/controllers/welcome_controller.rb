@@ -28,6 +28,7 @@ class WelcomeController < ApplicationController
 			redirect_to root_path
 		end
 	end
+	
 	def teamList
 		@teams = Team.all
 	end

@@ -1,0 +1,30 @@
+<div class="container">
+	<h2>球員認證申請</h2>
+	<div class="frame-box">
+		<table class="table">
+			<tr>
+				<th>申請日期</th>
+				<th>申請人暱稱</th>
+				<th>球員背號</th>
+				<th>球員名稱</th>
+				<th>是否通過</th>
+			</tr>
+			<% @matches.each do |match|%>
+				<% if Match.where(:player_id=>match.player_id,:team_id=>match.team_id,:state=>1).first.blank?%>
+					<tr>
+						<td><%=match.created_at.strftime("%Y-%m-%d")%></td>
+						<td><%=TeamUser.find(match.user_id).name%></td>
+						<% if match.status ==2%>
+							<td colspan="2">球隊經理</td>
+						<% else %>
+							<td><%=Player.find(match.player_id).number%></td>
+							<td><%=Player.find(match.player_id).name%></td>
+						<%end%>
+						<td><%=link_to "否", match, method: :delete, data: { confirm: '確定要拒絕申請？' },:class=>"btn btn-small"%>&nbsp<%=link_to "是",{:controller=>"matches",:action=>"confirm",:id=>match.id},:class=>"btn btn-small btn-success"%>
+						</td>
+					</tr>
+				<% end%>
+			<% end%>
+		</table>
+	</div>
+</div>

@@ -1,15 +1,25 @@
 <div class="container">
 	<h2>隊伍資訊：<%= @team.name%></h2>
 	<% if !flash[:notice].blank?%>
-		<% if flash[:notice]==0%>
-		<div class="alert">
-		  <button type="button" class="close" data-dismiss="alert">&times;</button>
-		  <strong>申請失敗!</strong> 您沒有成功送出「認證請求」，請確認你的認證碼是否正確！
-		</div>
-		<%else%>
-		<div class="alert alert-success">
+		<% if flash[:notice]==1%>
+		  <div class="alert alert-success">
 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
 		  <strong>申請成功!</strong> 請靜待佳音，等候隊長的審核！
+		</div>
+		<% elsif flash[:notice]==2%>
+		  <div class="alert">
+		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+		  <strong>申請失敗!</strong> 您的申請正在審核，或是你已經是該隊成員！
+		</div>
+		<% elsif flash[:notice]==3%>
+		  <div class="alert">
+		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+		  <strong>申請失敗!</strong> 請填寫認證碼，認證碼不可為空白！
+		</div>
+		<%else%>
+		<div class="alert">
+		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+		  <strong>申請失敗!</strong> 您沒有成功送出「認證請求」，請確認你填寫的資料是否正確！
 		</div>
 		<%end%>
 	<%end%>
@@ -102,7 +112,7 @@
 					          	<option value="">請選擇</option>
 					          	<% @players.each do |player| %>
 					          		<% if Match.where(:player_id=>player.id,:team_id=>@team.id,:state=>1).first.blank?%>
-										<%= raw("<option value=\"#{player.number}\">#{player.name}</option>")%>
+										<%= raw("<option value=\"#{player.id}\">#{player.name}</option>")%>
 									<%end%>
 								<%end%>
 							  </select>
