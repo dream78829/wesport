@@ -1,7 +1,7 @@
 <div class="container">
 <h2>重新寄送確認信 <small>Resend confirmation instructions</small></h2>
 <hr>
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => team_user_confirmation_path, data: { method: :post } ) do |f| %>
   <%= devise_error_messages! %>
   <p>請輸入您的電子郵件地址以重新寄送確認信（您可能需要查看垃圾郵件資料夾）</p>
   <div class="input-append">

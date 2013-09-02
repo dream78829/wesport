@@ -1,4 +1,7 @@
 Wesport::Application.routes.draw do
+  resources :posts
+
+
   resources :matches
 
 

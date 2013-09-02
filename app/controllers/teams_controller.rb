@@ -46,13 +46,17 @@ class TeamsController < ApplicationController
     @team = Team.new(params[:team])
       
 
-    if @team.save
+  
 
       @player = Player.new
-      @player.name = "Captain"
+      @player.name = TeamUser.find(current_team_user.id).name
       @player.number = 0
       @player.team_id =@team.id
       @player.save
+
+      @player_box_score = PlayerBoxScore.new
+      @player_box_score.player_id = @player.id
+      @player_box_score.save
 
       @match = Match.new
       @match.user_id = current_team_user.id
@@ -61,7 +65,7 @@ class TeamsController < ApplicationController
       @match.team_id = @team.id
       @match.player_id = @player.id
       @match.save
-    end
+    
 
     
     respond_to do |format|
@@ -101,6 +105,17 @@ class TeamsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to teams_url }
       format.json { head :no_content }
+    end
+  end
+
+   def search
+    @teams = Team.search do
+      keywords params[:query]
+    end.results
+
+    respond_to do |format|
+      format.html { render :action => "index" }
+      format.xml { render :xml => @teams }
     end
   end
 end

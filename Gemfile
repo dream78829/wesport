@@ -24,6 +24,8 @@ group :assets do
   gem 'devise'
   gem 'uglifier', '>= 1.0.3'
 end
+gem 'sunspot_rails'
+gem 'sunspot_solr'
 
 gem 'jquery-rails'
 

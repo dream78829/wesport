@@ -44,8 +44,8 @@ class TeamBoxScoresController < ApplicationController
         @assist += lang[:assist]
         @personal_foul += lang[:personal_foul]
         @turn_over += lang[:turn_over]
-        @defensive_rebound += lang[:defensive_rebound]
         @offensive_rebound += lang[:offensive_rebound]
+        @defensive_rebound += lang[:defensive_rebound]
         @rebound_total += lang[:rebound_total]
         @points_total += lang[:points_total]
         @count += 1

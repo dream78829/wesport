@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130827125625) do
+ActiveRecord::Schema.define(:version => 20130901080955) do
 
   create_table "games", :force => true do |t|
     t.integer  "h_team_id"
@@ -72,6 +72,13 @@ ActiveRecord::Schema.define(:version => 20130827125625) do
     t.string   "name"
     t.integer  "team_id"
     t.integer  "number"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "posts", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -139,10 +146,10 @@ ActiveRecord::Schema.define(:version => 20130827125625) do
   add_index "team_users", ["reset_password_token"], :name => "index_team_users_on_reset_password_token", :unique => true
 
   create_table "teams", :force => true do |t|
-    t.string   "name"
-    t.integer  "code"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.text     "name",       :limit => 255
+    t.string   "code"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
 end
