@@ -1,31 +1,28 @@
 <div class="container">
-<h2>修改密碼 <small>Edit your password</small></h2>
+<h2>修改資料 <small>Edit your profile</small></h2>
 <hr>
 <%= devise_error_messages! %>
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "form-edit-password",:method => :put }) do |f| %>
-  <h3>修改密碼</h3>
+  <h3>個人資料</h3>
 
-  <%= f.email_field :email, :autofocus => true,:placeholder => "Email",class: "input-block-level" %><br/>
+  <%= f.text_field :name, :autofocus => true,:placeholder => "姓名",class: "input-block-level" %><br/>
+  <%= f.text_field :phone_number, :autofocus => true,:placeholder => "聯絡電話",class: "input-block-level" %><br/>
    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
   <i>(leave blank if you don't want to change it)</i>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Eric
   <%= f.password_field :password, :autocomplete => "off" ,:placeholder => "新密碼",class: "input-block-level" %><br/>
   <%= f.password_field :password_confirmation, :autocomplete => "off" ,:placeholder => "確認新密碼",class: "input-block-level" %><br/>
   <%= f.password_field :current_password, :autocomplete => "off" ,:placeholder => "舊密碼",class: "input-block-level" %>
-=======
-  <%= f.password_field :password, :autocomplete => "off" ,:placeholder => "Password",class: "input-block-level" %><br/>
-  <%= f.password_field :password_confirmation, :autocomplete => "off" ,:placeholder => "Password confirmation",class: "input-block-level" %><br/>
-  <%= f.password_field :current_password, :autocomplete => "off" ,:placeholder => "Current password",class: "input-block-level" %>
-  
   <div>
-  
-    <%= image_tag(current_team_user.avatar.url) %>
-    <%= f.label :remove_avatar do%><br />
-      <%= f.check_box :remove_avatar %><br />
-      <%= f.file_field :avatar  %><br />
-      <%= f.hidden_field :avatar_cache %>
+    <% if current_team_user.avatar.url.present?%>
+        <%= image_tag(current_team_user.avatar.url) %>
+    <% else %>
+        <%= image_tag("/uploads/team_user/avatar/HeadIcon.jpg") %>
     <% end %>
 <<<<<<< HEAD
 =======
@@ -33,13 +30,24 @@
   </div>
 >>>>>>> Andy
 
+    <div class="form-edit-password-img">
+      <%= f.label :remove_avatar do%><br />
+        <%= f.file_field :avatar %><br />
+        <%= f.check_box :remove_avatar %> 移除頭像<br />
+        <%= f.hidden_field :avatar_cache %>
+      <% end %>
+    </div>
   </div>
+<<<<<<< HEAD
 >>>>>>> Andy
 
+=======
+>>>>>>> Eric
   <div class="pull-right">
   <%= link_to "取消", :back,class: "btn" %>
   <%= f.submit "更新",class: "btn btn-success" %>
 </div>
+
 <% end %>
 
 </div>

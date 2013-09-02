@@ -1,5 +1,15 @@
 <div class="container">
-<h2>所有賽事<small>Games</small></h2>
+  <div class="row-fluid">
+    <div class="span12">
+      <h2>賽事記錄<small>Games list</small></h2>
+      <div class="row-fluid">
+        <div class="span3 offset9">
+          <%= link_to raw("<i class=\"icon-plus-sign icon-white\"></i> 新增球員"),{:action=>"new",:controller => "players",:id=>@init} ,class: "btn btn-primary"%>
+          <%= link_to raw("<i class=\"icon-plus-sign icon-white\"></i> 新增賽事"),{:action=>"new",:controller => "games",:id=>@init},class: "btn btn-primary"%>
+        </div>
+      </div>
+    </div>
+  </div>
 <hr>
 
 <table class="table table-striped">
@@ -31,7 +41,7 @@
         <ul class="dropdown-menu">
           <li><%= link_to raw("<i class=\"icon-plus-sign\"></i> 新增數據"), :controller => 'records', :action => 'new', :id => game %></li>
           <li class="divider"></li>
-          <li><%= link_to raw("<i class=\"icon-search\"></i> 檢視"), :controller => 'records', :action => 'index', :id => game %></li>
+          <li><%= link_to raw("<i class=\"icon-search\"></i> 檢視"), :controller => 'records', :action => 'index', :id => game.id %></li>
           <li><%= link_to raw("<i class=\"icon-pencil\"></i> 編輯"), edit_game_path(game) %></li>
           <li><%= link_to raw("<i class=\"icon-trash\"></i> 刪除"), game, method: :delete, data: { confirm: 'Are you sure?' } ,:id => game %></li>
         </ul>
@@ -40,9 +50,4 @@
   </tr>
 <% end %>
 </table> 
-
-<br />
-
-<%= link_to 'New Game', new_game_path %>
-<%= link_to 'index', team_users_path %>
 </div>

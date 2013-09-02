@@ -12,24 +12,27 @@
 <script type="text/javascript">
 	$(function() {
 		$('.web-carousel').carousel({
-			itemWidth: 260,
-			itemHeight: 260,
-			distance: 12,
-			selectedItemDistance: 75,
+			itemWidth: 200,
+			itemHeight: 200,
+			distance: 15,
+      startIndex: "auto",
+			selectedItemDistance: 60,
 			selectedItemZoomFactor: 1,
 			unselectedItemZoomFactor: 0.5,
 			unselectedItemAlpha: 0.6,
-			motionStartDistance: 210,
-			topMargin: 115,
+			motionStartDistance: 200,
+			topMargin: 70,
 			gradientStartPoint: 0.35,
 			gradientOverlayColor: "#ebebeb",
 			gradientOverlaySize: 190,
-			selectByClick: true
+			selectByClick: true,
+
 		});
 	});	
  
 </script>
 <!--carousel end-->
+
 <!--closeTip start-->
 <script type="text/javascript">
   function closeTip(){
@@ -38,6 +41,7 @@
   }
 </script>
 <!--closeTip end-->
+
 <!--datePicker start-->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -47,56 +51,78 @@ $(function() {
 });
 </script>
 <!--datePicker end-->
+
 <!--addressPicker start-->
-<!--script src="http://maps.google.com/maps/api/js?sensor=false"></script-->
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script src="/assets/jquery.ui.addresspicker.js"></script>
 <script>
   $(function() {
     var addresspicker = $( "#game_location" ).addresspicker();
-
-    var gmarker = addresspickerMap.addresspicker( "marker");
-    gmarker.setVisible(true);
-    addresspickerMap.addresspicker( "updatePosition");
-
-    $('#reverseGeocode').change(function(){ 
-      $("#addresspicker_map").addresspicker("option", "reverseGeocode", ($(this).val() === 'true'));
-    });
-
-    function showCallback(geocodeResult, parsedGeocodeResult){
-      $('#callback_result').text(JSON.stringify(parsedGeocodeResult, null, 4));
-    }
-    
   });
   </script>
 <!--addressPicker end-->
+
+<!--tooltips start-->
+<script type="text/javascript">
+  $(function () {
+      $('[rel="tips"]').tooltip();
+  });
+</script>
+<!--tooltips end-->
+<!--Popover-->
+<script type="text/javascript">
+  //$(function () {
+  //    $('#eelement').popover(options);
+  //});
+  function disabledPlayerSelect(){
+    $statusNum = document.getElementById("match_status").value
+    if($statusNum ==2){
+      document.getElementById("match_player_id").disabled = true;
+      document.getElementById("match_player_id").value = "";
+    }
+    else
+      document.getElementById("match_player_id").disabled = false;
+  }
+</script>
+
+<!--Popover end-->
+
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
-    <div class="container">
+    <div class="container-fluid">
       <%= link_to "SportPower", root_path , :class => "brand logooo"%>
       <div class="nav-collapse collapse">
         <ul class="nav">
           <% if current_team_user %>
-            <li><%= link_to '球員', players_path %></li>
-            <li><%= link_to '賽事', games_path %></li>
-            <li><%= link_to 'Team_box_score' ,team_box_scores_path %></li>
+            <% if @init %>
+              <li><%= link_to '我的球隊', {:controller=>"team_users",:action=>"index",:id=>@init} %></li>
+            <% else%>
+              <li><%= link_to '我的球隊', team_users_path %></li>
+            <% end %>
+          <%end%>
+        </ul>
+        <ul class="nav  pull-right">
+          <% if current_team_user%>
+            <li><%= link_to "Hi, #{current_team_user.name}", edit_registration_path(:team_user) %></li>
             <li><%= link_to('登出', destroy_session_path(:team_user), :method => :delete) %></li>
-            <li><%= link_to('修改密碼', edit_registration_path(:team_user)) %></li>
           <% else %>
             <li>
-              <%= form_for(resource, :as => resource_name, :url => session_path(resource_name),:html =>{class: "navbar-form"}) do |f| %>
-                <%= f.email_field :email, :autofocus => true, :placeholder => "Email" %>
-                <%= f.password_field :password ,:placeholder => "Password"%>
-                <%= f.submit "Sign in" ,class: "btn"%>
-                <% end %>
+              <% #form_for("team_user", :url => team_user_session_path,:html =>{class: "navbar-form"}) do |f| %>
+                <% #f.email_field :email, :autofocus => true, :placeholder => "Email" %>
+                <% #f.password_field :password ,:placeholder => "Password"%>
+                <% #f.submit "登入" ,class: "btn"%>
+              <% #end %>
+              <%= link_to "登入", new_session_path('team_user') %>
             </li>
-            <li> <%= link_to "馬上註冊", new_registration_path(resource_name) %></li>
-            <li> <%= link_to "忘記密碼？", new_password_path(resource_name) %></li>
+            <li> <%= link_to "註冊", new_registration_path('team_user') %></li>
           <% end %>
         </ul>
       </div>
+
     </div>
+     
   </div>
 </div>
 <div class="main">
