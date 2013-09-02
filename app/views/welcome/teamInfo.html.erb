@@ -97,7 +97,15 @@
 					        </div>
 					        <div class="field">
 					          <%= f.label "球員" %><br />
-					          <%= f.collection_select :player_id, Player.where(:team_id => @team).order(:name),:id,:name, include_blank: "請選擇" %> 
+
+					          <select id="match_player_id" name="match[player_id]">
+					          	<option value="">請選擇</option>
+					          	<% @players.each do |player| %>
+					          		<% if Match.where(:player_id=>player.id,:team_id=>@team.id,:state=>1).first.blank?%>
+										<%= raw("<option value=\"#{player.number}\">#{player.name}</option>")%>
+									<%end%>
+								<%end%>
+							  </select>
 					        </div>
 					        <div style="display:none">
 						        <%= f.text_field :state%>

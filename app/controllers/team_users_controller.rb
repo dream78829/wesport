@@ -28,6 +28,10 @@ class TeamUsersController < ApplicationController
 			@players = Player.where(:team_id => @init).limit(5)
 			@team = Team.all
 			@matches = Match.where(:user_id => current_team_user.id)
+			if Match.where(:user_id => current_team_user.id,:team_id =>@init,:state =>1).first != nil
+				@statusLevel = Match.where(:user_id => current_team_user.id,:team_id =>@init,:state =>1).first.status
+			end
+			@confirmNum = Match.count(:id,:conditions => ["team_id = ? and state =?",@init,0])
 		end
 
 
