@@ -126,6 +126,11 @@ $(function() {
   </div>
 </div>
 <div class="main">
+  <div class="statusLevelBox alert">
+    <strong>權限測試：</strong>
+    statusLevel:<%=@statusLevel%>
+    step:<%=@step%>
+  </div>
   <%= yield %>
 </div>
 <div id="footer" class="modal-footer footer">

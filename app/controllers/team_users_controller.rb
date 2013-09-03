@@ -1,13 +1,13 @@
 class TeamUsersController < ApplicationController
 	before_filter :authenticate_team_user!,:except=>[:show]
 	def index
-		@init = params[:id]
+		@init = params[:tid]
 
 
 		#判斷user是否有存取該team的權限（有team_id,user_id,state = 1）
-		@status = Match.where(["team_id = ? and user_id = ? and state = ?", params[:id],current_team_user.id,1]).last
+		@status = Match.where(["team_id = ? and user_id = ? and state = ?", params[:tid],current_team_user.id,1]).last
 		if @status != nil
-				@init=params[:id]
+				@init=params[:tid]
 		end
 
 		#若沒有權限，或是沒有team_id。則default為第一筆team資料，若沒資料則倒回新增隊伍

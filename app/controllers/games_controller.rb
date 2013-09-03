@@ -2,9 +2,10 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   before_filter :authenticate_team_user!
+  before_filter :getStatusLevel, only: [:new,:create,:edit, :update, :destroy]
   def index
-    @games = Game.where(:h_team_id => params[:id]).all
-    @init = params[:id]
+    @games = Game.where(:h_team_id => params[:tid]).all
+    @init = params[:tid]
     if Match.where(:team_id=>@init,:user_id=>current_team_user,:state=>1).first.blank?
       @statusLevel =0
     else
@@ -33,7 +34,7 @@ class GamesController < ApplicationController
   def new
     
     @game = Game.new
-    @game.h_team_id = params[:id]
+    @game.h_team_id = params[:tid]
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @game }
@@ -51,7 +52,7 @@ class GamesController < ApplicationController
     @game = Game.new(params[:game])
     respond_to do |format|
       if @game.save
-        format.html { redirect_to :controller=>"records",:action => "index",:id =>@game.id }
+        format.html { redirect_to :controller=>"records",:action => "index",:gid =>@game.id }
         format.json { render json: @game, status: :created, location: @game }
       else
         format.html { render action: "new" }
@@ -89,6 +90,40 @@ class GamesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to games_url }
       format.json { head :no_content }
+    end
+  end
+  protected
+  def getStatusLevel
+    @step =1
+    if params[:tid].blank?
+      if params[:gid].blank?
+        @statusLevel = 0
+        @step =2
+      else
+        @team_id = Game.find(params[:gid]).h_team_id
+        @step =3
+      end
+    else
+        @team_id = params[:tid]
+        @step =4
+    end
+
+
+    if @team_id.blank?
+      @statusLevel = 0
+      @step =5
+    else
+      if Match.where(:team_id => @team_id, :state => 1,:user_id => current_team_user.id).first.blank?
+        @statusLevel = 0
+        @step =6
+      else
+        @statusLevel=Match.where(:team_id => @team_id, :state => 1,:user_id => current_team_user.id).first.status
+        @step =7
+      end
+      if @statusLevel!=3
+        @step =8
+        redirect_to root_path
+      end
     end
   end
 end

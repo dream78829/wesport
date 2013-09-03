@@ -2,12 +2,13 @@ class RecordsController < ApplicationController
   # GET /records
   # GET /records.json
   before_filter :authenticate_team_user!, except: [:index]
+  before_filter :getStatusLevel, only: [:new,:create,:edit, :update, :destroy]
 
   def index
 
-    @game = Game.find(params[:id])
+    @game = Game.find(params[:gid])
     
-    @records = Record.order("starter DESC").where(:game_id => params[:id]).all
+    @records = Record.order("starter DESC").where(:game_id => params[:gid]).all
 
     if Match.where(:team_id=>@game.h_team_id,:user_id=>current_team_user,:state=>1).first.blank?
       @statusLevel =0
@@ -36,8 +37,8 @@ class RecordsController < ApplicationController
   # GET /records/new.json
   def new
     @record = Record.new
-    @record.game_id = params[:id]
-    @team = Game.find(params[:id]).h_team_id
+    @record.game_id = params[:gid]
+    @team = Game.find(params[:gid]).h_team_id
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @record }
@@ -84,10 +85,10 @@ class RecordsController < ApplicationController
 
     respond_to do |format|
       if @record.save
-        format.html { redirect_to :controller =>"records",:action=>"index",:id=>@record.game_id }
+        format.html { redirect_to :controller =>"records",:action=>"index",:gid=>@record.game_id }
         format.json { render json: @record, status: :created, location: @record }
       else
-        format.html { redirect_to :controller=>"records", :action=>"new",:id=>@record.game_id}
+        format.html { redirect_to :controller=>"records", :action=>"new",:gid=>@record.game_id}
         format.json { render json: @record.errors, status: :unprocessable_entity }
       end
     end
@@ -125,4 +126,43 @@ class RecordsController < ApplicationController
       format.json { render json: @temp }
     end
   end
+
+  protected
+  
+  def getStatusLevel
+    #if get variables 'tid' or 'gid' ,init @statusLevel object
+
+    @step =1
+    if params[:tid].blank?
+      if params[:gid].blank?
+        @statusLevel = 0
+        @step =2
+      else
+        @team_id = Game.find(params[:gid]).h_team_id
+        @step =3
+      end
+    else
+        @team_id = params[:tid]
+        @step =4
+    end
+
+
+    if @team_id.blank?
+      @statusLevel = 0
+      @step =5
+    else
+      if Match.where(:team_id => @team_id, :state => 1,:user_id => current_team_user.id).first.blank?
+        @statusLevel = 0
+        @step =6
+      else
+        @statusLevel=Match.where(:team_id => @team_id, :state => 1,:user_id => current_team_user.id).first.status
+        @step =7
+      end
+      if @statusLevel!=3
+        @step =8
+        redirect_to root_path
+      end
+    end
+  end
+
 end

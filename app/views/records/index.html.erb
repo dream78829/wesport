@@ -100,7 +100,7 @@
 <div class="container-fluid">
     <div class="pull-right" style="padding-bottom:10px">
         <% if @statusLevel ==3%>
-             <%= link_to raw("<i class=\"icon-plus-sign icon-white\"></i> 新增數據"), {:controller => 'records', :action => 'new', :id => @game},:class=> "btn btn-primary"%>
+             <%= link_to raw("<i class=\"icon-plus-sign icon-white\"></i> 新增數據"), {:controller => 'records', :action => 'new', :gid => @game},:class=> "btn btn-primary"%>
         <%end%>
     </div>
     <div class="record-info">

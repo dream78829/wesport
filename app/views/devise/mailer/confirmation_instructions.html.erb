@@ -1,6 +1,5 @@
 <p>Welcome <%= @email %>!</p>
 
-<p>You can confirm your account email through the link below:</p>
-
-<p><%= link_to 'Confirm my account', team_user_confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+<p>感謝您使用我們的服務，請點選下列連結啓用您的帳號：</p>
+<p><%= link_to '啓用帳號', team_user_confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
 
