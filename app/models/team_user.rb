@@ -10,4 +10,5 @@ class TeamUser < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me,:phone_number, :name,:avatar, :avatar_cache, :remove_avatar,:high,:weight,:school,:department
   # attr_accessible :title, :body
   validates_presence_of :name,:email,:password
+
 end

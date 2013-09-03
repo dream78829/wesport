@@ -9,37 +9,24 @@ class RecordsController < ApplicationController
     @records = Record.order("starter DESC").where(:game_id => params[:id]).all
 
     #計算賽事數據加總
-    @total[:assist] = 0
-    @total[:block] = 0
-    @total[:steal] = 0
-    @total[:personal_foul] = 0
-    @total[:turn_over] = 0
-    @total[:offensive_rebound] = 0
-    @total[:defensive_rebound] = 0
-    @total[:rebound_total] = 0
-    @total[:two_points_made] =0
-    @total[:two_points_miss] = 0
-    @total[:three_points_made] = 0
-    @total[:three_points_miss] = 0
-    @total[:free_throw_made] = 0
-    @total[:free_throw_miss] = 0
-    @total[:points_total] = 0
+    @total = {assist: 0 ,block: 0, steal: 0,personal_foul: 0,turn_over: 0,offensive_rebound: 0,defensive_rebound: 0,rebound_total: 0,two_points_made: 0,two_points_miss: 0,three_points_made: 0,three_points_miss: 0,free_throw_made: 0,free_throw_miss: 0,points_total: 0 }
+    
     @records.each do |x|
       @total[:assist] += x.assist
       @total[:block] += x.block
       @total[:steal] += x.steal
       @total[:personal_foul] += x.personal_foul
-      @total[:turn_over] += turn_over
-      @total[:offensive_rebound] += offensive_rebound
-      @total[:defensive_rebound] += defensive_rebound
-      @total[:rebound_total] += rebound_total
-      @total[:two_points_made] += two_points_made
-      @total[:two_points_miss] += two_points_miss
-      @total[:three_points_made] += three_points_made
-      @total[:three_points_miss] += three_points_miss
-      @total[:free_throw_made] += free_throw_made
-      @total[:free_throw_miss] += free_throw_miss
-      @total[:points_total] += points_total
+      @total[:turn_over] += x.turn_over
+      @total[:offensive_rebound] += x.offensive_rebound
+      @total[:defensive_rebound] += x.defensive_rebound
+      @total[:rebound_total] += x.rebound_total
+      @total[:two_points_made] += x.two_points_made
+      @total[:two_points_miss] += x.two_points_miss
+      @total[:three_points_made] += x.three_points_made
+      @total[:three_points_miss] += x.three_points_miss
+      @total[:free_throw_made] += x.free_throw_made
+      @total[:free_throw_miss] += x.free_throw_miss
+      @total[:points_total] += x.points_total
     end
     
     respond_to do |format|

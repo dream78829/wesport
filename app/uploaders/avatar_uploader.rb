@@ -18,7 +18,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
  def filename(uploaded_file = file)
     if uploaded_file.present?
       
-        "#{model.id}_#{Time.now.strftime('%Y%m%d')}.#{uploaded_file.extension}"
+        "#{model.id}_#{Time.now.strftime('%Y%m%d%s')}.#{uploaded_file.extension}"
     end
   end
   # Provide a default URL as a default if there hasn't been a file uploaded:
