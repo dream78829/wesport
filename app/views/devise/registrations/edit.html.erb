@@ -3,7 +3,7 @@
 <hr>
 <%= devise_error_messages! %>
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "form-edit-password",:method => :put }) do |f| %>
-  <h3>修改密碼</h3>
+  <h3>個人資料</h3>
 
   <%= f.text_field :name, :autofocus => true,:placeholder => "姓名",class: "input-block-level" %><br/>
   <%= f.text_field :phone_number, :autofocus => true,:placeholder => "聯絡電話",class: "input-block-level" %><br/>

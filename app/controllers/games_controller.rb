@@ -4,7 +4,12 @@ class GamesController < ApplicationController
   before_filter :authenticate_team_user!
   def index
     @games = Game.where(:h_team_id => params[:id]).all
-
+    @init = params[:id]
+    if Match.where(:team_id=>@init,:user_id=>current_team_user,:state=>1).first.blank?
+      @statusLevel =0
+    else
+      @statusLevel = Match.where(:team_id=>@init,:user_id=>current_team_user,:state=>1).first.status
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @games }
@@ -14,17 +19,19 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
-    @game = Game.find(params[:id])
+    redirect_to root_url
+    #@game = Game.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @game }
-    end
+    #respond_to do |format|
+    #  format.html # show.html.erb
+    #  format.json { render json: @game }
+    #end
   end
 
   # GET /games/new
   # GET /games/new.json
   def new
+    
     @game = Game.new
     @game.h_team_id = params[:id]
     respond_to do |format|

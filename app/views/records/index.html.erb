@@ -99,7 +99,7 @@
 </div>
 <div class="container-fluid">
     <div class="pull-right" style="padding-bottom:10px">
-        <% if current_team_user %>
+        <% if @statusLevel ==3%>
              <%= link_to raw("<i class=\"icon-plus-sign icon-white\"></i> 新增數據"), {:controller => 'records', :action => 'new', :id => @game},:class=> "btn btn-primary"%>
         <%end%>
     </div>
@@ -150,7 +150,11 @@
       </tr>
     <% if @records.any? ==true %>
     <% @records.each do |record| %>
+    <% if record.starter ==true%>
       <tr>
+    <%else%>
+      <tr>
+    <%end%>
         <td><%= Player.find(record.player_id).number %></td>
         <td style="overflow:hidden;width:60px;"><%= Player.find(record.player_id).name %></td>
         <td><%= record.free_throw_made %></td>
@@ -191,13 +195,15 @@
         <td><%= record.points_total %></td>
         <td><%= record.efficiency_formula %></td>
         <td>
-            <div class="btn-group pull-right">
-              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><%= link_to raw("<i class=\"icon-pencil\"></i> 編輯"), edit_record_path(record) %></li>
-                <li><%= link_to raw("<i class=\"icon-trash\"></i> 刪除"), record, method: :delete, data: { confirm: '刪除賽事，記錄會一併刪除！您確定要刪除嗎？' } ,:id => record.id %></li>
-              </ul>
-            </div>
+            <% if @statusLevel ==3%> 
+                <div class="btn-group pull-right">
+                  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><%= link_to raw("<i class=\"icon-pencil\"></i> 編輯"), edit_record_path(record) %></li>
+                    <li><%= link_to raw("<i class=\"icon-trash\"></i> 刪除"), record, method: :delete, data: { confirm: '刪除賽事，記錄會一併刪除！您確定要刪除嗎？' } ,:id => record.id %></li>
+                  </ul>
+                </div>
+            <%end%>
         </td>
         <% #link_to 'Edit', edit_record_path(record) %>
         <% #button_to 'Destroy', record, method: :delete, data: { confirm: 'Are you sure?' } ,:id => record %>

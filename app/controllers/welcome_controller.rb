@@ -21,11 +21,14 @@ class WelcomeController < ApplicationController
 				@confirm.user_id = current_team_user.id
 				@confirm.state =0
 				@code=0
+
+				@playerList = Player.where(:team_id =>@team.id).all
 			end
 		else
 			redirect_to root_path
 		end
 	end
+	
 	def teamList
 		@teams = Team.all
 	end
