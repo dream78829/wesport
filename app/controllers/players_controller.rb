@@ -5,6 +5,11 @@ class PlayersController < ApplicationController
   def index
 
     @init =params[:id]
+    if Match.where(:team_id=>@init,:user_id=>current_team_user,:state=>1).first.blank?
+      @statusLevel =0
+    else
+      @statusLevel = Match.where(:team_id=>@init,:user_id=>current_team_user,:state=>1).first
+    end
 
     @players = Player.where(:team_id => params[:id]).all
     

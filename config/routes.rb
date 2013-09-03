@@ -3,6 +3,7 @@ Wesport::Application.routes.draw do
 
   match "team_user/IDconfirm" => "team_users#IDconfirm"
   put '/matches/confirm/:id'      => "matches#confirm"
+  put '/matches/changeCaptian/:id'      => "matches#changeCaptian"
   resources :teams
 
 

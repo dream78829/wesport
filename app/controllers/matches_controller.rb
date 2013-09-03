@@ -120,6 +120,22 @@ class MatchesController < ApplicationController
       end
     end
   end
+
+  def changeCaptian
+    @newCaptian = Match.find(params[:iddd])
+    @currentCaptian = Match.where(:user_id=>current_team_user,:team_id=>@newCaptian.team_id,:status=>3,:state=>1).first
+    if @newCaptian.update_attributes(:status=>3)
+      if @currentCaptian.update_attributes(:status=>1)
+        redirect_to :controller=>"team_user",:action=>"IDconfirm",:tid=>@newCaptian.team_id
+      else
+         redirect_to root_path
+      end
+    else
+      redirect_to root_path
+    end
+    
+  end
+
   # DELETE /matches/1
   # DELETE /matches/1.json
   def destroy

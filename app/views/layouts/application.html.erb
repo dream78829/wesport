@@ -99,7 +99,7 @@ $(function() {
             <% if @init %>
               <li><%= link_to '我的球隊', {:controller=>"team_users",:action=>"index",:id=>@init} %></li>
             <% else%>
-              <li><%= link_to '我的球隊', team_users_path %></li>
+              <li><%= link_to '我的球隊', {:controller=>"team_users",:action=>"index"} %></li>
             <% end %>
           <%end%>
         </ul>

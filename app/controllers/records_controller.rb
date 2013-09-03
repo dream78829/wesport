@@ -9,6 +9,12 @@ class RecordsController < ApplicationController
     
     @records = Record.order("starter DESC").where(:game_id => params[:id]).all
 
+    if Match.where(:team_id=>@game.h_team_id,:user_id=>current_team_user,:state=>1).first.blank?
+      @statusLevel =0
+    else
+      @statusLevel = Match.where(:team_id=>@game.h_team_id,:user_id=>current_team_user,:state=>1).first.status
+    end
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @records }

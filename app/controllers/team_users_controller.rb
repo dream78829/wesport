@@ -41,5 +41,4 @@ class TeamUsersController < ApplicationController
 	def IDconfirm
 		@matches = Match.where(:team_id=>params[:tid])
 	end
-
 end

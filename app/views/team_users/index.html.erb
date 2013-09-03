@@ -62,6 +62,18 @@
                     </div>
                     <div class="span4">
                       隊長交接：
+                      <%= form_tag({:controller=>"matches",:action=>"changeCaptian"}) do%>
+                        <select id="match_id" name="iddd">
+                        <option value="">請選擇</option>
+                        <% @players.each do |player| %>
+                          <% if !Match.where(:player_id=>player.id,:team_id=>@init,:state=>1,:status=>1).first.blank?%>
+                            <% @matchID = Match.where(:player_id=>player.id,:team_id=>@init,:state=>1,:status=>1).first%>
+                            <%= raw("<option value=\"#{@matchID.id}\">#{player.number} #{player.name}</option>")%>
+                          <%end%>
+                        <%end%>
+                        </select>
+                        <%=submit_tag "更換",:class=>"btn",data: { confirm: '更換隊長後，您將失去隊長權限！' }%>
+                      <%end%>
                     </div>
                     <div class="span4">
                       隊員認證：
@@ -117,21 +129,25 @@
                   <p>無資料</p>
                 <% end%>
               </td>
-              <td>
-                <div class="btn-group pull-right">
-                  <%= link_to raw("<i class=\"icon-th-list\"></i> 檢視"), {:controller => 'records', :action => 'index', :id => game.id},:class=>"btn" %>
-                  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-                  <% if @statusLevel.to_f ==3%>
-                    <ul class="dropdown-menu">
-                      <li><%= link_to raw("<i class=\"icon-plus-sign\"></i> 新增數據"), :controller => 'records', :action => 'new', :id => game %></li>
-                      <li class="divider"></li>
-                      <li><%= link_to raw("<i class=\"icon-search\"></i> 檢視"), :controller => 'records', :action => 'index', :id => game.id %></li>
-                      <li><%= link_to raw("<i class=\"icon-pencil\"></i> 編輯"), edit_game_path(game) %></li>
-                      <li><%= link_to raw("<i class=\"icon-trash\"></i> 刪除"), game, method: :delete, data: { confirm: '刪除賽事，記錄會一併刪除！您確定要刪除嗎？' } ,:id => game %></li>
-                    </ul>
-                  <%end%>
-                </div>
-              </td>
+              <% if @statusLevel.to_f ==3%>
+                <td>
+                  <div class="btn-group pull-right">
+                    <%= link_to raw("<i class=\"icon-th-list\"></i> 檢視"), {:controller => 'records', :action => 'index', :id => game.id},:class=>"btn" %>
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                    <% if @statusLevel.to_f ==3%>
+                      <ul class="dropdown-menu">
+                        <li><%= link_to raw("<i class=\"icon-plus-sign\"></i> 新增數據"), :controller => 'records', :action => 'new', :id => game %></li>
+                        <li class="divider"></li>
+                        <li><%= link_to raw("<i class=\"icon-search\"></i> 檢視"), :controller => 'records', :action => 'index', :id => game.id %></li>
+                        <li><%= link_to raw("<i class=\"icon-pencil\"></i> 編輯"), edit_game_path(game) %></li>
+                        <li><%= link_to raw("<i class=\"icon-trash\"></i> 刪除"), game, method: :delete, data: { confirm: '刪除賽事，記錄會一併刪除！您確定要刪除嗎？' } ,:id => game %></li>
+                      </ul>
+                    <%end%>
+                  </div>
+                </td>
+                <%else%>
+                <td></td>
+                <%end%>
             </tr>
             <% end %>
           <% else %>
