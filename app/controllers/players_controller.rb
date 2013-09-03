@@ -1,17 +1,11 @@
 class PlayersController < ApplicationController
   # GET /players
   # GET /players.json
-  before_filter :authenticate_team_user!
+  before_filter :getStatusLevel, only: [:index,:new,:create,:edit, :update, :destroy]
   def index
 
-    @init =params[:id]
-    if Match.where(:team_id=>@init,:user_id=>current_team_user,:state=>1).first.blank?
-      @statusLevel =0
-    else
-      @statusLevel = Match.where(:team_id=>@init,:user_id=>current_team_user,:state=>1).first
-    end
-
-    @players = Player.where(:team_id => params[:id]).all
+    
+    @players = Player.where(:team_id => params[:tid]).all
     
     respond_to do |format|
       format.html # index.html.erb
@@ -33,12 +27,16 @@ class PlayersController < ApplicationController
   # GET /players/new
   # GET /players/new.json
   def new
-    @player = Player.new
-    @player.team_id = params[:id]
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @player }
-    end
+    #if @statusLevel ==3
+      @player = Player.new
+      @player.team_id = params[:tid]
+      respond_to do |format|
+        format.html # new.html.erb
+        format.json { render json: @player }
+      end
+    #else
+    #  redirect_to root_path
+    #end
   end
 
   # GET /players/1/edit
@@ -72,9 +70,7 @@ class PlayersController < ApplicationController
     end
     respond_to do |format|
       if @player.save
-
-        format.html { redirect_to :controller=>"players",:action => "index",:id=>@player.team_id }
-
+        format.html { redirect_to :controller=>"players",:action => "index",:tid=>@player.team_id }
         format.json { render json: @player, status: :created, location: @player }
       else
         format.html { render action: "new" }
@@ -90,7 +86,7 @@ class PlayersController < ApplicationController
 
     respond_to do |format|
       if @player.update_attributes(params[:player])
-        format.html { redirect_to :controller=>"players",:action => "index",:id=>@player.team_id }
+        format.html { redirect_to :controller=>"players",:action => "index",:tid=>@player.team_id }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -118,6 +114,42 @@ class PlayersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to :controller=>"team_users",:action=>"index" ,:id =>  @team}
       format.json { head :no_content }
+    end
+  end
+
+  protected
+  def getStatusLevel
+    @step =1
+    if params[:tid].blank?
+      if params[:gid].blank?
+        @statusLevel = 0
+        @step =2
+      else
+        @team_id = Game.find(params[:gid]).h_team_id
+        @step =3
+      end
+    else
+        @team_id = params[:tid]
+        @step =4
+    end
+
+
+    if @team_id.blank?
+      @statusLevel = 0
+      @step =5
+      redirect_to root_path
+    else
+      if Match.where(:team_id => @team_id, :state => 1,:user_id => current_team_user.id).first.blank?
+        @statusLevel = 0
+        @step =6
+      else
+        @statusLevel=Match.where(:team_id => @team_id, :state => 1,:user_id => current_team_user.id).first.status
+        @step =7
+      end
+      if @statusLevel!=3
+        @step =8
+        redirect_to root_path
+      end
     end
   end
 end
