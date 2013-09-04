@@ -137,7 +137,7 @@ class PlayersController < ApplicationController
     if @team_id.blank?
       @statusLevel = 0
       @step =5
-      redirect_to root_path
+      redirect_to root_path 
     else
       if Match.where(:team_id => @team_id, :state => 1,:user_id => current_team_user.id).first.blank?
         @statusLevel = 0

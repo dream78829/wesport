@@ -1,7 +1,7 @@
+# encoding: utf-8
 class RecordsController < ApplicationController
   # GET /records
   # GET /records.json
-  before_filter :authenticate_team_user!, except: [:index]
   before_filter :getStatusLevel, only: [:new,:create,:edit, :update, :destroy]
 
   def index
@@ -43,6 +43,7 @@ class RecordsController < ApplicationController
       format.html # new.html.erb
       format.json { render json: @record }
     end
+
   end
 
   # GET /records/1/edit
@@ -55,6 +56,7 @@ class RecordsController < ApplicationController
   # POST /records.json
   def create
     @record = Record.new(params[:record])
+    #@record.assist = @record.assist.to_i
     @record.rebound_total = @record.defensive_rebound + @record.offensive_rebound
     @record.points_total = @record.free_throw_made + @record.two_points_made*2 + @record.three_points_made*3
     @record.efficiency_formula = @record.points_total + @record.assist + @record.rebound_total + @record.steal + @record.block - @record.two_points_miss - @record.three_points_miss - @record.free_throw_miss - @record.turn_over
@@ -78,7 +80,21 @@ class RecordsController < ApplicationController
         @player_box_score.free_throw_miss += @record.free_throw_miss
         @player_box_score.points_total += @record.points_total
         @player_box_score.save
- 
+        session[:assist] = nil
+        session[:block] = nil
+        session[:steal] = nil
+        session[:turn_over] = nil
+        session[:personal_foul] = nil
+        session[:offensive_rebound] = nil
+        session[:defensive_rebound] = nil
+        session[:rebound_total] = nil
+        session[:two_points_made] = nil
+        session[:two_points_miss] = nil
+        session[:three_points_made] = nil
+        session[:three_points_miss] = nil
+        session[:free_throw_made] = nil
+        session[:free_throw_miss] = nil
+        session[:points_total] = nil
       end
 
 
@@ -90,6 +106,7 @@ class RecordsController < ApplicationController
       else
         format.html { redirect_to :controller=>"records", :action=>"new",:gid=>@record.game_id}
         format.json { render json: @record.errors, status: :unprocessable_entity }
+        flash[:notice] = "呵呵player_id:#{@record.player_id} , game_id:#{@record.game_id},#{@record.id}"
       end
     end
   end
@@ -105,7 +122,7 @@ class RecordsController < ApplicationController
 
     respond_to do |format|
       if @record.update_attributes(params[:record])
-        format.html { redirect_to :controller =>"records",:action=>"index",:id=>@record.game_id }
+        format.html { redirect_to :controller =>"records",:action=>"index",:gid=>@record.game_id }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
