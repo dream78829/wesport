@@ -1,3 +1,4 @@
+# encoding: utf-8
 class TeamUsersController < ApplicationController
 	before_filter :authenticate_team_user!,:except=>[:show]
 	def index
@@ -38,7 +39,24 @@ class TeamUsersController < ApplicationController
 	end
 	def show
 	end
+
 	def IDconfirm
 		@matches = Match.where(:team_id=>params[:tid])
 	end
+	
+	def edit
+    	@user = TeamUser.find(current_team_user.id)
+  	end
+ 	def update
+    	@user = TeamUser.find(current_team_user.id)
+		respond_to do |format| 
+		 	if @user.update_attributes(params[:user]) 
+		 		format.html { redirect_to @user, notice: 'User was successfully updated.' }
+		 		format.json { head :no_content } 
+		 	else 
+			 	format.html { render action: "edit" } 
+			 	format.json { render json: @luser.errors, status: :unprocessable_entity } 
+		 	end 
+ 		end
+ 	end
 end

@@ -86,7 +86,45 @@ $(function() {
 </script>
 
 <!--Popover end-->
-
+<!--validate jquery start-->
+<script type="text/javascript">
+  function dataValidate(){
+    var field_name = new Array("record_two_points_made" , "record_two_points_miss" , "record_three_points_made" , "record_three_points_miss" , "record_free_throw_made" , "record_free_throw_miss" , "record_assist" , "record_block" , "record_turn_over" , "record_steal" , "record_offensive_rebound" , "record_defensive_rebound" , "record_personal_foul");
+    var p;
+    var q
+    var check=0;
+    for(i=0;i<13;i=i+1){
+      p = document.getElementById(field_name[i]).value;
+      if(isNaN(p)||p==""||p>99||p<0){
+        document.getElementById(field_name[i]).style.borderColor="#ff2200";
+      }
+      else{
+        check=check+1;
+        document.getElementById(field_name[i]).style.borderColor="";
+      }
+    }
+    if(check==13){
+      q =document.getElementById("record_player_id").value;
+      if(q!=""){
+        return true;
+      }
+      else{
+        document.getElementById("record_player_id").style.borderColor="#ff2200";
+      }
+    }
+    check=0;
+    return false;
+  }
+</script> 
+<!--validate jquery end-->
+<script type="text/javascript">
+  function getTotal(){
+    var onePoint = document.getElementById("record_free_throw_made").value;
+    var twoPoints = document.getElementById("record_two_points_made").value;
+    var threePoints = document.getElementById("record_three_points_made").value;
+    document.getElementById("record_total").value = onePoint*1+twoPoints*2+threePoints*3;
+  }
+</script>
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -105,7 +143,7 @@ $(function() {
         </ul>
         <ul class="nav  pull-right">
           <% if current_team_user%>
-            <li><%= link_to "Hi, #{current_team_user.name}", edit_registration_path(:team_user) %></li>
+            <li><%# link_to('修改資料', {:controller => 'asd', :action => 'edit'}) %><%= link_to "Hi, #{current_team_user.name}", edit_registration_path(:team_user) %></li>
             <li><%= link_to('登出', destroy_session_path(:team_user), :method => :delete) %></li>
           <% else %>
             <li>
@@ -126,10 +164,12 @@ $(function() {
   </div>
 </div>
 <div class="main">
-  <div class="statusLevelBox alert">
-    <strong>權限測試：</strong>
-    statusLevel:<%=@statusLevel%>
-    step:<%=@step%>
+  <div class="statusLevelBox alert row">
+    <strong class="span2">權限測試</strong>
+    <p class="span2">statusLevel:<%=@statusLevel%></p>
+    <p class="span2">step:<%=@step%></p>
+    <p class="span2">tid:<%=params[:tid]%></p>
+    <p class="span2">gid:<%=params[:gid]%></p>
   </div>
   <%= yield %>
 </div>

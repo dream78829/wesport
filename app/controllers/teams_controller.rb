@@ -1,3 +1,4 @@
+# encoding: utf-8
 class TeamsController < ApplicationController
   before_filter :authenticate_team_user!
   # GET /teams
@@ -49,11 +50,31 @@ class TeamsController < ApplicationController
     if @team.save
 
       @player = Player.new
-      @player.name = "Yourself"
+      @player.name = "#{TeamUser.find(current_team_user.id).name}"
       @player.number = 0
       @player.team_id =@team.id
       @player.save
 
+      if  @player.save
+        @player_box_score = PlayerBoxScore.new
+        @player_box_score.player_id = @player.id
+        @player_box_score.assist =0
+        @player_box_score.block  =0
+        @player_box_score.steal  =0
+        @player_box_score.turn_over  =0
+        @player_box_score.personal_foul  =0
+        @player_box_score.offensive_rebound  =0
+        @player_box_score.defensive_rebound  =0
+        @player_box_score.rebound_total =0
+        @player_box_score.two_points_made =0
+        @player_box_score.two_points_miss =0
+        @player_box_score.three_points_made =0
+        @player_box_score.three_points_miss =0
+        @player_box_score.free_throw_made =0
+        @player_box_score.free_throw_miss =0
+        @player_box_score.points_total =0
+        @player_box_score.save
+      end
       @match = Match.new
       @match.user_id = current_team_user.id
       @match.state = 1

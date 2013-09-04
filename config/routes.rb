@@ -1,12 +1,13 @@
 Wesport::Application.routes.draw do
+  resources :asds
+
+
   resources :matches
 
   match "team_user/IDconfirm" => "team_users#IDconfirm"
   put '/matches/confirm/:id'      => "matches#confirm"
   put '/matches/changeCaptian/:id'      => "matches#changeCaptian"
   resources :teams
-
-
   resources :team_box_scores
 
 

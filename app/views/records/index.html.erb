@@ -119,9 +119,9 @@
     <table class="table table-striped  table-bordered">
        <tr>
         <th colspan="2">球員</th>
-        <th colspan="3">罰球</th>
         <th colspan="3">投籃</th>
         <th colspan="3">三分球</th>
+        <th colspan="3">罰球</th>
         <th colspan="3">籃板</th>
         <th colspan="10" style="border-left:solid;border-left-color:#999;border-left-width:1px;"></th>
       <tr>
@@ -151,21 +151,12 @@
     <% if @records.any? ==true %>
     <% @records.each do |record| %>
     <% if record.starter ==true%>
-      <tr>
+      <tr class="record-starter">
     <%else%>
       <tr>
     <%end%>
         <td><%= Player.find(record.player_id).number %></td>
         <td style="overflow:hidden;width:60px;"><%= Player.find(record.player_id).name %></td>
-        <td><%= record.free_throw_made %></td>
-        <td><%= record.free_throw_miss %></td>
-        <td>
-            <% if record.free_throw_made ==0 %>
-                0
-            <% else %>
-                <%= number_with_precision(record.free_throw_made/(record.free_throw_made+record.free_throw_miss).to_f,:precision => 2) %>
-            <%end%>
-        </td>
         <td><%= record.two_points_made %></td>
         <td><%= record.two_points_miss %></td>
         <td>
@@ -182,6 +173,15 @@
                 0
             <% else %>
                 <%= number_with_precision(record.three_points_made/(record.three_points_made+record.three_points_miss).to_f,:precision => 2) %>
+            <%end%>
+        </td>
+        <td><%= record.free_throw_made %></td>
+        <td><%= record.free_throw_miss %></td>
+        <td>
+            <% if record.free_throw_made ==0 %>
+                0
+            <% else %>
+                <%= number_with_precision(record.free_throw_made/(record.free_throw_made+record.free_throw_miss).to_f,:precision => 2) %>
             <%end%>
         </td>
         <td><%= record.defensive_rebound %></td>
