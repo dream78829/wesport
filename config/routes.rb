@@ -26,7 +26,7 @@ Wesport::Application.routes.draw do
   resources :players
 
 
-  devise_for :team_users, :controllers => { :registrations => "registrations" } 
+  devise_for :team_users, :controllers => { :omniauth_callbacks => "team_user/omniauth_callbacks" }
 
   #devise_for :devise
 

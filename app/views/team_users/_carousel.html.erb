@@ -5,10 +5,16 @@
 		<div class="web-carousel-wrapper">
 
 			<ul class="web-carousel-container">
-
+				<%= "得分王" %>
+				<% if @lead_user_list[:points_total] == 0 %>
+				<%= image_tag("/uploads/team_user/avatar/HeadIcon.jpg") %>
+				<% else %>
+				<% @userIag=TeamUser.find(@lead_user_list[:points_total])%>
+				<%=image_tag(@userIag.avatar.url)%>
+				<%= Player.find(@lead_list[:points_total].name) %>
 				<% @players.each do |player| %>
 				<li>
-				       <%= image_tag("/uploads/team_user/avatar/HeadIcon.jpg") %>
+				       
 					<div class="sc-content">
 						<h2><%= link_to player.name, :controller => 'matches',:action => 'new' ,:id => @init%></h2>
 					</div>

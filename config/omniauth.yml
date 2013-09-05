@@ -1,0 +1,15 @@
+development:
+  :facebook:
+    :domain: "http://localhost:3000/"
+    :api_id: "572569659470033"
+    :api_secret: "28c652ce153e754b7a6c3eff3485e98a"
+test:
+  :facebook:
+    :domain: "http://localhost:3000/"
+    :api_id: "572569659470033"
+    :api_secret: "28c652ce153e754b7a6c3eff3485e98a"
+production:
+  :facebook:
+    :domain: "http://localhost:3000/"
+    :api_id: "572569659470033"
+    :api_secret: "28c652ce153e754b7a6c3eff3485e98a"

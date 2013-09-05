@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130902090429) do
+ActiveRecord::Schema.define(:version => 20130904095001) do
+
+  create_table "asds", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "authorizations", :force => true do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "games", :force => true do |t|
     t.integer  "h_team_id"
@@ -139,6 +152,8 @@ ActiveRecord::Schema.define(:version => 20130902090429) do
     t.integer  "weight"
     t.string   "school"
     t.string   "department"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "team_users", ["confirmation_token"], :name => "index_team_users_on_confirmation_token", :unique => true

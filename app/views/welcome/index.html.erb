@@ -48,6 +48,7 @@
               </th>
             </tr>
           <% end %>
+          <%= link_to "Sign in with Facebook", team_user_omniauth_authorize_path(:facebook) %>
         <% else %>
         <tr>
           <td colspan="5">您還沒有任何賽事記錄</td>
@@ -56,4 +57,5 @@
       </table>
     </div>
   </div>
+
   
