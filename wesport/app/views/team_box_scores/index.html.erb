@@ -1,0 +1,26 @@
+<h1>Listing team_box_scores</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <p>
+  <b>player_two_points_made:</b>
+  <%= @sum[0] %>
+</p>
+
+<p>
+  <b>hree_points_made:</b>
+  <%= @sum[1] %>
+</p>
+
+
+</table>
+
+<br />
+
+<%=
+@leagues = League.find(:all, :order => "name")
+collection_select("stuff", "league_id", @leagues, :id, :name , include_blank: true) %>

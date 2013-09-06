@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  player_id: 1
+  game_id: 1
+  free_throw_made: 1
+  free_throw_miss: 1
+  free_throw_total: 1
+  two_points_made: 1
+  two_points_made: 1
+  two_points_total: 1
+  three_points_made: 1
+  three_points_miss: 1
+  three_points_total: 1
+  assist: 1
+  block: 1
+  turn_over: 1
+  steal: 1
+  defensive_rebound: 1
+  offensive_rebound: 1
+  rebound_total: 1
+  personal_foul: 1
+  points_total: 1
+  efficiency_formula: 1
+
+two:
+  player_id: 1
+  game_id: 1
+  free_throw_made: 1
+  free_throw_miss: 1
+  free_throw_total: 1
+  two_points_made: 1
+  two_points_made: 1
+  two_points_total: 1
+  three_points_made: 1
+  three_points_miss: 1
+  three_points_total: 1
+  assist: 1
+  block: 1
+  turn_over: 1
+  steal: 1
+  defensive_rebound: 1
+  offensive_rebound: 1
+  rebound_total: 1
+  personal_foul: 1
+  points_total: 1
+  efficiency_formula: 1

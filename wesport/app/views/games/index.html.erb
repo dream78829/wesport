@@ -1,0 +1,31 @@
+<h1>Listing games</h1>
+
+<table>
+  <tr>
+    <th>H team</th>
+    <th>G team</th>
+    <th>League_name</th>
+    <th>Game_Name</th>
+    <th>League_id</th>
+    <th></th>
+  </tr>
+
+<% @games.each do |game| %>
+  <tr>
+    <td><%= game.h_team_id %></td>
+    <td><%= game.g_team_id %></td>
+    <td><%= League.find(game.league_id).name %></td>
+    <td><%= game.name %></td>
+    <td><%= game.league_id %></td>
+    <td><%= link_to 'Show', :controller => 'records', :action => 'index', :id => game %></td>
+    <td><%= link_to 'Edit', edit_game_path(game) %></td>
+    <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'New_Record', :controller => 'records', :action => 'new', :id => game %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Game', new_game_path %>
+<%= link_to 'index', team_users_path %>

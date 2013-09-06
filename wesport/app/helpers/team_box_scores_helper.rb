@@ -1,0 +1,2 @@
+module TeamBoxScoresHelper
+end
